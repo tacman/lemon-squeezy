@@ -39,7 +39,8 @@ class UserController extends AbstractController
             // do anything else you need here, like send an email
             $this->addFlash('success', 'Your account has been created! Please, validate your email address.');
 
-            return $security->login($user, LoginFormAuthenticator::class, 'main');
+            // TODO the authenticator has "debub." prefix, can we get rid of it somehow?
+            return $security->login($user, 'debug.'.LoginFormAuthenticator::class, 'main');
         }
 
         return $this->render('user/register.html.twig', [
