@@ -1,0 +1,25 @@
+diff --git a/.env b/.env
+index aff989d..7cbeb8a 100644
+--- a/.env
++++ b/.env
+@@ -14,6 +14,8 @@
+ # Run "composer dump-env prod" to compile .env files for production use (requires symfony/flex >=1.2).
+ # https://symfony.com/doc/current/best_practices.html#use-environment-variables-for-infrastructure-configuration
+ 
++LEMON_SQUEEZY_API_KEY=
++
+ ###> symfony/framework-bundle ###
+ APP_ENV=dev
+ APP_SECRET=
+diff --git a/config/packages/http_client.yaml b/config/packages/http_client.yaml
+index 1d22b3c..af00d45 100644
+--- a/config/packages/http_client.yaml
++++ b/config/packages/http_client.yaml
+@@ -3,6 +3,7 @@ framework:
+         scoped_clients:
+             lemon_squeezy.client:
+                 base_uri: 'https://api.lemonsqueezy.com/v1/'
++                auth_bearer: '%env(LEMON_SQUEEZY_API_KEY)%'
+                 headers:
+                     Accept: 'application/vnd.api+json'
+                     Content-Type: 'application/vnd.api+json'

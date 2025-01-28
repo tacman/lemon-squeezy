@@ -1,0 +1,13 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 059cf17..e3ee078 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -91,7 +91,7 @@ class OrderController extends AbstractController
+                 ],
+             ],
+         ]);
+-        dd($response->getContent(false));
++        //dd($response->getContent(false));
+         $lsCheckout = $response->toArray();
+ 
+         return $lsCheckout['data']['attributes']['url'];

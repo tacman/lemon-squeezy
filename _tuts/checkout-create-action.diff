@@ -1,0 +1,14 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index a83b0ba..624fbfc 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -50,4 +50,9 @@ class OrderController extends AbstractController
+ 
+         return $this->redirectToRoute('app_order_cart');
+     }
++
++    #[Route('/checkout', name: 'app_order_checkout')]
++    public function checkout(): Response {
++
++    }
+ }

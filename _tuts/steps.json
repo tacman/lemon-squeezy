@@ -1,0 +1,80 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "http-client-install",
+            "name": "HTTP Client: Install",
+            "description": null
+        },
+        {
+            "id": "http-client-create-scoped-client",
+            "name": "HTTP Client: Create scoped client",
+            "description": null
+        },
+        {
+            "id": "http-client-set-ls-api-key",
+            "name": "HTTP Client: Set LS API key",
+            "description": null
+        },
+        {
+            "id": "checkout-create-action",
+            "name": "Checkout: Create action",
+            "description": null
+        },
+        {
+            "id": "checkout-link-from-cart",
+            "name": "Checkout: Link from cart",
+            "description": null
+        },
+        {
+            "id": "checkout-inject-deps-to-action",
+            "name": "Checkout: Inject deps to action",
+            "description": null
+        },
+        {
+            "id": "checkout-create-ls-checkout-url",
+            "name": "Checkout: Create LS checkout URL",
+            "description": null
+        },
+        {
+            "id": "checkout-fix-injecting-ls-http-client-with-target",
+            "name": "Checkout: Fix injecting LS HTTP client with #Target",
+            "description": null
+        },
+        {
+            "id": "checkout-debug-response-content",
+            "name": "Checkout: Debug response content",
+            "description": null
+        },
+        {
+            "id": "checkout-debug-without-throwing",
+            "name": "Checkout: Debug without throwing",
+            "description": null
+        },
+        {
+            "id": "checkout-set-store-id-as-int",
+            "name": "Checkout: Set store ID as int",
+            "description": null
+        },
+        {
+            "id": "checkout-set-store-id-as-string",
+            "name": "Checkout: Set store ID as string",
+            "description": null
+        },
+        {
+            "id": "checkout-set-variant-id-as-string",
+            "name": "Checkout: Set variant ID as string",
+            "description": null
+        },
+        {
+            "id": "checkout-comment-out-dd",
+            "name": "Checkout: Comment out dd()",
+            "description": null
+        }
+    ],
+    "sha": "e38c820964916afd3b9f7a0699d4ca152b1ad3d6"
+}

@@ -1,0 +1,13 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index e1cf3d2..cf9cb5b 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -78,7 +78,7 @@ class OrderController extends AbstractController
+                         'store' => [
+                             'data' => [
+                                 'type' => 'stores',
+-                                'id' => 132127,
++                                'id' => '132127',
+                             ],
+                         ],
+                     ],

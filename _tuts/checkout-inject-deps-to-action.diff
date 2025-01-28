@@ -1,0 +1,24 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 624fbfc..2798a33 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Attribute\Route;
++use Symfony\Contracts\HttpClient\HttpClientInterface;
+ 
+ class OrderController extends AbstractController
+ {
+@@ -52,7 +53,10 @@ class OrderController extends AbstractController
+     }
+ 
+     #[Route('/checkout', name: 'app_order_checkout')]
+-    public function checkout(): Response {
++    public function checkout(
++        HttpClientInterface $lsClient,
++        ShoppingCart $cart,
++    ): Response {
+ 
+     }
+ }

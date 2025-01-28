@@ -1,0 +1,20 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 72dfb57..e77cdb9 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -5,6 +5,7 @@ namespace App\Controller;
+ use App\Entity\Product;
+ use App\Store\ShoppingCart;
+ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
++use Symfony\Component\DependencyInjection\Attribute\Target;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Attribute\Route;
+@@ -54,6 +55,7 @@ class OrderController extends AbstractController
+ 
+     #[Route('/checkout', name: 'app_order_checkout')]
+     public function checkout(
++        #[Target('lemonSqueezyClient')]
+         HttpClientInterface $lsClient,
+         ShoppingCart $cart,
+     ): Response {

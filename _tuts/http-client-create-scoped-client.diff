@@ -1,0 +1,14 @@
+diff --git a/config/packages/http_client.yaml b/config/packages/http_client.yaml
+new file mode 100644
+index 0000000..1d22b3c
+--- /dev/null
++++ b/config/packages/http_client.yaml
+@@ -0,0 +1,8 @@
++framework:
++    http_client:
++        scoped_clients:
++            lemon_squeezy.client:
++                base_uri: 'https://api.lemonsqueezy.com/v1/'
++                headers:
++                    Accept: 'application/vnd.api+json'
++                    Content-Type: 'application/vnd.api+json'
