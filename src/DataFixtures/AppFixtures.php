@@ -31,25 +31,25 @@ class AppFixtures extends Fixture
         ]);
         ProductFactory::new()->create([
             'name' => 'Apple Lemonade',
-            'price' => 299,
+            'price' => 199,
             'description' => 'A unique twist where the bright tartness of lemons meets the smooth, slightly sweet flavor of fresh apples.',
             'slug' => 'apple-lemonade',
         ]);
         ProductFactory::new()->create([
             'name' => 'Strawberry Lemonade',
-            'price' => 399,
+            'price' => 299,
             'description' => 'A refreshing, sweet-tart drink combining the juicy, fruity flavor of ripe strawberries with the zesty, tangy kick of lemons.',
             'slug' => 'strawberry-lemonade',
         ]);
         ProductFactory::new()->create([
             'name' => 'Orange Lemonade',
-            'price' => 399,
+            'price' => 99,
             'description' => 'A sunny, citrusy refreshment that blends the bright, tangy zing of lemons with the sweet, juicy flavor of ripe oranges',
             'slug' => 'orange-lemonade',
         ]);
         ProductFactory::new()->create([
             'name' => 'Cherry Lemonade',
-            'price' => 399,
+            'price' => 299,
             'description' => 'A bright, fruity fusion of sweet cherries and tart lemons. It has a perfect balance of tangy and sweet, with a burst of cherry goodness that adds a bit of whimsy to every sip',
             'slug' => 'cherry-lemonade',
         ]);
