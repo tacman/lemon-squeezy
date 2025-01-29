@@ -1,0 +1,13 @@
+diff --git a/src/Entity/Product.php b/src/Entity/Product.php
+index c61e5e5..619af86 100644
+--- a/src/Entity/Product.php
++++ b/src/Entity/Product.php
+@@ -29,7 +29,7 @@ class Product
+     #[ORM\Column(length: 255)]
+     private ?string $imageFilename = null;
+ 
+-    #[ORM\Column(length: 255, nullable: true)]
++    #[ORM\Column(length: 255, unique: true, nullable: true)]
+     private ?string $lsVariantId = null;
+ 
+     public function getId(): ?int

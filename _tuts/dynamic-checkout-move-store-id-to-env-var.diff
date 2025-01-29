@@ -1,0 +1,37 @@
+diff --git a/.env b/.env
+index 7cbeb8a..f740a7c 100644
+--- a/.env
++++ b/.env
+@@ -15,6 +15,7 @@
+ # https://symfony.com/doc/current/best_practices.html#use-environment-variables-for-infrastructure-configuration
+ 
+ LEMON_SQUEEZY_API_KEY=
++LEMON_SQUEEZY_STORE_ID=132127
+ 
+ ###> symfony/framework-bundle ###
+ APP_ENV=dev
+diff --git a/config/services.yaml b/config/services.yaml
+index 2d6a76f..e12782d 100644
+--- a/config/services.yaml
++++ b/config/services.yaml
+@@ -4,6 +4,7 @@
+ # Put parameters here that don't need to change on each machine where the app is deployed
+ # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+ parameters:
++    env(LEMON_SQUEEZY_STORE_ID): '%env(LEMON_SQUEEZY_STORE_ID)%'
+ 
+ services:
+     # default configuration for services in *this* file
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index e3ee078..901adc8 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -78,7 +78,7 @@ class OrderController extends AbstractController
+                         'store' => [
+                             'data' => [
+                                 'type' => 'stores',
+-                                'id' => '132127',
++                                'id' => $this->getParameter('env(LEMON_SQUEEZY_STORE_ID)'),
+                             ],
+                         ],
+                         'variant' => [

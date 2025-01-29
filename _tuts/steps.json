@@ -74,7 +74,27 @@
             "id": "checkout-comment-out-dd",
             "name": "Checkout: Comment out dd()",
             "description": null
+        },
+        {
+            "id": "dynamic-checkout-move-store-id-to-env-var",
+            "name": "Dynamic checkout: Move store ID to env var",
+            "description": null
+        },
+        {
+            "id": "dynamic-checkout-generate-product-lsvariantid-property",
+            "name": "Dynamic checkout: Generate Product::lsVariantId property",
+            "description": null
+        },
+        {
+            "id": "dynamic-checkout-make-lsvariantid-unique",
+            "name": "Dynamic checkout: Make $lsVariantId unique",
+            "description": null
+        },
+        {
+            "id": "dynamic-checkout-generate-migration",
+            "name": "Dynamic checkout: Generate migration",
+            "description": null
         }
     ],
-    "sha": "e38c820964916afd3b9f7a0699d4ca152b1ad3d6"
+    "sha": "56e95efd55454c48148ba4eb038cb90362a2517b"
 }
