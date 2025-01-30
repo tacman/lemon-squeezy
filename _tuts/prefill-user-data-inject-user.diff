@@ -1,0 +1,36 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index cc3b5b7..e971b67 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -3,12 +3,14 @@
+ namespace App\Controller;
+ 
+ use App\Entity\Product;
++use App\Entity\User;
+ use App\Store\ShoppingCart;
+ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+ use Symfony\Component\DependencyInjection\Attribute\Target;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Attribute\Route;
++use Symfony\Component\Security\Http\Attribute\CurrentUser;
+ use Symfony\Contracts\HttpClient\HttpClientInterface;
+ 
+ class OrderController extends AbstractController
+@@ -58,13 +60,14 @@ class OrderController extends AbstractController
+         #[Target('lemonSqueezyClient')]
+         HttpClientInterface $lsClient,
+         ShoppingCart $cart,
++        #[CurrentUser] ?User $user,
+     ): Response {
+-        $lsCheckoutUrl = $this->createLsCheckoutUrl($lsClient, $cart);
++        $lsCheckoutUrl = $this->createLsCheckoutUrl($lsClient, $cart, $user);
+ 
+         return $this->redirect($lsCheckoutUrl);
+     }
+ 
+-    private function createLsCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart): string
++    private function createLsCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string
+     {
+         if ($cart->isEmpty()) {
+             throw new \LogicException('Nothing to checkout!');

@@ -1,0 +1,23 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 901adc8..e6e8098 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -70,6 +70,9 @@ class OrderController extends AbstractController
+             throw new \LogicException('Nothing to checkout!');
+         }
+ 
++        $products = $cart->getProducts();
++        $variantId = $products[0]->getLsVariantId();
++
+         $response = $lsClient->request(Request::METHOD_POST, 'checkouts', [
+             'json' => [
+                 'data' => [
+@@ -84,7 +87,7 @@ class OrderController extends AbstractController
+                         'variant' => [
+                             'data' => [
+                                 'type' => 'variants',
+-                                'id' => '579933',
++                                'id' => $variantId,
+                             ],
+                         ],
+                     ],

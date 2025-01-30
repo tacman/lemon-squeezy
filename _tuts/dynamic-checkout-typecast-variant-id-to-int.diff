@@ -1,0 +1,13 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 06fda34..cc3b5b7 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -82,7 +82,7 @@ class OrderController extends AbstractController
+                         'checkout_data' => [
+                             'variant_quantities' => [
+                                 [
+-                                    'variant_id' => $variantId,
++                                    'variant_id' => (int) $variantId,
+                                     'quantity' => $quantity,
+                                 ],
+                             ],

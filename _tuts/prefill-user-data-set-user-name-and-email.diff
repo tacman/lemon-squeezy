@@ -1,0 +1,15 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 5e3ccad..45f07db 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -87,6 +87,10 @@ class OrderController extends AbstractController
+                 ],
+             ],
+         ];
++        if ($user) {
++            $attributes['checkout_data']['email'] = $user->getEmail();
++            $attributes['checkout_data']['name'] = $user->getFirstName();
++        }
+ 
+         $response = $lsClient->request(Request::METHOD_POST, 'checkouts', [
+             'json' => [

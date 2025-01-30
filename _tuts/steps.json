@@ -94,7 +94,57 @@
             "id": "dynamic-checkout-generate-migration",
             "name": "Dynamic checkout: Generate migration",
             "description": null
+        },
+        {
+            "id": "dynamic-checkout-set-variant-ids-in-fixtures",
+            "name": "Dynamic checkout: Set variant IDs in fixtures",
+            "description": null
+        },
+        {
+            "id": "dynamic-checkout-set-dynamic-variant-id-on-checkout",
+            "name": "Dynamic checkout: Set dynamic variant ID on checkout",
+            "description": null
+        },
+        {
+            "id": "dynamic-checkout-set-variant-quantity",
+            "name": "Dynamic checkout: Set variant quantity",
+            "description": null
+        },
+        {
+            "id": "dynamic-checkout-typecast-variant-id-to-int",
+            "name": "Dynamic checkout: Typecast variant ID to int",
+            "description": null
+        },
+        {
+            "id": "delete",
+            "name": "DELETE",
+            "description": null
+        },
+        {
+            "id": "prefill-user-data-inject-user",
+            "name": "Prefill user data: Inject user",
+            "description": null
+        },
+        {
+            "id": "prefill-user-data-move-attributes-to-var",
+            "name": "Prefill user data: Move attributes to var",
+            "description": null
+        },
+        {
+            "id": "prefill-user-data-set-user-name-and-email",
+            "name": "Prefill user data: Set user name and email",
+            "description": null
+        },
+        {
+            "id": "buy-multiple-refactor-variant-quantity-setting-for-1",
+            "name": "Buy multiple: Refactor variant quantity setting for 1",
+            "description": null
+        },
+        {
+            "id": "buy-multiple-implement-for-more-than-1",
+            "name": "Buy multiple: Implement for more than 1",
+            "description": null
         }
     ],
-    "sha": "56e95efd55454c48148ba4eb038cb90362a2517b"
+    "sha": "abfff346d4611dca46adc7ba4eb00e7c484c1034"
 }

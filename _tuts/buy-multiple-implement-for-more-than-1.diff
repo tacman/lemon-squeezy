@@ -1,0 +1,24 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 2af6c9a..b363ce5 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -89,7 +89,18 @@ class OrderController extends AbstractController
+                 ],
+             ];
+         } else {
+-
++            $attributes['custom_price'] = $cart->getTotal();
++            $description = '';
++            foreach ($products as $product) {
++                $description .= $product->getName()
++                    . ' for $' . number_format($product->getPrice() / 100, 2)
++                    . ' x ' . $cart->getProductQuantity($product)
++                    . '<br>';
++            }
++            $attributes['product_options'] = [
++                'name' => sprintf('E-lemonades'),
++                'description' => $description,
++            ];
+         }
+ 
+         $response = $lsClient->request(Request::METHOD_POST, 'checkouts', [
