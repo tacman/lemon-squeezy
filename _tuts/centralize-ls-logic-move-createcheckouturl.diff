@@ -1,0 +1,156 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 96c4031..94a244c 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -88,70 +88,4 @@ class OrderController extends AbstractController
+ 
+         return $this->redirectToRoute('app_homepage');
+     }
+-
+-    private function createLsCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string
+-    {
+-        if ($cart->isEmpty()) {
+-            throw new \LogicException('Nothing to checkout!');
+-        }
+-
+-        $products = $cart->getProducts();
+-        $variantId = $products[0]->getLsVariantId();
+-
+-        $attributes = [];
+-        if ($user) {
+-            $attributes['checkout_data']['email'] = $user->getEmail();
+-            $attributes['checkout_data']['name'] = $user->getFirstName();
+-        }
+-        if (count($products) === 1) {
+-            $attributes['checkout_data']['variant_quantities'] = [
+-                [
+-                    'variant_id' => (int) $variantId,
+-                    'quantity' => $cart->getProductQuantity($products[0]),
+-                ],
+-            ];
+-        } else {
+-            $attributes['custom_price'] = $cart->getTotal();
+-            $description = '';
+-            foreach ($products as $product) {
+-                $description .= $product->getName()
+-                    . ' for $' . number_format($product->getPrice() / 100, 2)
+-                    . ' x ' . $cart->getProductQuantity($product)
+-                    . '<br>';
+-            }
+-            $attributes['product_options'] = [
+-                'name' => sprintf('E-lemonades'),
+-                'description' => $description,
+-            ];
+-        }
+-
+-        $attributes['product_options']['redirect_url'] = $this->generateUrl('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
+-
+-        $response = $lsClient->request(Request::METHOD_POST, 'checkouts', [
+-            'json' => [
+-                'data' => [
+-                    'type' => 'checkouts',
+-                    'attributes' => $attributes,
+-                    'relationships' => [
+-                        'store' => [
+-                            'data' => [
+-                                'type' => 'stores',
+-                                'id' => $this->getParameter('env(LEMON_SQUEEZY_STORE_ID)'),
+-                            ],
+-                        ],
+-                        'variant' => [
+-                            'data' => [
+-                                'type' => 'variants',
+-                                'id' => $variantId,
+-                            ],
+-                        ],
+-                    ],
+-                ],
+-            ],
+-        ]);
+-        //dd($response->getContent(false));
+-        $lsCheckout = $response->toArray();
+-
+-        return $lsCheckout['data']['attributes']['url'];
+-    }
+ }
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index d109db6..a5f566a 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -2,7 +2,76 @@
+ 
+ namespace App\Store;
+ 
++use App\Entity\User;
++use Symfony\Component\HttpFoundation\Request;
++use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
++use Symfony\Contracts\HttpClient\HttpClientInterface;
++
+ final readonly class LemonSqueezyApi
+ {
++    public function createCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string
++    {
++        if ($cart->isEmpty()) {
++            throw new \LogicException('Nothing to checkout!');
++        }
++
++        $products = $cart->getProducts();
++        $variantId = $products[0]->getLsVariantId();
++
++        $attributes = [];
++        if ($user) {
++            $attributes['checkout_data']['email'] = $user->getEmail();
++            $attributes['checkout_data']['name'] = $user->getFirstName();
++        }
++        if (count($products) === 1) {
++            $attributes['checkout_data']['variant_quantities'] = [
++                [
++                    'variant_id' => (int) $variantId,
++                    'quantity' => $cart->getProductQuantity($products[0]),
++                ],
++            ];
++        } else {
++            $attributes['custom_price'] = $cart->getTotal();
++            $description = '';
++            foreach ($products as $product) {
++                $description .= $product->getName()
++                    . ' for $' . number_format($product->getPrice() / 100, 2)
++                    . ' x ' . $cart->getProductQuantity($product)
++                    . '<br>';
++            }
++            $attributes['product_options'] = [
++                'name' => sprintf('E-lemonades'),
++                'description' => $description,
++            ];
++        }
++
++        $attributes['product_options']['redirect_url'] = $this->generateUrl('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
++
++        $response = $lsClient->request(Request::METHOD_POST, 'checkouts', [
++            'json' => [
++                'data' => [
++                    'type' => 'checkouts',
++                    'attributes' => $attributes,
++                    'relationships' => [
++                        'store' => [
++                            'data' => [
++                                'type' => 'stores',
++                                'id' => $this->getParameter('env(LEMON_SQUEEZY_STORE_ID)'),
++                            ],
++                        ],
++                        'variant' => [
++                            'data' => [
++                                'type' => 'variants',
++                                'id' => $variantId,
++                            ],
++                        ],
++                    ],
++                ],
++            ],
++        ]);
++        //dd($response->getContent(false));
++        $lsCheckout = $response->toArray();
+ 
++        return $lsCheckout['data']['attributes']['url'];
++    }
+ }

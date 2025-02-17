@@ -1,0 +1,17 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 9514f83..e057b8f 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -71,10 +71,11 @@ class OrderController extends AbstractController
+     public function success(
+         Request $request,
+         ShoppingCart $cart,
++        LemonSqueezyApi $lsApi,
+     ): Response
+     {
+         $referer = $request->headers->get('referer');
+-        $lsStoreUrl = 'https://squeeze-the-day.lemonsqueezy.com';
++        $lsStoreUrl = $lsApi->retrieveStoreUrl();
+         if (!str_starts_with($referer, $lsStoreUrl)) {
+             return $this->redirectToRoute('app_homepage');
+         }

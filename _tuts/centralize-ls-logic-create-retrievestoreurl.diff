@@ -1,0 +1,13 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index 3c7f790..e9d7691 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -86,4 +86,8 @@ final readonly class LemonSqueezyApi
+ 
+         return $lsCheckout['data']['attributes']['url'];
+     }
++
++    public function retrieveStoreUrl(): string
++    {
++    }
+ }

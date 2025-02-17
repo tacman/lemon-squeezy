@@ -1,0 +1,80 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index a5f566a..3c7f790 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -3,19 +3,31 @@
+ namespace App\Store;
+ 
+ use App\Entity\User;
++use Symfony\Component\DependencyInjection\Attribute\Autowire;
++use Symfony\Component\DependencyInjection\Attribute\Target;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+ use Symfony\Contracts\HttpClient\HttpClientInterface;
+ 
+ final readonly class LemonSqueezyApi
+ {
+-    public function createCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string
++    public function __construct(
++        #[Target('lemonSqueezyClient')]
++        private HttpClientInterface $client,
++        private ShoppingCart $cart,
++        private UrlGeneratorInterface $urlGenerator,
++        #[Autowire('%env(LEMON_SQUEEZY_STORE_ID)%')]
++        private string $storeId,
++    ) {
++    }
++
++    public function createCheckoutUrl(?User $user): string
+     {
+-        if ($cart->isEmpty()) {
++        if ($this->cart->isEmpty()) {
+             throw new \LogicException('Nothing to checkout!');
+         }
+ 
+-        $products = $cart->getProducts();
++        $products = $this->cart->getProducts();
+         $variantId = $products[0]->getLsVariantId();
+ 
+         $attributes = [];
+@@ -27,16 +39,16 @@ final readonly class LemonSqueezyApi
+             $attributes['checkout_data']['variant_quantities'] = [
+                 [
+                     'variant_id' => (int) $variantId,
+-                    'quantity' => $cart->getProductQuantity($products[0]),
++                    'quantity' => $this->cart->getProductQuantity($products[0]),
+                 ],
+             ];
+         } else {
+-            $attributes['custom_price'] = $cart->getTotal();
++            $attributes['custom_price'] = $this->cart->getTotal();
+             $description = '';
+             foreach ($products as $product) {
+                 $description .= $product->getName()
+                     . ' for $' . number_format($product->getPrice() / 100, 2)
+-                    . ' x ' . $cart->getProductQuantity($product)
++                    . ' x ' . $this->cart->getProductQuantity($product)
+                     . '<br>';
+             }
+             $attributes['product_options'] = [
+@@ -45,9 +57,9 @@ final readonly class LemonSqueezyApi
+             ];
+         }
+ 
+-        $attributes['product_options']['redirect_url'] = $this->generateUrl('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
++        $attributes['product_options']['redirect_url'] = $this->urlGenerator->generate('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
+ 
+-        $response = $lsClient->request(Request::METHOD_POST, 'checkouts', [
++        $response = $this->client->request(Request::METHOD_POST, 'checkouts', [
+             'json' => [
+                 'data' => [
+                     'type' => 'checkouts',
+@@ -56,7 +68,7 @@ final readonly class LemonSqueezyApi
+                         'store' => [
+                             'data' => [
+                                 'type' => 'stores',
+-                                'id' => $this->getParameter('env(LEMON_SQUEEZY_STORE_ID)'),
++                                'id' => $this->storeId,
+                             ],
+                         ],
+                         'variant' => [

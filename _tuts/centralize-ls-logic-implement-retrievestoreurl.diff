@@ -1,0 +1,14 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index e9d7691..483df5a 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -89,5 +89,9 @@ final readonly class LemonSqueezyApi
+ 
+     public function retrieveStoreUrl(): string
+     {
++        $response = $this->client->request(Request::METHOD_GET, 'stores/' . $this->storeId);
++        $lsStore = $response->toArray();
++
++        return $lsStore['data']['attributes']['url'];
+     }
+ }

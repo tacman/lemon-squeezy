@@ -184,7 +184,42 @@
             "id": "clear-cart-after-purchase-set-redirect-url",
             "name": "Clear cart after purchase: Set redirect URL",
             "description": null
+        },
+        {
+            "id": "centralize-ls-logic-create-api-service",
+            "name": "Centralize LS logic: Create API service",
+            "description": null
+        },
+        {
+            "id": "centralize-ls-logic-move-createcheckouturl",
+            "name": "Centralize LS logic: Move createCheckoutUrl()",
+            "description": null
+        },
+        {
+            "id": "centralize-ls-logic-inject-deps",
+            "name": "Centralize LS logic: Inject deps",
+            "description": null
+        },
+        {
+            "id": "centralize-ls-logic-inject-and-use-ls-api",
+            "name": "Centralize LS logic: Inject and use LS API",
+            "description": null
+        },
+        {
+            "id": "centralize-ls-logic-create-retrievestoreurl",
+            "name": "Centralize LS logic: Create retrieveStoreUrl()",
+            "description": null
+        },
+        {
+            "id": "centralize-ls-logic-implement-retrievestoreurl",
+            "name": "Centralize LS logic: Implement retrieveStoreUrl",
+            "description": null
+        },
+        {
+            "id": "centralize-ls-logic-inject-and-use-retrievestoreurl",
+            "name": "Centralize LS logic: Inject and use retrieveStoreUrl()",
+            "description": null
         }
     ],
-    "sha": "132a4038f4aad4680a00f222cf82d9ab2352d87e"
+    "sha": "8c1c8dc00d201eb8706ed47a29e84eb733f3bfff"
 }
