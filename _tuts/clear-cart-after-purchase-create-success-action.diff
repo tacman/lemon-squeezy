@@ -1,0 +1,16 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index b363ce5..1575231 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -67,6 +67,11 @@ class OrderController extends AbstractController
+         return $this->redirect($lsCheckoutUrl);
+     }
+ 
++    #[Route('/checkout/success', name: 'app_order_success')]
++    public function success(): Response
++    {
++    }
++
+     private function createLsCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string
+     {
+         if ($cart->isEmpty()) {

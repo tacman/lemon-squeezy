@@ -1,0 +1,14 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index a72bba7..c2baef8 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -83,6 +83,9 @@ class OrderController extends AbstractController
+         }
+ 
+         $cart->clear();
++        $this->addFlash('success', 'Thanks for your order!');
++
++        return $this->redirectToRoute('app_homepage');
+     }
+ 
+     private function createLsCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string

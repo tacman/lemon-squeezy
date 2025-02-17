@@ -1,0 +1,16 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 72d1297..d8f0c6e 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -72,6 +72,11 @@ class OrderController extends AbstractController
+         Request $request,
+     ): Response
+     {
++        $referer = $request->headers->get('referer');
++        $lsStoreUrl = 'https://squeeze-the-day.lemonsqueezy.com';
++        if (!str_starts_with($referer, $lsStoreUrl)) {
++            return $this->redirectToRoute('app_homepage');
++        }
+     }
+ 
+     private function createLsCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string

@@ -1,0 +1,13 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index c1487dd..a72bba7 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -81,6 +81,8 @@ class OrderController extends AbstractController
+         if ($cart->isEmpty()) {
+             return $this->redirectToRoute('app_homepage');
+         }
++
++        $cart->clear();
+     }
+ 
+     private function createLsCheckoutUrl(HttpClientInterface $lsClient, ShoppingCart $cart, ?User $user): string

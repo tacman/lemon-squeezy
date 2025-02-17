@@ -1,0 +1,15 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 1575231..72d1297 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -68,7 +68,9 @@ class OrderController extends AbstractController
+     }
+ 
+     #[Route('/checkout/success', name: 'app_order_success')]
+-    public function success(): Response
++    public function success(
++        Request $request,
++    ): Response
+     {
+     }
+ 

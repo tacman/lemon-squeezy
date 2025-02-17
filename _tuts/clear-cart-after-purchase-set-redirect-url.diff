@@ -1,0 +1,21 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index c2baef8..96c4031 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\Attribute\Target;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\Routing\Attribute\Route;
++use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+ use Symfony\Component\Security\Http\Attribute\CurrentUser;
+ use Symfony\Contracts\HttpClient\HttpClientInterface;
+ 
+@@ -124,6 +125,8 @@ class OrderController extends AbstractController
+             ];
+         }
+ 
++        $attributes['product_options']['redirect_url'] = $this->generateUrl('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
++
+         $response = $lsClient->request(Request::METHOD_POST, 'checkouts', [
+             'json' => [
+                 'data' => [

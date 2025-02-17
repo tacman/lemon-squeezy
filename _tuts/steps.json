@@ -144,7 +144,47 @@
             "id": "buy-multiple-implement-for-more-than-1",
             "name": "Buy multiple: Implement for more than 1",
             "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-create-success-action",
+            "name": "Clear cart after purchase: Create success action",
+            "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-inject-request",
+            "name": "Clear cart after purchase: Inject request",
+            "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-check-for-referer",
+            "name": "Clear cart after purchase: Check for referer",
+            "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-inject-cart",
+            "name": "Clear cart after purchase: Inject cart",
+            "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-check-for-empty-cart",
+            "name": "Clear cart after purchase: Check for empty cart",
+            "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-clear-the-cart",
+            "name": "Clear cart after purchase: Clear the cart",
+            "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-add-flash-and-redirect",
+            "name": "Clear cart after purchase: Add flash and redirect",
+            "description": null
+        },
+        {
+            "id": "clear-cart-after-purchase-set-redirect-url",
+            "name": "Clear cart after purchase: Set redirect URL",
+            "description": null
         }
     ],
-    "sha": "abfff346d4611dca46adc7ba4eb00e7c484c1034"
+    "sha": "132a4038f4aad4680a00f222cf82d9ab2352d87e"
 }
