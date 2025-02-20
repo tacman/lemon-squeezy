@@ -219,7 +219,122 @@
             "id": "centralize-ls-logic-inject-and-use-retrievestoreurl",
             "name": "Centralize LS logic: Inject and use retrieveStoreUrl()",
             "description": null
+        },
+        {
+            "id": "webhooks-install-component",
+            "name": "Webhooks: Install component",
+            "description": null
+        },
+        {
+            "id": "webhooks-make-webhook",
+            "name": "Webhooks: Make webhook",
+            "description": null
+        },
+        {
+            "id": "webhooks-add-signing-secret-env-var",
+            "name": "Webhooks: Add signing secret env var",
+            "description": null
+        },
+        {
+            "id": "webhooks-tweak-getrequestmatcher",
+            "name": "Webhooks: Tweak getRequestMatcher()",
+            "description": null
+        },
+        {
+            "id": "webhooks-create-verifysignature",
+            "name": "Webhooks: Create verifySignature()",
+            "description": null
+        },
+        {
+            "id": "webhooks-implement-verifysignature",
+            "name": "Webhooks: Implement verifySignature()",
+            "description": null
+        },
+        {
+            "id": "webhooks-verify-signature",
+            "name": "Webhooks: Verify signature",
+            "description": null
+        },
+        {
+            "id": "webhooks-parse-payload",
+            "name": "Webhooks: Parse payload",
+            "description": null
+        },
+        {
+            "id": "webhooks-reject-if-bad-request",
+            "name": "Webhooks: Reject if bad request",
+            "description": null
+        },
+        {
+            "id": "webhooks-reject-if-unsupported-event",
+            "name": "Webhooks: Reject if unsupported event",
+            "description": null
+        },
+        {
+            "id": "webhooks-return-remoteevent",
+            "name": "Webhooks: Return RemoteEvent",
+            "description": null
+        },
+        {
+            "id": "webhooks-make-user-required-arg-on-createcheckouturl",
+            "name": "Webhooks: Make user required arg on createCheckoutUrl()",
+            "description": null
+        },
+        {
+            "id": "webhooks-set-user-as-custom-checkout-data",
+            "name": "Webhooks: Set user as custom checkout data",
+            "description": null
+        },
+        {
+            "id": "webhooks-fetch-user-id-from-payload",
+            "name": "Webhooks: Fetch user ID from payload",
+            "description": null
+        },
+        {
+            "id": "webhooks-inject-entity-manager",
+            "name": "Webhooks: Inject entity manager",
+            "description": null
+        },
+        {
+            "id": "webhooks-find-corresponding-user",
+            "name": "Webhooks: Find corresponding user",
+            "description": null
+        },
+        {
+            "id": "webhooks-match-order-created-event",
+            "name": "Webhooks: Match order_created event",
+            "description": null
+        },
+        {
+            "id": "webhooks-fetch-customer-id-from-payload",
+            "name": "Webhooks: Fetch customer ID from payload",
+            "description": null
+        },
+        {
+            "id": "webhooks-create-customerid-field",
+            "name": "Webhooks: Create customerId field",
+            "description": null
+        },
+        {
+            "id": "webhooks-generate-migration",
+            "name": "Webhooks: Generate migration",
+            "description": null
+        },
+        {
+            "id": "webhooks-save-customer-id-on-user",
+            "name": "Webhooks: Save customer ID on User",
+            "description": null
+        },
+        {
+            "id": "webhooks-typecast-user-id-to-string",
+            "name": "Webhooks: Typecast user ID to string",
+            "description": null
+        },
+        {
+            "id": "testing-webhooks-install-package",
+            "name": "Testing webhooks: Install package",
+            "description": null
         }
     ],
-    "sha": "8c1c8dc00d201eb8706ed47a29e84eb733f3bfff"
+    "sha": "b050b265a0d2b1a02755dc95a4b587e5155edaa7"
 }

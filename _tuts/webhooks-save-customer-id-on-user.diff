@@ -1,0 +1,13 @@
+diff --git a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+index 0af1ba6..f2ab643 100644
+--- a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
++++ b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+@@ -43,5 +43,8 @@ final class LemonSqueezyWebhookConsumer implements ConsumerInterface
+     {
+         $payload = $event->getPayload();
+         $customerId = $payload['data']['attributes']['customer_id'];
++        $user->setLsCustomerId($customerId);
++
++        $this->entityManager->flush();
+     }
+ }

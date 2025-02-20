@@ -1,0 +1,35 @@
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+index 2f8c5d1..052881a 100644
+--- a/src/Webhook/LemonSqueezyRequestParser.php
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -32,27 +32,9 @@ final class LemonSqueezyRequestParser extends AbstractRequestParser
+     {
+         $this->verifySignature($request, $secret);
+ 
+-        // Validate the request against $secret.
+-        $authToken = $request->headers->get('X-Authentication-Token');
+-
+-        if ($authToken !== $secret) {
+-            throw new RejectWebhookException(Response::HTTP_UNAUTHORIZED, 'Invalid authentication token.');
+-        }
+-
+-        // Validate the request payload.
+-        if (!$request->getPayload()->has('name')
+-            || !$request->getPayload()->has('id')) {
+-            throw new RejectWebhookException(Response::HTTP_BAD_REQUEST, 'Request payload does not contain required fields.');
+-        }
+-
+-        // Parse the request payload and return a RemoteEvent object.
+-        $payload = $request->getPayload();
+-
+-        return new RemoteEvent(
+-            $payload->getString('name'),
+-            $payload->getString('id'),
+-            $payload->all(),
+-        );
++        $payload = $request->toArray();
++        $eventName = $payload['meta']['event_name'];
++        $webhookId = $payload['meta']['webhook_id'];
+     }
+ 
+     private function verifySignature(Request $request, string $secret): void

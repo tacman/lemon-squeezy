@@ -1,0 +1,39 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index e057b8f..67ef9e8 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -60,7 +60,7 @@ class OrderController extends AbstractController
+     #[Route('/checkout', name: 'app_order_checkout')]
+     public function checkout(
+         LemonSqueezyApi $lsApi,
+-        #[CurrentUser] ?User $user,
++        #[CurrentUser] User $user,
+     ): Response {
+         $lsCheckoutUrl = $lsApi->createCheckoutUrl($user);
+ 
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index 483df5a..439fe82 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -21,7 +21,7 @@ final readonly class LemonSqueezyApi
+     ) {
+     }
+ 
+-    public function createCheckoutUrl(?User $user): string
++    public function createCheckoutUrl(User $user): string
+     {
+         if ($this->cart->isEmpty()) {
+             throw new \LogicException('Nothing to checkout!');
+@@ -31,10 +31,8 @@ final readonly class LemonSqueezyApi
+         $variantId = $products[0]->getLsVariantId();
+ 
+         $attributes = [];
+-        if ($user) {
+-            $attributes['checkout_data']['email'] = $user->getEmail();
+-            $attributes['checkout_data']['name'] = $user->getFirstName();
+-        }
++        $attributes['checkout_data']['email'] = $user->getEmail();
++        $attributes['checkout_data']['name'] = $user->getFirstName();
+         if (count($products) === 1) {
+             $attributes['checkout_data']['variant_quantities'] = [
+                 [

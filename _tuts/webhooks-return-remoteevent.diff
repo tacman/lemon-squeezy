@@ -1,0 +1,13 @@
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+index cb2fbe8..fb0170f 100644
+--- a/src/Webhook/LemonSqueezyRequestParser.php
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -41,6 +41,8 @@ final class LemonSqueezyRequestParser extends AbstractRequestParser
+         if ($eventName !== 'order_created') {
+             throw new RejectWebhookException(Response::HTTP_BAD_REQUEST, sprintf('Unsupported event type: %s', $eventName));
+         }
++
++        return new RemoteEvent($eventName, $webhookId, $payload);
+     }
+ 
+     private function verifySignature(Request $request, string $secret): void

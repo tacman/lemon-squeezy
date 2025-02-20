@@ -1,0 +1,13 @@
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+index 6322944..2f8c5d1 100644
+--- a/src/Webhook/LemonSqueezyRequestParser.php
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -30,7 +30,7 @@ final class LemonSqueezyRequestParser extends AbstractRequestParser
+      */
+     protected function doParse(Request $request, #[\SensitiveParameter] string $secret): ?RemoteEvent
+     {
+-        // TODO: Adapt or replace the content of this method to fit your need.
++        $this->verifySignature($request, $secret);
+ 
+         // Validate the request against $secret.
+         $authToken = $request->headers->get('X-Authentication-Token');

@@ -1,0 +1,18 @@
+diff --git a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+index daa1443..41d5f61 100644
+--- a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
++++ b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+@@ -15,6 +15,12 @@ final class LemonSqueezyWebhookConsumer implements ConsumerInterface
+ 
+     public function consume(RemoteEvent $event): void
+     {
+-        // Implement your own logic here
++        $payload = $event->getPayload();
++
++        // $this->getUser() will not work in webhooks as no authenticated user in that process
++        $userId = $payload['meta']['custom_data']['user_id'] ?? null;
++        if (!$userId) {
++            throw new \InvalidArgumentException(sprintf('User ID not found in LemonSqueezy webhook "%s"!', $event->getId()));
++        }
+     }
+ }

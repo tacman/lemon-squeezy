@@ -1,0 +1,15 @@
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+index 705a3ac..1f884c1 100644
+--- a/src/Webhook/LemonSqueezyRequestParser.php
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -19,8 +19,8 @@ final class LemonSqueezyRequestParser extends AbstractRequestParser
+     protected function getRequestMatcher(): RequestMatcherInterface
+     {
+         return new ChainRequestMatcher([
+-            new PathRequestMatcher('regex'),
+-            new MethodRequestMatcher('POST'),
++            new PathRequestMatcher('/webhook/lemon-squeezy'),
++            new MethodRequestMatcher(Request::METHOD_POST),
+             new IsJsonRequestMatcher(),
+         ]);
+     }

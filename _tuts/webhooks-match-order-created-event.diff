@@ -1,0 +1,19 @@
+diff --git a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+index e115cb7..c205229 100644
+--- a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
++++ b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+@@ -32,5 +32,14 @@ final class LemonSqueezyWebhookConsumer implements ConsumerInterface
+         if (!$user) {
+             throw new EntityNotFoundException(sprintf('User "%s" not found for LemonSqueezy webhook "%s"!', $userId, $event->getId()));
+         }
++
++        match ($event->getName()) {
++            'order_created' => $this->handleOrderCreatedEvent($event, $user),
++            default => throw new \LogicException(sprintf('Unsupported LemonSqueezy event: %s', $event->getName())),
++        };
++    }
++
++    private function handleOrderCreatedEvent(RemoteEvent $event, User $user): void
++    {
+     }
+ }

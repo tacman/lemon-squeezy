@@ -1,0 +1,14 @@
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+index 1f884c1..eeedd64 100644
+--- a/src/Webhook/LemonSqueezyRequestParser.php
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -54,4 +54,9 @@ final class LemonSqueezyRequestParser extends AbstractRequestParser
+             $payload->all(),
+         );
+     }
++
++    private function verifySignature(Request $request, string $secret): void
++    {
++
++    }
+ }

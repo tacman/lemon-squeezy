@@ -1,0 +1,24 @@
+diff --git a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+index 41d5f61..839be74 100644
+--- a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
++++ b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\RemoteEvent;
+ 
++use Doctrine\ORM\EntityManagerInterface;
+ use Symfony\Component\RemoteEvent\Attribute\AsRemoteEventConsumer;
+ use Symfony\Component\RemoteEvent\Consumer\ConsumerInterface;
+ use Symfony\Component\RemoteEvent\RemoteEvent;
+@@ -9,8 +10,9 @@ use Symfony\Component\RemoteEvent\RemoteEvent;
+ #[AsRemoteEventConsumer('lemon-squeezy')]
+ final class LemonSqueezyWebhookConsumer implements ConsumerInterface
+ {
+-    public function __construct()
+-    {
++    public function __construct(
++        private EntityManagerInterface $entityManager,
++    ){
+     }
+ 
+     public function consume(RemoteEvent $event): void

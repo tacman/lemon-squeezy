@@ -1,0 +1,101 @@
+diff --git a/config/packages/webhook.yaml b/config/packages/webhook.yaml
+new file mode 100644
+index 0000000..4a5da3a
+--- /dev/null
++++ b/config/packages/webhook.yaml
+@@ -0,0 +1,6 @@
++framework:
++  webhook:
++    routing:
++      lemon-squeezy:
++        service: App\Webhook\LemonSqueezyRequestParser
++        secret: your_secret_here
+diff --git a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+new file mode 100644
+index 0000000..daa1443
+--- /dev/null
++++ b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+@@ -0,0 +1,20 @@
++<?php
++
++namespace App\RemoteEvent;
++
++use Symfony\Component\RemoteEvent\Attribute\AsRemoteEventConsumer;
++use Symfony\Component\RemoteEvent\Consumer\ConsumerInterface;
++use Symfony\Component\RemoteEvent\RemoteEvent;
++
++#[AsRemoteEventConsumer('lemon-squeezy')]
++final class LemonSqueezyWebhookConsumer implements ConsumerInterface
++{
++    public function __construct()
++    {
++    }
++
++    public function consume(RemoteEvent $event): void
++    {
++        // Implement your own logic here
++    }
++}
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+new file mode 100644
+index 0000000..705a3ac
+--- /dev/null
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -0,0 +1,57 @@
++<?php
++
++namespace App\Webhook;
++
++use Symfony\Component\HttpFoundation\ChainRequestMatcher;
++use Symfony\Component\HttpFoundation\Exception\JsonException;
++use Symfony\Component\HttpFoundation\Request;
++use Symfony\Component\HttpFoundation\RequestMatcher\IsJsonRequestMatcher;
++use Symfony\Component\HttpFoundation\RequestMatcher\MethodRequestMatcher;
++use Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher;
++use Symfony\Component\HttpFoundation\RequestMatcherInterface;
++use Symfony\Component\HttpFoundation\Response;
++use Symfony\Component\RemoteEvent\RemoteEvent;
++use Symfony\Component\Webhook\Client\AbstractRequestParser;
++use Symfony\Component\Webhook\Exception\RejectWebhookException;
++
++final class LemonSqueezyRequestParser extends AbstractRequestParser
++{
++    protected function getRequestMatcher(): RequestMatcherInterface
++    {
++        return new ChainRequestMatcher([
++            new PathRequestMatcher('regex'),
++            new MethodRequestMatcher('POST'),
++            new IsJsonRequestMatcher(),
++        ]);
++    }
++
++    /**
++     * @throws JsonException
++     */
++    protected function doParse(Request $request, #[\SensitiveParameter] string $secret): ?RemoteEvent
++    {
++        // TODO: Adapt or replace the content of this method to fit your need.
++
++        // Validate the request against $secret.
++        $authToken = $request->headers->get('X-Authentication-Token');
++
++        if ($authToken !== $secret) {
++            throw new RejectWebhookException(Response::HTTP_UNAUTHORIZED, 'Invalid authentication token.');
++        }
++
++        // Validate the request payload.
++        if (!$request->getPayload()->has('name')
++            || !$request->getPayload()->has('id')) {
++            throw new RejectWebhookException(Response::HTTP_BAD_REQUEST, 'Request payload does not contain required fields.');
++        }
++
++        // Parse the request payload and return a RemoteEvent object.
++        $payload = $request->getPayload();
++
++        return new RemoteEvent(
++            $payload->getString('name'),
++            $payload->getString('id'),
++            $payload->all(),
++        );
++    }
++}

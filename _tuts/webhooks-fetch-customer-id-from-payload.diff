@@ -1,0 +1,12 @@
+diff --git a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+index c205229..0af1ba6 100644
+--- a/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
++++ b/src/RemoteEvent/LemonSqueezyWebhookConsumer.php
+@@ -41,5 +41,7 @@ final class LemonSqueezyWebhookConsumer implements ConsumerInterface
+ 
+     private function handleOrderCreatedEvent(RemoteEvent $event, User $user): void
+     {
++        $payload = $event->getPayload();
++        $customerId = $payload['data']['attributes']['customer_id'];
+     }
+ }

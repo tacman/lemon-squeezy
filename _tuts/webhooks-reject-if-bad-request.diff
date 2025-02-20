@@ -1,0 +1,14 @@
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+index 052881a..1d1cbb9 100644
+--- a/src/Webhook/LemonSqueezyRequestParser.php
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -35,6 +35,9 @@ final class LemonSqueezyRequestParser extends AbstractRequestParser
+         $payload = $request->toArray();
+         $eventName = $payload['meta']['event_name'];
+         $webhookId = $payload['meta']['webhook_id'];
++        if (!$eventName || !$webhookId) {
++            throw new RejectWebhookException(Response::HTTP_BAD_REQUEST, 'Request payload does not contain required fields.');
++        }
+     }
+ 
+     private function verifySignature(Request $request, string $secret): void

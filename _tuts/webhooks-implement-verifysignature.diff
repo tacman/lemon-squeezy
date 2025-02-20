@@ -1,0 +1,18 @@
+diff --git a/src/Webhook/LemonSqueezyRequestParser.php b/src/Webhook/LemonSqueezyRequestParser.php
+index eeedd64..6322944 100644
+--- a/src/Webhook/LemonSqueezyRequestParser.php
++++ b/src/Webhook/LemonSqueezyRequestParser.php
+@@ -57,6 +57,13 @@ final class LemonSqueezyRequestParser extends AbstractRequestParser
+ 
+     private function verifySignature(Request $request, string $secret): void
+     {
++        $payload = $request->getContent();
++        $hash = hash_hmac('sha256', $payload, $secret);
++        $signature = $request->headers->get('X-Signature', '');
++        if (hash_equals($hash, $signature)) {
++            return;
++        }
+ 
++        throw new RejectWebhookException(Response::HTTP_UNAUTHORIZED, 'Invalid LemonSqueezy signature!');
+     }
+ }
