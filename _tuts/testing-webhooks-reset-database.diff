@@ -1,0 +1,17 @@
+diff --git a/tests/Webhook/LemonSqueezyRequestParserTest.php b/tests/Webhook/LemonSqueezyRequestParserTest.php
+index 7af00a0..f2fbb6c 100644
+--- a/tests/Webhook/LemonSqueezyRequestParserTest.php
++++ b/tests/Webhook/LemonSqueezyRequestParserTest.php
+@@ -3,9 +3,12 @@
+ namespace App\Tests\Webhook;
+ 
+ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
++use Zenstruck\Foundry\Test\ResetDatabase;
+ 
+ class LemonSqueezyRequestParserTest extends WebTestCase
+ {
++    use ResetDatabase;
++
+     public function testOrderCreatedWebhook(): void
+     {
+         $client = static::createClient();

@@ -1,0 +1,26 @@
+diff --git a/tests/Webhook/LemonSqueezyRequestParserTest.php b/tests/Webhook/LemonSqueezyRequestParserTest.php
+index f2fbb6c..e3fde17 100644
+--- a/tests/Webhook/LemonSqueezyRequestParserTest.php
++++ b/tests/Webhook/LemonSqueezyRequestParserTest.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Tests\Webhook;
+ 
++use App\Factory\UserFactory;
+ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+ use Zenstruck\Foundry\Test\ResetDatabase;
+ 
+@@ -12,6 +13,13 @@ class LemonSqueezyRequestParserTest extends WebTestCase
+     public function testOrderCreatedWebhook(): void
+     {
+         $client = static::createClient();
++
++        $user = UserFactory::new()->create([
++            'email' => 'test@example.com',
++            'plainPassword' => 'testpass',
++            'firstName' => 'Test',
++        ]);
++
+         $crawler = $client->request('GET', '/');
+ 
+         self::assertResponseIsSuccessful('Webhook failed!');

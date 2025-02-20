@@ -1,0 +1,13 @@
+diff --git a/tests/Webhook/LemonSqueezyRequestParserTest.php b/tests/Webhook/LemonSqueezyRequestParserTest.php
+index e3fde17..9968cc0 100644
+--- a/tests/Webhook/LemonSqueezyRequestParserTest.php
++++ b/tests/Webhook/LemonSqueezyRequestParserTest.php
+@@ -20,7 +20,7 @@ class LemonSqueezyRequestParserTest extends WebTestCase
+             'firstName' => 'Test',
+         ]);
+ 
+-        $crawler = $client->request('GET', '/');
++        $client->request('POST', '/webhook/lemon-squeezy');
+ 
+         self::assertResponseIsSuccessful('Webhook failed!');
+     }

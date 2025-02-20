@@ -1,0 +1,12 @@
+diff --git a/tests/Webhook/LemonSqueezyRequestParserTest.php b/tests/Webhook/LemonSqueezyRequestParserTest.php
+index 7daa7d7..8efdc5e 100644
+--- a/tests/Webhook/LemonSqueezyRequestParserTest.php
++++ b/tests/Webhook/LemonSqueezyRequestParserTest.php
+@@ -24,5 +24,7 @@ class LemonSqueezyRequestParserTest extends WebTestCase
+         $client->request('POST', '/webhook/lemon-squeezy', [], [], [], $json);
+ 
+         self::assertResponseIsSuccessful('Webhook failed!');
++        self::assertNotNull($user->getLsCustomerId(), 'LemonSqueezy customer ID not set!');
++        self::assertEquals(1000001, $user->getLsCustomerId(), 'LemonSqueezy customer ID mismatch!');
+     }
+ }

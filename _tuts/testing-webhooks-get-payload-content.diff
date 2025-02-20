@@ -1,0 +1,14 @@
+diff --git a/tests/Webhook/LemonSqueezyRequestParserTest.php b/tests/Webhook/LemonSqueezyRequestParserTest.php
+index 9968cc0..7daa7d7 100644
+--- a/tests/Webhook/LemonSqueezyRequestParserTest.php
++++ b/tests/Webhook/LemonSqueezyRequestParserTest.php
+@@ -20,7 +20,8 @@ class LemonSqueezyRequestParserTest extends WebTestCase
+             'firstName' => 'Test',
+         ]);
+ 
+-        $client->request('POST', '/webhook/lemon-squeezy');
++        $json = file_get_contents(__DIR__.'/../fixtures/order_created.json');
++        $client->request('POST', '/webhook/lemon-squeezy', [], [], [], $json);
+ 
+         self::assertResponseIsSuccessful('Webhook failed!');
+     }
