@@ -1,0 +1,13 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index b30efbe..6ceb42e 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -123,4 +123,8 @@ final readonly class LemonSqueezyApi
+ 
+         return $response->toArray();
+     }
++
++    private function request(string $method, string $url, array $options = []): array
++    {
++    }
+ }

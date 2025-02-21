@@ -409,7 +409,97 @@
             "id": "ls-orders-call-the-api-method",
             "name": "LS orders: Call the API method",
             "description": null
+        },
+        {
+            "id": "ls-orders-render-order-table",
+            "name": "LS orders: Render order table",
+            "description": null
+        },
+        {
+            "id": "ls-orders-render-dynamic-data",
+            "name": "LS orders: Render dynamic data",
+            "description": null
+        },
+        {
+            "id": "ls-orders-add-pagination",
+            "name": "LS orders: Add pagination",
+            "description": null
+        },
+        {
+            "id": "ls-orders-render-link-to-all-orders",
+            "name": "LS orders: Render link to all orders",
+            "description": null
+        },
+        {
+            "id": "prevent-leaking-orders-create-retrievecustomer",
+            "name": "Prevent leaking orders: Create retrieveCustomer()",
+            "description": null
+        },
+        {
+            "id": "prevent-leaking-orders-fetch-customer",
+            "name": "Prevent leaking orders: Fetch customer",
+            "description": null
+        },
+        {
+            "id": "prevent-leaking-orders-move-email-to-a-var",
+            "name": "Prevent leaking orders: Move email to a var",
+            "description": null
+        },
+        {
+            "id": "prevent-leaking-orders-fetch-email-from-customer",
+            "name": "Prevent leaking orders: Fetch email from customer",
+            "description": null
+        },
+        {
+            "id": "error-handling-remove-string-typecast",
+            "name": "Error handling: Remove string typecast",
+            "description": null
+        },
+        {
+            "id": "error-handling-dump-content",
+            "name": "Error handling: Dump content",
+            "description": null
+        },
+        {
+            "id": "error-handling-create-request",
+            "name": "Error handling: Create request()",
+            "description": null
+        },
+        {
+            "id": "error-handling-add-try-catch",
+            "name": "Error handling: Add try-catch",
+            "description": null
+        },
+        {
+            "id": "error-handling-dump-in-catch",
+            "name": "Error handling: Dump in catch",
+            "description": null
+        },
+        {
+            "id": "error-handling-use-new-method",
+            "name": "Error handling: Use new method",
+            "description": null
+        },
+        {
+            "id": "error-handling-comment-out-dump",
+            "name": "Error handling: Comment out dump",
+            "description": null
+        },
+        {
+            "id": "error-handling-combile-an-error-and-throw-it",
+            "name": "Error handling: Combile an error and throw it",
+            "description": null
+        },
+        {
+            "id": "error-handling-revert-string-typecasting",
+            "name": "Error handling: Revert string typecasting",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-include-lemon-js",
+            "name": "Checkout overlay: Include Lemon.js",
+            "description": null
         }
     ],
-    "sha": "89df364e23a8d91f04d0b6cb109f868e71e01635"
+    "sha": "7ea43ad3965e85e7a5925b7de45aa3a3cebefd66"
 }

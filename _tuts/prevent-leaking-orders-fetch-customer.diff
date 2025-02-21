@@ -1,0 +1,13 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index e452998..5451799 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -113,5 +113,8 @@ final readonly class LemonSqueezyApi
+ 
+     public function retrieveCustomer(string $customerId): array
+     {
++        $response = $this->client->request(Request::METHOD_GET, 'customers/' . $customerId);
++
++        return $response->toArray();
+     }
+ }

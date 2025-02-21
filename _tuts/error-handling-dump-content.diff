@@ -1,0 +1,13 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index 8e2e8b7..b30efbe 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -80,7 +80,7 @@ final readonly class LemonSqueezyApi
+                 ],
+             ],
+         ]);
+-        //dd($response->getContent(false));
++        dd($response->getContent(false));
+         $lsCheckout = $response->toArray();
+ 
+         return $lsCheckout['data']['attributes']['url'];

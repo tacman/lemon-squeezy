@@ -1,0 +1,14 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index ca3f18c..21e79a4 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -102,6 +102,9 @@ final readonly class LemonSqueezyApi
+                     'store_id' => $this->storeId,
+                     'user_email' => $user->getEmail(),
+                 ],
++                'page' => [
++                    'size' => 5, // @see https://docs.lemonsqueezy.com/api/getting-started/requests#pagination
++                ],
+             ],
+         ]);
+ 

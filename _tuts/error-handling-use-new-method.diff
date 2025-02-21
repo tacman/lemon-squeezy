@@ -1,0 +1,13 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index 6856cb6..7b70d39 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -59,7 +59,7 @@ final readonly class LemonSqueezyApi
+ 
+         $attributes['product_options']['redirect_url'] = $this->urlGenerator->generate('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL);
+ 
+-        $response = $this->client->request(Request::METHOD_POST, 'checkouts', [
++        $response = $this->request(Request::METHOD_POST, 'checkouts', [
+             'json' => [
+                 'data' => [
+                     'type' => 'checkouts',

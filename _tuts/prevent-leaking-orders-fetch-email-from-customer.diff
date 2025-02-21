@@ -1,0 +1,15 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index 8595ab2..d3a47c1 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -97,6 +97,10 @@ final readonly class LemonSqueezyApi
+     public function listOrders(User $user): array
+     {
+         $userEmail = $user->getEmail();
++        if ($user->getLsCustomerId()) {
++            $lsCustomer = $this->retrieveCustomer($user->getLsCustomerId());
++            $userEmail = $lsCustomer['data']['attributes']['email'];
++        }
+ 
+         $response = $this->client->request(Request::METHOD_GET, 'orders', [
+             'query' => [
