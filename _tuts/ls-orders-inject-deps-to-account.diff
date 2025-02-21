@@ -1,0 +1,29 @@
+diff --git a/src/Controller/UserController.php b/src/Controller/UserController.php
+index 26c4d05..18e70c6 100644
+--- a/src/Controller/UserController.php
++++ b/src/Controller/UserController.php
+@@ -5,6 +5,7 @@ namespace App\Controller;
+ use App\Entity\User;
+ use App\Form\RegistrationFormType;
+ use App\Security\LoginFormAuthenticator;
++use App\Store\LemonSqueezyApi;
+ use Doctrine\ORM\EntityManagerInterface;
+ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+ use Symfony\Bundle\SecurityBundle\Security;
+@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+ use Symfony\Component\Routing\Attribute\Route;
++use Symfony\Component\Security\Http\Attribute\CurrentUser;
+ 
+ class UserController extends AbstractController
+ {
+@@ -49,7 +51,7 @@ class UserController extends AbstractController
+     }
+ 
+     #[Route('/account', name: 'app_user_account')]
+-    public function account(): Response
++    public function account(LemonSqueezyApi $api, #[CurrentUser] User $user): Response
+     {
+         return $this->render('user/account.html.twig');
+     }

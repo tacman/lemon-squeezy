@@ -1,0 +1,13 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index 760082a..524917c 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -96,5 +96,8 @@ final readonly class LemonSqueezyApi
+ 
+     public function listOrders(): array
+     {
++        $response = $this->client->request(Request::METHOD_GET, 'orders');
++
++        return $response->toArray();
+     }
+ }

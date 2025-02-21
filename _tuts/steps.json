@@ -384,7 +384,32 @@
             "id": "testing-webhooks-dynamically-replace-data-in-payload",
             "name": "Testing webhooks: Dynamically replace data in payload",
             "description": null
+        },
+        {
+            "id": "ls-orders-create-listorders",
+            "name": "LS orders: Create listOrders()",
+            "description": null
+        },
+        {
+            "id": "ls-orders-send-api-request",
+            "name": "LS orders: Send API request",
+            "description": null
+        },
+        {
+            "id": "ls-orders-add-query-filter-params",
+            "name": "LS orders: Add query filter params",
+            "description": null
+        },
+        {
+            "id": "ls-orders-inject-deps-to-account",
+            "name": "LS orders: Inject deps to account()",
+            "description": null
+        },
+        {
+            "id": "ls-orders-call-the-api-method",
+            "name": "LS orders: Call the API method",
+            "description": null
         }
     ],
-    "sha": "6b2ff1e508259544c8321a978c12758f84afe199"
+    "sha": "89df364e23a8d91f04d0b6cb109f868e71e01635"
 }

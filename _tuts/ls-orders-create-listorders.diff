@@ -1,0 +1,13 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index e0a62e4..760082a 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -93,4 +93,8 @@ final readonly class LemonSqueezyApi
+ 
+         return $lsStore['data']['attributes']['url'];
+     }
++
++    public function listOrders(): array
++    {
++    }
+ }

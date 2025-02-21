@@ -1,0 +1,16 @@
+diff --git a/src/Controller/UserController.php b/src/Controller/UserController.php
+index 18e70c6..5f80d68 100644
+--- a/src/Controller/UserController.php
++++ b/src/Controller/UserController.php
+@@ -53,6 +53,10 @@ class UserController extends AbstractController
+     #[Route('/account', name: 'app_user_account')]
+     public function account(LemonSqueezyApi $api, #[CurrentUser] User $user): Response
+     {
+-        return $this->render('user/account.html.twig');
++        $orders = $api->listOrders($user);
++
++        return $this->render('user/account.html.twig', [
++            'orders' => $orders,
++        ]);
+     }
+ }
