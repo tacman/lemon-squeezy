@@ -1,0 +1,19 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 7942d0d..1073c92 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -77,6 +77,14 @@ class OrderController extends AbstractController
+         ]);
+     }
+ 
++    #[Route('/checkout/handle', name: 'app_order_checkout_handle', methods: ['POST'])]
++    public function handleCheckout(
++        Request $request,
++        #[CurrentUser] User $user,
++    ): Response {
++
++    }
++
+     #[Route('/checkout/success', name: 'app_order_success')]
+     public function success(
+         Request $request,

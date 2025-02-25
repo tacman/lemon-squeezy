@@ -1,0 +1,29 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index 713cfe5..b3062fd 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -16,14 +16,16 @@ export default class extends Controller {
+             window.document.head.appendChild(script);
+         }
+ 
+-        window.LemonSqueezy.Setup({
+-            eventHandler: (data) => {
+-                if (data.event === 'Checkout.Success') {
+-                    // console.log(data);
+-                    const lsCustomerId = data.data.customer_id;
+-                    this.#handleCheckout(lsCustomerId);
+-                }
+-            },
++        script.addEventListener('load', () => {
++            window.LemonSqueezy.Setup({
++                eventHandler: (data) => {
++                    if (data.event === 'Checkout.Success') {
++                        // console.log(data);
++                        const lsCustomerId = data.data.customer_id;
++                        this.#handleCheckout(lsCustomerId);
++                    }
++                },
++            });
+         });
+     }
+ 

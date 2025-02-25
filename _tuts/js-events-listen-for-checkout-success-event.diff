@@ -1,0 +1,31 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index 14e5b3d..5f15bb1 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -14,6 +14,16 @@ export default class extends Controller {
+             script.defer = true;
+             window.document.head.appendChild(script);
+         }
++
++        window.LemonSqueezy.Setup({
++            eventHandler: (data) => {
++                if (data.event === 'Checkout.Success') {
++                    // console.log(data);
++                    const lsCustomerId = data.data.customer_id;
++                    this.#handleCheckout(lsCustomerId);
++                }
++            },
++        });
+     }
+ 
+     openOverlay(e) {
+@@ -54,6 +64,9 @@ export default class extends Controller {
+             });
+     }
+ 
++    #handleCheckout(lsCustomerId) {
++    }
++
+     #disableLink(link) {
+         link.classList.add('disabled');
+         link.style.pointerEvents = 'none';

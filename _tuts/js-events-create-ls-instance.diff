@@ -1,0 +1,14 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index b3062fd..c964313 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -17,6 +17,9 @@ export default class extends Controller {
+         }
+ 
+         script.addEventListener('load', () => {
++            // The script has loaded, now you can safely call createLemonSqueezy()
++            window.createLemonSqueezy();
++
+             window.LemonSqueezy.Setup({
+                 eventHandler: (data) => {
+                     if (data.event === 'Checkout.Success') {

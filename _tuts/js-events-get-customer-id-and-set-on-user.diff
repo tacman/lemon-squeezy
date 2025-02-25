@@ -1,0 +1,14 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 1073c92..98a189b 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -82,7 +82,8 @@ class OrderController extends AbstractController
+         Request $request,
+         #[CurrentUser] User $user,
+     ): Response {
+-
++        $lsCustomerId = $request->request->get('lsCustomerId');
++        $user->setLsCustomerId($lsCustomerId);
+     }
+ 
+     #[Route('/checkout/success', name: 'app_order_success')]

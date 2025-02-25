@@ -1,0 +1,13 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index 7370e23..7a2c999 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -24,7 +24,7 @@ export default class extends Controller {
+                 eventHandler: (data) => {
+                     if (data.event === 'Checkout.Success') {
+                         console.log(data);
+-                        const lsCustomerId = data.data.customer_id;
++                        const lsCustomerId = data.data.order.data.attributes.customer_id;
+                         this.#handleCheckout(lsCustomerId);
+                     }
+                 },

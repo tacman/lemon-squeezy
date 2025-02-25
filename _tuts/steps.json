@@ -594,7 +594,82 @@
             "id": "fix-non-authed-redirect-on-authentication-success",
             "name": "Fix non-authed: Redirect on authentication success",
             "description": null
+        },
+        {
+            "id": "js-events-listen-for-checkout-success-event",
+            "name": "JS events: Listen for checkout success event",
+            "description": null
+        },
+        {
+            "id": "js-events-create-handlecheckout-action",
+            "name": "JS events: Create handleCheckout() action",
+            "description": null
+        },
+        {
+            "id": "js-events-get-customer-id-and-set-on-user",
+            "name": "JS events: Get customer ID and set on user",
+            "description": null
+        },
+        {
+            "id": "js-events-inject-entity-manager",
+            "name": "JS events: Inject entity manager",
+            "description": null
+        },
+        {
+            "id": "js-events-flush-and-return-the-response",
+            "name": "JS events: Flush and return the response",
+            "description": null
+        },
+        {
+            "id": "js-events-add-new-stimulus-value",
+            "name": "JS events: Add new Stimulus value",
+            "description": null
+        },
+        {
+            "id": "js-events-fetch-and-handle-data",
+            "name": "JS events: Fetch and handle data",
+            "description": null
+        },
+        {
+            "id": "js-events-wrap-ls-setup-to-wait-for-load",
+            "name": "JS events: Wrap LS setup to wait for load",
+            "description": null
+        },
+        {
+            "id": "js-events-create-ls-instance",
+            "name": "JS events: Create LS instance",
+            "description": null
+        },
+        {
+            "id": "js-events-dump-response-data",
+            "name": "JS events: Dump response data",
+            "description": null
+        },
+        {
+            "id": "js-events-fix-path-to-the-customer-id",
+            "name": "JS events: Fix path to the customer ID",
+            "description": null
+        },
+        {
+            "id": "js-events-comment-out-console-log",
+            "name": "JS events: Comment out console.log()",
+            "description": null
+        },
+        {
+            "id": "js-events-get-user-id-from-the-response",
+            "name": "JS events: Get user ID from the response",
+            "description": null
+        },
+        {
+            "id": "js-events-pass-user-id",
+            "name": "JS events: Pass user ID",
+            "description": null
+        },
+        {
+            "id": "js-events-throw-on-user-id-mismatch",
+            "name": "JS events: Throw on user ID mismatch",
+            "description": null
         }
     ],
-    "sha": "76832bb63b5b6194077ce3427ffee8fdff36e566"
+    "sha": "8048f9d7e7c91143af2ad08b04b3ce51cad69be9"
 }
