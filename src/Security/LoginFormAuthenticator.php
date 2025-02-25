@@ -44,12 +44,6 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        // Not sure why it does not work out of the box, I had to add this line.
-        // Probably it does not work with customer authenticators out of the box?
-        // I.e. it works only with default Symfony authenticator?
-        if ($targetPath = $request->query->get('_target_path')) {
-            return new RedirectResponse($targetPath);
-        }
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
