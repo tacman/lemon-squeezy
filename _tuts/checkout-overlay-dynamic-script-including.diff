@@ -1,0 +1,19 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index 67eab70..e7f003a 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -6,6 +6,14 @@ export default class extends Controller {
+     };
+ 
+     connect() {
++        // Load the Lemon Squeezy script dynamically avoiding double loading
++        let script = window.document.querySelector('script[src="https://app.lemonsqueezy.com/js/lemon.js"]');
++        if (!script) {
++            script = window.document.createElement('script');
++            script.src = 'https://app.lemonsqueezy.com/js/lemon.js';
++            script.defer = true;
++            window.document.head.appendChild(script);
++        }
+     }
+ 
+     openOverlay(e) {

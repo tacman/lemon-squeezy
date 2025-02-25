@@ -1,0 +1,38 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index af6ec76..67eab70 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -12,6 +12,7 @@ export default class extends Controller {
+         e.preventDefault();
+ 
+         const linkEl = e.currentTarget;
++        this.#disableLink(linkEl);
+ 
+         fetch(this.checkoutCreateUrlValue, {
+             method: 'POST',
+@@ -28,9 +29,25 @@ export default class extends Controller {
+             })
+             .then(data => {
+                 window.LemonSqueezy.Url.Open(data.targetUrl);
++
++                this.#enableLink(linkEl);
+             })
+             .catch(error => {
+                 console.error('Fetch error:', error);
++
++                this.#enableLink(linkEl);
+             });
+     }
++
++    #disableLink(link) {
++        link.classList.add('disabled');
++        link.style.pointerEvents = 'none';
++        link.style.opacity = '0.5';
++    }
++
++    #enableLink(link) {
++        link.classList.remove('disabled');
++        link.style.pointerEvents = 'auto';
++        link.style.opacity = '1';
++    }
+ }

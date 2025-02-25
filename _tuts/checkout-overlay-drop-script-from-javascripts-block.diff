@@ -1,16 +1,16 @@
 diff --git a/templates/order/cart.html.twig b/templates/order/cart.html.twig
-index 073a716..c5b8af7 100644
+index 371cdd5..2d67da4 100644
 --- a/templates/order/cart.html.twig
 +++ b/templates/order/cart.html.twig
-@@ -2,6 +2,11 @@
+@@ -2,11 +2,6 @@
  
  {% block title %}Checkout!{% endblock %}
  
-+{% block javascripts %}
-+    {{ parent() }}
-+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
-+{% endblock %}
-+
+-{% block javascripts %}
+-    {{ parent() }}
+-    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+-{% endblock %}
+-
  {% block content %}
      <div class="flex justify-center">
          <div>

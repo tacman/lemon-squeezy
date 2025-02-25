@@ -1,0 +1,13 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index 57371ed..04d0e70 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -3,4 +3,8 @@ import { Controller } from '@hotwired/stimulus';
+ export default class extends Controller {
+     connect() {
+     }
++
++    openOverlay() {
++        
++    }
+ }

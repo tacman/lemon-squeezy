@@ -1,0 +1,40 @@
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index ca621fd..574254f 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -87,8 +87,7 @@ final readonly class LemonSqueezyApi
+ 
+     public function retrieveStoreUrl(): string
+     {
+-        $response = $this->client->request(Request::METHOD_GET, 'stores/' . $this->storeId);
+-        $lsStore = $response->toArray();
++        $lsStore = $this->request(Request::METHOD_GET, 'stores/' . $this->storeId);
+ 
+         return $lsStore['data']['attributes']['url'];
+     }
+@@ -101,7 +100,7 @@ final readonly class LemonSqueezyApi
+             $userEmail = $lsCustomer['data']['attributes']['email'];
+         }
+ 
+-        $response = $this->client->request(Request::METHOD_GET, 'orders', [
++        return $this->request(Request::METHOD_GET, 'orders', [
+             'query' => [
+                 'filter' => [
+                     'store_id' => $this->storeId,
+@@ -112,15 +111,11 @@ final readonly class LemonSqueezyApi
+                 ],
+             ],
+         ]);
+-
+-        return $response->toArray();
+     }
+ 
+     public function retrieveCustomer(string $customerId): array
+     {
+-        $response = $this->client->request(Request::METHOD_GET, 'customers/' . $customerId);
+-
+-        return $response->toArray();
++        return $this->request(Request::METHOD_GET, 'customers/' . $customerId);
+     }
+ 
+     private function request(string $method, string $url, array $options = []): array

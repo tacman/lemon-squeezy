@@ -1,0 +1,14 @@
+diff --git a/src/Security/LoginFormAuthenticator.php b/src/Security/LoginFormAuthenticator.php
+index bd6434e..48177ff 100644
+--- a/src/Security/LoginFormAuthenticator.php
++++ b/src/Security/LoginFormAuthenticator.php
+@@ -44,6 +44,9 @@ final class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
+ 
+     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+     {
++        if ($targetPath = $request->query->get('_target_path')) {
++            return new RedirectResponse($targetPath);
++        }
+         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+             return new RedirectResponse($targetPath);
+         }

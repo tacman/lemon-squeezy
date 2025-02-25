@@ -1,0 +1,13 @@
+diff --git a/templates/order/cart.html.twig b/templates/order/cart.html.twig
+index c5b8af7..6b35f0d 100644
+--- a/templates/order/cart.html.twig
++++ b/templates/order/cart.html.twig
+@@ -50,7 +50,7 @@
+                     <p>calculated at checkout</p>
+                 </div>
+                 <div class="mt-9">
+-                    <a class="w-[345px] flex ml-2 rounded-3xl border border-[#50272B] bg-[#4F272B] hover:bg-[#1C0000] shadow-inner poppins-bold text-white py-3 pl-5 uppercase"
++                    <a class="lemonsqueezy-button w-[345px] flex ml-2 rounded-3xl border border-[#50272B] bg-[#4F272B] hover:bg-[#1C0000] shadow-inner poppins-bold text-white py-3 pl-5 uppercase"
+                        href="{{ path('app_order_checkout') }}"
+                     >
+                         Checkout with LemonSqueezy

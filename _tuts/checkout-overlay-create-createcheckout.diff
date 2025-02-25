@@ -1,0 +1,21 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index 67ef9e8..fdcdbdd 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -67,6 +67,16 @@ class OrderController extends AbstractController
+         return $this->redirect($lsCheckoutUrl);
+     }
+ 
++    #[Route('/checkout/create', name: 'app_order_checkout_create', methods: ['POST'])]
++    public function createCheckout(
++        LemonSqueezyApi $lsApi,
++        #[CurrentUser] User $user,
++    ): Response {
++        return $this->json([
++            'targetUrl' => $lsApi->createCheckoutUrl($user),
++        ]);
++    }
++
+     #[Route('/checkout/success', name: 'app_order_success')]
+     public function success(
+         Request $request,

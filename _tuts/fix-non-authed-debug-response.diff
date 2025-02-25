@@ -1,0 +1,12 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index e7f003a..fa5f136 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -29,6 +29,7 @@ export default class extends Controller {
+             },
+         })
+             .then(response => {
++                console.log(response);
+                 if (!response.ok) {
+                     throw new Error("Network response was not ok " + response.statusText);
+                 }

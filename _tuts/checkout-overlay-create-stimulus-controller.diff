@@ -1,0 +1,12 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+new file mode 100644
+index 0000000..57371ed
+--- /dev/null
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -0,0 +1,6 @@
++import { Controller } from '@hotwired/stimulus';
++
++export default class extends Controller {
++    connect() {
++    }
++}

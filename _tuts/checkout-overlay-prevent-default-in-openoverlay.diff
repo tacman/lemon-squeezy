@@ -1,0 +1,14 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index fd28600..7297597 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -8,7 +8,7 @@ export default class extends Controller {
+     connect() {
+     }
+ 
+-    openOverlay() {
+-        
++    openOverlay(e) {
++        e.preventDefault();
+     }
+ }

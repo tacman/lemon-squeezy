@@ -1,0 +1,32 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index 7297597..af6ec76 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -10,5 +10,27 @@ export default class extends Controller {
+ 
+     openOverlay(e) {
+         e.preventDefault();
++
++        const linkEl = e.currentTarget;
++
++        fetch(this.checkoutCreateUrlValue, {
++            method: 'POST',
++            headers: {
++                'Content-Type': 'application/json',
++            },
++        })
++            .then(response => {
++                if (!response.ok) {
++                    throw new Error("Network response was not ok " + response.statusText);
++                }
++
++                return response.json();
++            })
++            .then(data => {
++                window.LemonSqueezy.Url.Open(data.targetUrl);
++            })
++            .catch(error => {
++                console.error('Fetch error:', error);
++            });
+     }
+ }

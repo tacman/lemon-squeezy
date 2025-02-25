@@ -496,10 +496,105 @@
             "description": null
         },
         {
+            "id": "error-handling-simplify-code",
+            "name": "Error handling: Simplify code",
+            "description": null
+        },
+        {
+            "id": "error-handling-call-private-request-everywhere",
+            "name": "Error handling: Call private request() everywhere",
+            "description": null
+        },
+        {
             "id": "checkout-overlay-include-lemon-js",
             "name": "Checkout overlay: Include Lemon.js",
             "description": null
+        },
+        {
+            "id": "checkout-overlay-add-css-class-to-checkout-btn",
+            "name": "Checkout overlay: Add CSS class to checkout btn",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-remove-css-class",
+            "name": "Checkout overlay: Remove CSS class",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-create-stimulus-controller",
+            "name": "Checkout overlay: Create Stimulus controller",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-add-openoverlay",
+            "name": "Checkout overlay: Add openOverlay()",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-set-controller-and-action-attrs",
+            "name": "Checkout overlay: Set controller and action attrs",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-create-createcheckout",
+            "name": "Checkout overlay: Create createCheckout()",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-add-stimulus-value",
+            "name": "Checkout overlay: Add Stimulus value",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-prevent-default-in-openoverlay",
+            "name": "Checkout overlay: Prevent default in openOverlay()",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-fetch-checkout-url-and-handle-response",
+            "name": "Checkout overlay: Fetch checkout URL and handle response",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-disable-and-enable-the-link",
+            "name": "Checkout overlay: Disable and enable the link",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-enable-embed-mode",
+            "name": "Checkout overlay: Enable embed mode",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-embed-as-argument",
+            "name": "Checkout overlay: Embed as argument",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-dynamic-script-including",
+            "name": "Checkout overlay: Dynamic script including",
+            "description": null
+        },
+        {
+            "id": "checkout-overlay-drop-script-from-javascripts-block",
+            "name": "Checkout overlay: Drop script from javascripts block",
+            "description": null
+        },
+        {
+            "id": "fix-non-authed-debug-response",
+            "name": "Fix non-authed: Debug response",
+            "description": null
+        },
+        {
+            "id": "fix-non-authed-redirect-user-with-js",
+            "name": "Fix non-authed: Redirect user with JS",
+            "description": null
+        },
+        {
+            "id": "fix-non-authed-redirect-on-authentication-success",
+            "name": "Fix non-authed: Redirect on authentication success",
+            "description": null
         }
     ],
-    "sha": "7ea43ad3965e85e7a5925b7de45aa3a3cebefd66"
+    "sha": "76832bb63b5b6194077ce3427ffee8fdff36e566"
 }

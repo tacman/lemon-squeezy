@@ -1,0 +1,35 @@
+diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
+index fdcdbdd..7942d0d 100644
+--- a/src/Controller/OrderController.php
++++ b/src/Controller/OrderController.php
+@@ -73,7 +73,7 @@ class OrderController extends AbstractController
+         #[CurrentUser] User $user,
+     ): Response {
+         return $this->json([
+-            'targetUrl' => $lsApi->createCheckoutUrl($user),
++            'targetUrl' => $lsApi->createCheckoutUrl($user, true),
+         ]);
+     }
+ 
+diff --git a/src/Store/LemonSqueezyApi.php b/src/Store/LemonSqueezyApi.php
+index 33a8d98..b1f9a12 100644
+--- a/src/Store/LemonSqueezyApi.php
++++ b/src/Store/LemonSqueezyApi.php
+@@ -22,7 +22,7 @@ final readonly class LemonSqueezyApi
+     ) {
+     }
+ 
+-    public function createCheckoutUrl(User $user): string
++    public function createCheckoutUrl(User $user, bool $embed = false): string
+     {
+         if ($this->cart->isEmpty()) {
+             throw new \LogicException('Nothing to checkout!');
+@@ -35,7 +35,7 @@ final readonly class LemonSqueezyApi
+         $attributes['checkout_data']['email'] = $user->getEmail();
+         $attributes['checkout_data']['name'] = $user->getFirstName();
+         $attributes['checkout_data']['custom']['user_id'] = (string) $user->getId();
+-        $attributes['checkout_options']['embed'] = true;
++        $attributes['checkout_options']['embed'] = $embed;
+         if (count($products) === 1) {
+             $attributes['checkout_data']['variant_quantities'] = [
+                 [

@@ -1,0 +1,17 @@
+diff --git a/assets/controllers/lemon-squeezy_controller.js b/assets/controllers/lemon-squeezy_controller.js
+index fa5f136..14e5b3d 100644
+--- a/assets/controllers/lemon-squeezy_controller.js
++++ b/assets/controllers/lemon-squeezy_controller.js
+@@ -33,6 +33,12 @@ export default class extends Controller {
+                 if (!response.ok) {
+                     throw new Error("Network response was not ok " + response.statusText);
+                 }
++                if (response.redirected) {
++                    window.location.href = response.url+'?_target_path='+window.location.pathname;
++
++                    // Stop further execution
++                    return Promise.reject("User is not authenticated!");
++                }
+ 
+                 return response.json();
+             })
