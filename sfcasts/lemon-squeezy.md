@@ -6,7 +6,7 @@ Can we simplify the way we handle all of that information? You bet! To do that, 
 
 And you know what? We found one for you! Meet "squeezed lemon"… I mean... *LemonSqueezy* - a modern and stylish payment processor with an *awesome* UI that will be your Merchant of Record. As a bonus, it also has PayPal integration for both individual product purchases *and* subscriptions, meaning your customers can choose if they want to pay by card or with PayPal without the need to integrate different processors. It's easy peasy, lemon... well, you get it.
 
-Bfore we start, it's important to know that LemonSqueezy *might* not fit your business. You see, LemonSqueezy can’t help you sell *everything*. You *can* sell products and subscriptions, but it works only for software products, not *physical* products. That’s why it's an *ideal* fit for digital companies - like mine! More on that in a minute.
+Before we start, it's important to know that LemonSqueezy *might* not fit your business. You see, LemonSqueezy can’t help you sell *everything*. You *can* sell products and subscriptions, but it works only for software products, not *physical* products. That’s why it's an *ideal* fit for digital companies - like mine! More on that in a minute.
 
 Okay, first thing's first! We need to *register* before we can start selling products. Click on "Get started" and add your name, email address, and a *super* strong password - y'know... because we're dealing with payment stuff. You can also configure 2FA at a later time for even *more* security. Remember to use your real email because you'll need to confirm it before you can begin. We'll also send some test emails that you'll want to see. Last, but not least, add your shop's name.
 
