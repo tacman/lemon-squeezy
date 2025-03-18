@@ -1,3 +1,4 @@
 chapters:
     - lemon-squeezy
     - checkout
+    - scoped-http-client
