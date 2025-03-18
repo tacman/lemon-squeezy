@@ -74,7 +74,7 @@ index 770f444..dde1637 100644
          "symfony/web-profiler-bundle": "7.2.*",
          "zenstruck/foundry": "*"
 diff --git a/composer.lock b/composer.lock
-index e1f228e..c3c7767 100644
+index 8831d2d..55593df 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -86,7 +86,7 @@ index e1f228e..c3c7767 100644
      "packages": [
          {
              "name": "composer/semver",
-@@ -6398,63 +6398,1893 @@
+@@ -6399,63 +6399,1893 @@
              },
              "time": "2024-11-21T13:46:39+00:00"
          },
@@ -1941,13 +1941,13 @@ index e1f228e..c3c7767 100644
 +                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/700a880e5089280c7cf3ca1ccf9d9de6630f5d25",
 +                "reference": "700a880e5089280c7cf3ca1ccf9d9de6630f5d25",
 +                "shasum": ""
-             },
++            },
 +            "require": {
 +                "masterminds/html5": "^2.6",
 +                "php": ">=8.2",
 +                "symfony/polyfill-ctype": "~1.8",
 +                "symfony/polyfill-mbstring": "~1.0"
-+            },
+             },
 +            "require-dev": {
 +                "symfony/css-selector": "^6.4|^7.0"
 +            },
@@ -2009,7 +2009,7 @@ index e1f228e..c3c7767 100644
          },
          {
              "name": "symfony/maker-bundle",
-@@ -6548,6 +8378,88 @@
+@@ -6549,6 +8379,88 @@
              ],
              "time": "2025-01-15T00:21:40+00:00"
          },
@@ -2097,10 +2097,10 @@ index e1f228e..c3c7767 100644
 +        },
          {
              "name": "symfony/web-profiler-bundle",
-             "version": "v7.2.2",
-@@ -6630,6 +8542,56 @@
+             "version": "v7.2.4",
+@@ -6631,6 +8543,56 @@
              ],
-             "time": "2024-12-11T15:34:14+00:00"
+             "time": "2025-02-14T14:27:24+00:00"
          },
 +        {
 +            "name": "theseer/tokenizer",

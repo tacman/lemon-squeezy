@@ -11,7 +11,7 @@ index 4ae7043..7a1537a 100644
          "symfony/security-bundle": "7.2.*",
          "symfony/stimulus-bundle": "^2.22",
 diff --git a/composer.lock b/composer.lock
-index 3051346..7ec6735 100644
+index e078859..6892cf6 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
