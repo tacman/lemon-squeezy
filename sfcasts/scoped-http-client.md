@@ -1,32 +1,39 @@
 # Start the Course Project App
 
-Okay, I get it. The words "payment system integration" might sound scary at first. But trust me — by the end of this course, you'll be saying:
+I *totally* get it. The words "payment system integration" sounds super intimidating, but *trust me*, by the end of this course, you'll be saying:
 
-> With LemonSqueezy… it's easy peasy!
+> With LemonSqueezy, it's *easy peasy*!
 
-Time to meet you with our project! We’ve already downloaded the course code in the previous chapter, but if you haven’t yet - download it now from this page, unzip it, and go to the start/ directory. Don’t forget to check the README.md file that contains instructions about how to setup and start it locally. I’ve already did all the steps there, so I will just start the web server with `symfony serve -d` command, and click the URL in the output.
+Let's check out our project! We downloaded the course code in the previous chapter, but if you *haven’t* yet, you can download it from this page now. Unzip it, go to the `start/` directory, and don’t forget to check the `README.md` file for all the setup instructions. I’ve already completed these steps, so I'll go ahead and start the web server with
 
-Welcome to the "Squeeze the Day" website - our digital Lemonade Stand! Let's look around! We have some products here, you can add it to cart for buying, you can even specify the quantity. The actual cart page where you will be able to check out - that's something for what we will need LS integration.
+`symfony serve -d`
 
-We also provide weekly lemonade delivery for subscribed users - how convenient! We will see subscriptions in the next course. You can also register, log in, and find some basic account info.
+and click on this URL.
 
-In the fixtures you will find default user credentials. I will copy the email. Go back to the login page, in the email field paste the email, and password is lemonpass. Hit sing in, and go the account page to see it.
+Welcome to "Squeeze the Day" - our digital lemonade stand! We have some products here, we can add them to our cart, and we can even specify the quantity. The *actual* cart page, where we can check out, is where we'll need LemonSqueezy's integration.
+
+We *also* provide weekly lemonade delivery for subscribers! How convenient! We'll talk about subscriptions in the next course. We can also register, log in, and find some basic account info. Let's do that!
+
+In `AppFixtures.php`, you'll find some default user credentials. Copy this email, go back to the login page, and paste that into the email field. The *password* is "lemonpass". Hit "Sign In"... and check out the "Account" page. Pretty basic stuff at the moment.
 
 ### Install HTTP Client
-Let's take a look at the docs first for help. Go to the lemonsqueezy.com, open Resources > Developer Docs > Guides from the right > and we need the "Getting Started with the API" chapter. We will need to create an API key, we will do it a bit later. Then all the API requests should be done to the specific domain with specific headers mentioned here. LemonSqueezy require some authentication, so we will also need to pass an authorisation token. To send API requests inside our Symfony application we can leverage the Symfony HttpClient component - it should be perfect for executing HTTP requests..
+Okay, now we can work on our API. For help getting started, let's take a look at the docs. Go to `lemonsqueezy.com`... click on "Resources", "Developer Docs", and "Guides", and then find a chapter called "Getting Started with the API". It looks like we need to create an API *key* (we'll do that later), and then *make* all of our API requests using the specific domain and headers mentioned here. LemonSqueezy also requires some authentication, so we'll also need to pass an authorization token. To send API requests inside our Symfony application, we can leverage the Symfony HttpClient component, which is *perfect* for executing HTTP requests.
 
-Install it with: `com req symfony/http-client`. Seems it was already installed as an indirect dependency, so Composer just added it the composer.json as direct dependency.
+To do that, at your terminal, run:
 
-We’re going to configure it, so let’s create `config/packages/http_client.yaml`.
+```terminal
+composer require symfony/http-client
+```
+
+Looks like it was already installed as an *indirect* dependency, so Composer just added it to `composer.json` as direct dependency. *Sweet*. Now we need to configure it! In `/config/packages`, create a new file called `http_client.yaml`.
 
 ### Create a Scoped HTTP Client
-Open the config file. Now let's create a scoped client that will help us to send requests to the LS API.
-In `scoped_clients` add `lemon_squeezy.client` . Then `base_uri: 'https://api.lemonsqueezy.com/v1/'`. And headers set to: `Accept: 'application/vnd.api+json'` and  `Content-Type: 'application/vnd.api+json'`. For authorization, we need to add a Bearer token.
+In our new file, create a *scoped client* that will help us send requests to LemonSqueezy's API - `framework`, `http_client`, `scoped_clients` - and call it `lemon_squeezy.client`. *Then*, for `base_uri`, over in the docs under "Making requests", copy this URL - `'https://api.lemonsqueezy.com/v1/'` - and paste it here. Next, under `headers:`, set `Accept:` to `'application/vnd.api+json'` and do the same for `Content-Type:`.
 
-First, let's set up the API key, so we could make API requests. Open LS dashboard and go to the "Settings" > API > "Add API key" > I will name it "API", and copy the generated key. Of course, you should keep it secret! Nobody should see it... oh crap, I've already failed this. OK, not a big problem, I can always delete it and generate a new one, but I will keep it and change later after I recorded the course.
+For authorization, we need to add a Bearer token, but first, let's set up the API key, so we can make API requests. Open the LemonSqueezy dashboard and go to "Settings", "API", and "Add API key". Let's call it "API", click "Create API key", and copy the key we generated. This is *top secret*, so... pretend you never saw this. I'll generate a new, *secret-er* one later.
 
-We usually save things on `.env` file, but for better security I do not want to commit it to the repository, so I will save it in `.env.local` instead. Create `.env.local` and set it there as `LEMON_SQUEEZY_API_KEY`. Open `.env` and add this env var but left empty `LEMON_SQUEEZY_API_KEY=`. On production, usually you can set it as a real env var with your cloud hosting. Otherwise to make it even more secure - take a look at Symfony's secrets management system.
+Since we want to keep this a secret, we *don't* want to save this in our `.env` file with everything else, because that's committed to the repository. To keep this safe and secure, create a new `.env.local` file and save it there instead. Say `LEMON_SQUEEZY_API_KEY=` and paste our API key. *Now* we can copy *this* line, *excluding* the key, and in `.env`... down here... paste. On production, you can just set this as a real environment variable with your cloud hosting. Otherwise, to make this even *more* secure, take a look at Symfony's secrets management system. You can find more information about that in the docs on `symfony.com`.
 
-Now we can add `auth_bearer: '%env(LEMON_SQUEEZY_API_KEY)%'`
+Finally, back in `http_client.yaml`, under `base_uri`, add `auth_bearer: '%env(LEMON_SQUEEZY_API_KEY)%'`. *Done*!
 
-Great, now we’re ready to send HTTP request to the LS API, but that will be in the next chapter.
+Now we’re ready to send a HTTP request to LemonSqueezy's API! Let's do that *next*.
