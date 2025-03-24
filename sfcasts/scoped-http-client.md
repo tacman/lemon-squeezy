@@ -25,7 +25,7 @@ To do that, at your terminal, run:
 composer require symfony/http-client
 ```
 
-Looks like it was already installed as an *indirect* dependency, so Composer just added it to `composer.json` as direct dependency. *Sweet*. Now we need to configure it! In `/config/packages`, create a new file called `http_client.yaml`.
+Looks like it was already installed as an *indirect* dependency, so Composer just added it to `composer.json` as direct dependency. *Sweet*. Now we need to configure it! In `config/packages/`, create a new file called `http_client.yaml`.
 
 ## Create a Scoped HTTP Client
 In our new file, create a *scoped client* that will help us send requests to LemonSqueezy's API - `framework:`, `http_client:`, `scoped_clients:` - and call it `lemon_squeezy.client`. *Then*, for `base_uri:`, over in the docs under "Making requests", copy this URL - `'https://api.lemonsqueezy.com/v1/'` - and paste it here. Next, under `headers:`, set `Accept:` to `'application/vnd.api+json'` and do the same for `Content-Type:`.
