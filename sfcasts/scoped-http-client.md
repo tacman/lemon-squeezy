@@ -6,7 +6,8 @@ I *totally* get it. The words "payment system integration" sounds super intimida
 
 Let's check out our project! We downloaded the course code in the previous chapter, but if you *haven’t* yet, you can download it from this page now. Unzip it, go to the `start/` directory, and don’t forget to check the `README.md` file for all the setup instructions. I’ve already completed these steps, so I'll go ahead and start the web server with
 
-`symfony serve -d`
+```terminal
+symfony serve -d
 
 and click on this URL.
 
