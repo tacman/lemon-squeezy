@@ -16,7 +16,7 @@ Now, open `cart.html.twig`, scroll down... and set the "Checkout with LemonSquee
 
 To do that, inject `HttpClientInterface $lsClient` and `ShoppingCart $cart`... and let’s move the actual business logic of the API call to a separate method for convenience. Down here, say `$lsCheckoutUrl = $this->createLsCheckoutUrl($lsClient, $cart);` and finally, `return $this->redirect($lsCheckoutUrl);`. Looking good!
 
-To create a new method, hold "Option" + "Enter" to open the menu and choose "Add method" to let PhpStorm do it for us. Convenient! This will return a `string`... and inside, let’s do a sanity check:
+To create a new method, hold "Option" + "Enter" on a Mac to open the menu and choose "Add method" to let PhpStorm do it for us. Convenient! This will return a `string`... and inside, let’s do a sanity check:
 
 `if ($cart->isEmpty())`
 `throw new \LogicException('Nothing to checkout!');`
