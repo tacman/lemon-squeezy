@@ -21,7 +21,7 @@ To create a new method, hold "Option" + "Enter" on a Mac to open the menu and ch
 `if ($cart->isEmpty())`
 `throw new \LogicException('Nothing to checkout!');`
 
-### Make a Request to LS API
+## Make a Request to LS API
 
 Below, say `$lsCheckout = $lsClient->request(Request::METHOD_POST, 'checkouts', []);`... and inside, `'json' => ['data' => ['type' => 'checkouts']]`. We can leave the rest of the options empty for now. LemonSqueezy's API docs don't really clarify which option is ?*required*, so we'll just have to figure it out for ourselves.
 
