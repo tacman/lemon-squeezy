@@ -8,6 +8,7 @@ Let's check out our project! We downloaded the course code in the previous chapt
 
 ```terminal
 symfony serve -d
+```
 
 and click on this URL.
 
