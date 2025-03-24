@@ -23,7 +23,7 @@ To create a new method, hold "Option" + "Enter" on a Mac to open the menu and ch
 
 ## Make a Request to LS API
 
-Below, say `$lsCheckout = $lsClient->request(Request::METHOD_POST, 'checkouts', []);`... and inside, `'json' => ['data' => ['type' => 'checkouts']]`. We can leave the rest of the options empty for now. LemonSqueezy's API docs don't really clarify which option is *required*, so we'll just have to figure it out for ourselves.
+Below, say `$response = $lsClient->request(Request::METHOD_POST, 'checkouts', []);`... and inside, `'json' => ['data' => ['type' => 'checkouts']]`. We can leave the rest of the options empty for now. LemonSqueezy's API docs don't really clarify which option is *required*, so we'll just have to figure it out for ourselves.
 
 Down here, since we have a JSON response, we need to convert it to an array with `$lsCheckout = $response->toArray();`. Then, `return`... and from the example response we saw in the docs, we can read the URL with `$lsCheckout['data']['attributes']['url'];`. Nice!
 
