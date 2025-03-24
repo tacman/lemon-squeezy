@@ -16,7 +16,7 @@ We *also* provide weekly lemonade delivery for subscribers! How convenient! We'l
 
 In `AppFixtures.php`, you'll find some default user credentials. Copy this email, go back to the login page, and paste that into the email field. The *password* is "lemonpass". Hit "Sign In"... and check out the "Account" page. Pretty basic stuff at the moment.
 
-### Install HTTP Client
+## Install HTTP Client
 Okay, now we can work on our API. For help getting started, let's take a look at the docs. Go to `lemonsqueezy.com`... click on "Resources", "Developer Docs", and "Guides", and then find a chapter called "Getting Started with the API". It looks like we need to create an API *key* (we'll do that later), and then *make* all of our API requests using the specific domain and headers mentioned here. LemonSqueezy also requires some authentication, so we'll also need to pass an authorization token. To send API requests inside our Symfony application, we can leverage the Symfony HttpClient component, which is *perfect* for executing HTTP requests.
 
 To do that, at your terminal, run:
