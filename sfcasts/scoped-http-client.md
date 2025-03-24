@@ -36,4 +36,4 @@ Since we want to keep this a secret, we *don't* want to save this in our `.env` 
 
 Finally, back in `http_client.yaml`, under `base_uri`, add `auth_bearer: '%env(LEMON_SQUEEZY_API_KEY)%'`. *Done*!
 
-Now we’re ready to send a HTTP request to LemonSqueezy's API! Let's do that *next*.
+Now we’re ready to send an HTTP request to LemonSqueezy's API! Let's do that *next*.
