@@ -23,7 +23,7 @@ index 2d6a76f..e12782d 100644
  services:
      # default configuration for services in *this* file
 diff --git a/src/Controller/OrderController.php b/src/Controller/OrderController.php
-index 6497358..fbf5e19 100644
+index 61d295a..207f777 100644
 --- a/src/Controller/OrderController.php
 +++ b/src/Controller/OrderController.php
 @@ -78,7 +78,7 @@ class OrderController extends AbstractController
