@@ -1,32 +1,25 @@
 # Chapter 1:  Meet LemonSqueezy - Your Merchant of Record.
 
-Hello and *welcome* to another e-commerce tutorial! There are *a lot* of payment processors
-available online, so selling products on the web is easy and exciting... until you realize
-that handling payments, taxes, and compliance is... well... *not* exciting.
+Hello and *welcome* to another e-commerce tutorial! I don't mean to sell this too hard, 
+but I think this tutorial is fantastic! There are *a lot* of payment processors
+available, which means selling products online is easy and exciting... until you realize
+that handling taxes, and compliance is... well... *not* exciting.
 
 Can we simplify the way we handle all of that information? You bet! To do that, we need a
-Merchant of Record, or "MoR". "What's that" you ask? That’s the *same* payment processor you
-already know, but with *superpowers*. "Merchant of Record" means it handles all of the
-complicated legal and financial stuff *for* you, so you can focus on building and selling
-your products and, most importantly, earning more revenue. No more VAT headaches or compliance
+payment processor that is a Merchant of Record, or "MoR". "What's that" you ask? It's like any
+payment processor, but with *superpowers*. "Merchant of Record" means it handles all of the
+complicated legal and financial stuff, like taxes *for* you, No more VAT headaches or compliance
 nightmares — just sweet, *sweet* selling.
 
-And you know what? We found one for you! Meet "squeezed lemon"… I mean... *LemonSqueezy* - a
-modern and stylish payment processor with an *awesome* UI that will be your Merchant of Record.
-As a bonus, it also has PayPal integration for both individual product purchases *and* subscriptions,
-meaning your customers can choose if they want to pay by card or with PayPal without the need to
-integrate different processors. It's easy peasy, lemon... well, you get it.
-
-Before we start, it's important to know that LemonSqueezy *might* not fit your business. You see,
-LemonSqueezy can’t help you sell *everything*. You *can* sell products and subscriptions, but it
-works only for digital products, not *physical* ones. That’s why it's an *ideal* fit for
-digital companies - like mine! More on that in a minute.
+We'll show you how to set this up using Lemon Squeezy, but what we're covering will 
+translate to other services like Paddle or Polar.sh. Which service you choose is up to you: 
+we're covering LemonSqueezy, but we don't have a favorite.
 
 Okay, first thing's first! We need to *register* before we can start selling products. Click on
 "Get started" and add your name, email address, and a *super* strong password - y'know... because
 we're dealing with payment stuff. You can also configure 2FA at a later time for even *more* security.
 Remember to use your real email because you'll need to confirm it before you can begin. We'll also send
-some test emails that you'll want to see. Last, but not least, add your shop's name.
+some test emails that you'll want to see.
 
 ## A Quick Tour of the dashboard
 
@@ -101,4 +94,4 @@ Finally, let’s "Publish" our new product. Click "Publish product" and... that�
 first LemonSqueezy product! Close the Product Details page, and there it is! It has a "Published" status
 and it’s already displayed on our storefront! *Sweet*!
 
-Next up, let’s see what our customers see - our shiny new LemonSqueezy storefront!
+Next up, let’s see what our customers see - our shiny new storefront!
