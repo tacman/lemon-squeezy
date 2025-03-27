@@ -8,11 +8,11 @@ that handling taxes, and compliance is... well... *not* exciting.
 Can we simplify the way we handle all of that information? You bet! To do that, we need a
 payment processor that is a Merchant of Record, or "MoR". "What's that" you ask? It's like any
 payment processor, but with *superpowers*. "Merchant of Record" means it handles all of the
-complicated legal and financial stuff, like taxes *for* you, No more VAT headaches or compliance
+complicated legal and financial stuff, like taxes, *for* you. No more VAT headaches or compliance
 nightmares — just sweet, *sweet* selling.
 
 We'll show you how to set this up using Lemon Squeezy, but what we're covering will 
-translate to other services like Paddle or Polar.sh. Which service you choose is up to you: 
+translate to other services like Paddle or Polar. Which service you choose is up to you: 
 we're covering LemonSqueezy, but we don't have a favorite.
 
 Okay, first thing's first! We need to *register* before we can start selling products. Click on
