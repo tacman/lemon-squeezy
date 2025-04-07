@@ -54,8 +54,8 @@ cards, which you can find in the docs. If we open their site in new tab, we can
 go to "Resources", "Help Docs", and in the left sidebar, click "Test Mode". The
 test card numbers we need are on the right here.
 
-There’re several to choose from, but I'll just use the first one. Copy "
-4242424242424242"... *paste*... and we can use any future expiration date for
+There are several to choose from, but I'll just use the first one. Copy this
+number and... *paste*... and we can use any future expiration date for
 now. I'll say "12/25", and use any three numbers for the security code. This
 also requires us to enter a billing address. If we try to click "Buy" without
 one, we get a validation error. I'll say "Broadway 1", then choose from the list
@@ -76,31 +76,31 @@ open that... nice! There's our info!
 
 Now that you've purchased your first product, check the inbox of the email you
 used during the checkout process to see if you received an email. Yep! We *do*!
-Open "Your Classic E-Lemonade receipt". We can view the order the placed and we
+Open "Your Classic E-Lemonade receipt". We can view the order we placed and
 can *also* generate the same invoice we saw earlier. As a store owner, you may
 receive an additional email because our store is connected to the same email
 address. I disabled those emails to avoid spamming my inbox, and you can do the
-same by going to "Settings", "General", "Account", and switching the sales
+same by going to "Settings", "General", "Account", and switching sales
 notifications off.
 
 Don't forget to save your changes! You can also configure this in the
 LemonSqueezy dashboard by going to "Design", "Email".
 
-We can *also* control the email created a checkout. More on that later!
+We can *also* control the email created at checkout. More on that later!
 
 ## LemonSqueezy Dashboard
 
 So... all of this is from the *customer's* perspective, but what about the store
 owner? If we head back to the dashboard... here we go! Our revenue chart already
 reflects the purchase we made! Open "Store"... "Orders" to see the orders list.
-The last one should be the order we placed for $4.95. Nice! There’s also a "
-Customers" page here, where we can see some info about each customer and the
+The last one should be the order we placed for $4.95. Nice! There’s also a
+"Customers" page here, where we can see some info about each customer and the
 products they ordered. You can ignore the "Archived" labels on the orders on my
 screen. That just means the customer will no longer receive marketing emails.
 That... was an *accident*, actually. I tried to archive this once, and now I
 can't change it back. Hopefully that's a feature LemonSqueezy will add later. 😅
 
-Anyways, as you can see, LemonSqueezy handles all of the transactional emails
+Anyway, as you can see, LemonSqueezy handles all of the transactional emails
 for us, so we don't need to worry about it. *Sour*... I mean... *sweet*! You can
 start selling your products without a website; Just create more products,
 publish them on the storefront, and share the *link* to your storefront with
