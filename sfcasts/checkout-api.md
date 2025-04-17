@@ -1,47 +1,59 @@
 # Chapter 4: Checkout API Request
 
-Let’s open a product page and add it to the cart. If I press Checkout button - nothing happens. That’s what we’re going to implement in this course. But how can we charge customer this specific amount using LemonSqueezy API? In the previous chapter we saw that we can generate a unique checkout URL for each LemonSqueezy product in the dashboard and share it to the customer. And guess what? The same checkout URL we can generate via LemonSqueezy the checkout API endpoint.
+On our website, down here, click on a product to open its page and add it to the cart. If we click the "Checkout" button... nothing happens. Let's fix that!
+
+In the previous chapter, we saw how to generate a unique checkout URL for each LemonSqueezy product in the dashboard and share it with the customer. And guess what? We can do the *same* thing with the checkout API endpoint!
 
 ## Create a Checkout URL
 
-Now when we have a configured scoped HTTP client - let’s make our first API request to the LemonSqueezy API. To know the URL, let’s open the API docs and find the [Create a checkout](https://docs.lemonsqueezy.com/api/checkouts/create-checkout) endpoint. It show the specific endpoint URL and the method that we need to use, and also has a lot of configuration options even with an example of the JSON response. Here it is, the `url` key inside of the `attributes` which inside of `data`. When a customer hit this checkout button - we will redirect our customers to this URL to complete the payment.
+We *already* have a configured scoped HTTP client, so let’s make our first API request to LemonSqueezy's API. To find the URL, open the API docs, scroll down, and click [Create a checkout](https://docs.lemonsqueezy.com/api/checkouts/create-checkout). This shows us the specific endpoint URL, the *method* we need to use, and it also has a *ton* of config. There's even an example with a JSON response!
 
-Let's do it! We already have OrderController with a cart-related methods inside. Let’s create a new one called `checkout()`. Make it route: `#[Route('/checkout', name: 'app_order_checkout')]`.
+If we scroll through the code on the right here... there it is - the `url` key! This is located inside `data`, `attributes`. When our customers hit the "Checkout" button, we want to redirect them to this URL to complete the payment. No problem!
 
-Open the `cart.html.twig` template and set "Checkout with LemonSqueezy" link URL to `app_order_checkout`. Now when customer click the link - it hit this endpoint and our task is to generate the LemonSqueezy checkout URL via API and redirect the customer to it to let them finish the order.
+Back in our code, we already have `OrderController.php`, which contains our cart-related methods. Let’s create a new one called `checkout()`...  and make it a route with `#[Route('/checkout', name: 'app_order_checkout')]`. Awesome!
 
-For this, inject `HttpClientInterface $lsClient` and `ShoppingCart $cart`. Let’s move the actual business logic of the API call in a separate method for convenience. Inside, `$lsCheckoutUrl = $this->createLsCheckoutUrl($lsClient, $cart);`. I will create this method later. And finish it with `return $this->redirect($lsCheckoutUrl);`.
+Now, open `cart.html.twig`, scroll down... and set the "Checkout with LemonSqueezy" URL to `app_order_checkout`. Thanks to this, when a customer clicks the "Checkout" button, it will hit this endpoint. Our *next* task is to generate LemonSqueezy's checkout URL via the API and redirect our customers so they can complete their purchase.
 
-- Now let's implement that `createLsCheckoutUrl()`. I will press Option + Enter to open the menu and choose "Add method" to let PhpStorm create it for us. And it will return a `string`. Inside, first of all, let’s do a sanity check`if ($cart->isEmpty())` - `throw new \LogicException('Nothing to checkout!');`
+To do that, inject `HttpClientInterface $lsClient` and `ShoppingCart $cart`... and let’s move the actual business logic of the API call to a separate method for convenience. Down here, say `$lsCheckoutUrl = $this->createLsCheckoutUrl($lsClient, $cart);` and finally, `return $this->redirect($lsCheckoutUrl);`. Looking good!
 
-### Make a Request to LS API
+To create a new method, hold "Option" + "Enter" on a Mac to open the menu and choose "Add method" to let PhpStorm do it for us. Convenient! This will return a `string`... and inside, let’s do a sanity check:
 
-Next `$lsCheckout = $lsClient->request(Request::METHOD_POST, 'checkouts', []);`. Inside options - let's just it as : `'json' => ['data' => ['type' => 'checkouts']]`. will I leave rest of the options empty for now, it’s not clear enough which option is required from their API docs, so we will have to figure it out ourselves.  Below, since we have a JSON response, we need to convert it to array with `$lsCheckout = $response->toArray();`. Then `return`.. And from the example response we saw in the docs we can read the URL as `$lsCheckout['data']['attributes']['url'];`.
+`if ($cart->isEmpty())`
+`throw new \LogicException('Nothing to checkout!');`
 
-It’s time to execute this request and see if there will be any errors. An error!
+## Make a Request to LS API
+
+Below, say `$response = $lsClient->request(Request::METHOD_POST, 'checkouts', []);`... and inside, `'json' => ['data' => ['type' => 'checkouts']]`. We can leave the rest of the options empty for now. LemonSqueezy's API docs don't really clarify which option is *required*, so we'll just have to figure it out for ourselves.
+
+Down here, since we have a JSON response, we need to convert it to an array with `$lsCheckout = $response->toArray();`. Then, `return`... and from the example response we saw in the docs, we can read the URL with `$lsCheckout['data']['attributes']['url'];`. Nice!
+
+Okay! Testing time! Back on our site, refresh, click the "Checkout" button, and... an error!
+
 > Invalid URL: scheme is missing in "checkouts". Did you forget to add "http(s)://"?
 
-Hm, it ignored our base URL from the scoped client, it feels like it inject the default empty client.
+Hm... looks like it *ignored* our base URL from the scoped client. I *suspect* it injected the default *empty* client instead. Not to worry! We're on the case!
 
-Run `bin/console debug:autowiring HttpClientInterface` to see the related services. Aha, to inject LS client we need to use *named autowiring* and use the exact variable name: `$lemonSqueezyClient` while we have shortened it to: `$lsClient` in the code.
+At your terminal, run
 
-We can rename it to `$lemonSqueezyClient` here and it will work, but I would prefer a shorter name that we have. Can we achieve it? You bet! Instead of renaming, let's leverage the new `#[Target]` PHP attribute to link it to the correct service. Add `#[Target('lemonSqueezyClient')]` - above the argument.
+```terminal
+bin/console debug:autowiring HttpClientInterface
+```
+to see the related services. Ah ha... to inject LemonSqueezy's client, we need to use *named autowiring* and use the *exact* variable name: `$lemonSqueezyClient`. We shortened it to `$lsClient` in the code. Let's fix that!
 
-Update again - great, an error! I mean, a *different* error now! As you can see:
+Change this to `$lemonSqueezyClient`, and this will solve our problem, but... wait... I kind of like the shorter version we were using. Is there a way we can still use it without breaking our integration? You bet! Instead of just *renaming* this, let's leverage the new `#[Target]` PHP attribute to link it to the correct service. Above the argument, add `#[Target('lemonSqueezyClient')]`.
+
+If we head over and try this whole thing again... ugh... *great*... *another* error. I mean... a *different* error:
+
 > HTTP/2 422 returned for "https://api.lemonsqueezy.com/v1/checkouts".
 
-Hm, 422 status code indicates that the server was unable to process the request because it contains invalid data but not much information we see from the exception - let's dump the response content instead.
+Hm... a 422 status code tells us that the server was unable to process the request because it contains invalid data, but the exception doesn't give us much info. Let's try dumping the response content instead.
 
-Before the return, add: `dd($response->getContent());`. Update the page again to see the same error… nothing changed? Ah, yes, we should to pass `false` to debug the response without throwing the exception: `dd($response->getContent(false));`.
+Back over here, before the return, add `dd($response->getContent());`. If we try this again... hm, we get the same error. Ah... it looks like we need to pass `false` to the `getContent()` to debug the response without throwing an exception. Add `false` here... refresh one more time, and... okay! In the details here, we can see that `variant.id` is required, as well as `store.id`. It even points us to the specific paths we need: `data/relationships/store/data/id` and `data/relationships/variant/data/id`. We can follow that path in the API docs - `data`... `relationships`... `stores`... `data`... `id`... and so on. Go ahead and add this to our code - `relationships`, `stores`, `data`, `'type' => 'stores'`, and `'id' =>`.
 
-Refresh again to see the actual response. In the detail we see the variant.id is required and also store.id field is required too. It even point us to the specific path: data.relationships.store.data.id. Let’s check the API docs - data.relationships.store.data.type -> "stores" and "id" - the ID. And data.relationships.variant.data.type -> "variants" and "id" - the ID.
+To find the *actual* store ID we need, go to LemonSqueezy's dashboard and click on "Settings", [Stores](https://app.lemonsqueezy.com/settings/stores). Copy the id here and paste it in our code.
 
-To find the actual store ID - go to the Dashboard > Settings > [Stores](https://app.lemonsqueezy.com/settings/stores). Copy it from there and paste it in the code.
+The `variant` should follow a similar path to `store`, so we'll say `variant`... `data`... `'type' => 'variants'`... and for `id`, let's just hard-code one from the product we created in the first chapter. Open the dashboard, go to "Store", "Products", and on the right, click the three dots here to open a menu. Down here, click "Copy variant ID", and paste that in our code. Done!
 
-For the variant - It should be similar path like we had with the store. Let's hardcode one from the product we created earlier in the previous chapters. Open the dashboard, go to Store > Products > ... on the product > Copy variant ID and paste to the code.
+Back on the checkout page, refresh and... *another error*. This one's telling us that the member ID needs to be a string. If we take a look at our code... yep! That's an easy fix! This is currently an integer, but if we do this... tada! Now it's a string! Do the same thing for `variant`, then head back and refresh again. Ah ha! We have a JSON response and, if we expand this and do a quick search... it looks like this has the URL we need! *Sweet*! Go back and comment out the `dd()`, refresh the page again and... *yes*! We're on the LemonSqueezy checkout page, ready to buy some delicious e-lemonade!
 
-Let’s go to the checkout page, update it again to see another error that a member should be a string. Make the store ID string - we have an integer here. And the same should be with the variant.
-
-Update again - we have a JSON response that should contain the URL we need. Go comment out the debug statement, save and update the page - yes, finally we're on the LS checkout page and buying the product.
-
-What next? Let’s make the hardcoded data dynamic in the next chapter!
+Next: Let’s make our hard-coded data *dynamic*.
