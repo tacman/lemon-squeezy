@@ -15,9 +15,9 @@ and click [Create a checkout](https://docs.lemonsqueezy.com/api/checkouts/create
 This shows us the specific endpoint URL, the *method* we need to use, and it
 also has a *ton* of config. There's even an example with a JSON response!
 
-If we scroll through the code on the right here... there it is - the `url` key!
-This is located inside `data`, `attributes`. When our customers hit the "
-Checkout" button, we want to redirect them to this URL to complete the payment.
+If we scroll through the code... right here... there it is - the `url` key!
+This is located inside `data`, `attributes`. When our customers hit the
+"Checkout" button, we want to redirect them to this URL to complete the payment.
 No problem!
 
 Back in our code, we already have `OrderController.php`, which contains our
@@ -32,7 +32,7 @@ they can complete their purchase.
 
 To do that, inject `HttpClientInterface $lsClient` and `ShoppingCart $cart`...
 and let’s move the actual business logic of the API call to a separate method
-for convenience. Down here, say
+for convenience. Down here, write
 `$lsCheckoutUrl = $this->createLsCheckoutUrl($lsClient, $cart);` and finally,
 `return $this->redirect($lsCheckoutUrl);`. Looking good!
 
@@ -45,7 +45,7 @@ choose "Add method" to let PhpStorm do it for us. Convenient! This will return a
 
 ## Make a Request to LS API
 
-Below, say
+Below, write
 `$response = $lsClient->request(Request::METHOD_POST, 'checkouts', []);`... and
 inside, `'json' => ['data' => ['type' => 'checkouts']]`. We can leave the rest
 of the options empty for now. LemonSqueezy's API docs don't really clarify which
@@ -59,8 +59,8 @@ response we saw in the docs, we can read the URL with
 Okay! Testing time! Back on our site, refresh, click the "Checkout" button,
 and... an error!
 
-> Invalid URL: scheme is missing in "checkouts". Did you forget to add "http(
-> s)://"?
+> Invalid URL: scheme is missing in "checkouts". Did you forget to add
+> "http(s)://"?
 
 Hm... looks like it *ignored* our base URL from the scoped client. I *suspect*
 it injected the default *empty* client instead. Not to worry! We're on the case!
@@ -79,7 +79,7 @@ that!
 Change this to `$lemonSqueezyClient`, and this will solve our problem, but...
 wait... I kind of like the shorter version we were using. Is there a way we can
 still use it without breaking our integration? You bet! Instead of just
-*renaming* this, let's leverage the new `#[Target]` PHP attribute to link it to
+*renaming* this, let's leverage the `#[Target]` PHP attribute to link it to
 the correct service. Above the argument, add `#[Target('lemonSqueezyClient')]`.
 
 If we head over and try this whole thing again... ugh... *great*... *another*
@@ -106,10 +106,10 @@ To find the *actual* store ID we need, go to LemonSqueezy's dashboard and click
 on "Settings", [Stores](https://app.lemonsqueezy.com/settings/stores). Copy the
 id here and paste it in our code.
 
-The `variant` should follow a similar path to `store`, so we'll say `variant`...
+The `variant` should follow a similar path to `store`, so we'll write `variant`...
 `data`... `'type' => 'variants'`... and for `id`, let's just hard-code one from
-the product we created in the first chapter. Open the dashboard, go to "
-Store", "Products", and on the right, click the three dots here to open a menu.
+the product we created in the first chapter. Open the dashboard, go to
+"Store", "Products", and on the right, click the three dots here to open a menu.
 Down here, click "Copy variant ID", and paste that in our code. Done!
 
 Back on the checkout page, refresh and... *another error*. This one's telling us
