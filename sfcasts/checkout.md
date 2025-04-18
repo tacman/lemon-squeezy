@@ -68,8 +68,10 @@ it.
 
 To do that, LemonSqueezy requires us to enter an address again - either for
 security reasons *or* because the pre-fill isn't working. We can even add some
-custom notes and choose the language our invoice will be generated in. If we
-click "Generate Invoice", we can see that an invoice file was downloaded. If we
+custom notes and choose the language our invoice will be generated in. Address:
+"Broadway 1", city: "New York", state: "New York", and leave the rest as is.
+
+If we click "Generate Invoice", we can see that an invoice file was downloaded. If we
 open that... nice! There's our info!
 
 ### Invoice Emails
@@ -80,8 +82,8 @@ Open "Your Classic E-Lemonade receipt". We can view the order we placed and
 can *also* generate the same invoice we saw earlier. As a store owner, you may
 receive an additional email because our store is connected to the same email
 address. I disabled those emails to avoid spamming my inbox, and you can do the
-same by going to "Settings", "General", "Account", and switching sales
-notifications off.
+same by going to: Our store name: "Squeeze the Day", "My Account" and switching
+sales notifications off.
 
 Don't forget to save your changes! You can also configure this in the
 LemonSqueezy dashboard by going to "Design", "Email".
