@@ -1,4 +1,4 @@
-# Chapter 1:  Meet LemonSqueezy - Your Merchant of Record.
+# Meet LemonSqueezy - Your Merchant of Record.
 
 Hello and *welcome* to another e-commerce tutorial! I don't mean to sell this too hard, 
 but I think this tutorial is fantastic! There are *a lot* of payment processors

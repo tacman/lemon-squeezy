@@ -1,4 +1,4 @@
-# Chapter 2: Checkout Products
+# Checkout Products
 
 In the previous chapter, we created a new product and displayed it on our
 storefront. Now our customers can see the product and purchase it directly, even

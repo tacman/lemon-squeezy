@@ -1,4 +1,4 @@
-# Chapter 4: Checkout API Request
+# Checkout API Request
 
 On our website, down here, click on a product to open its page and add it to the
 cart. If we click the "Checkout" button... nothing happens. Let's fix that!
