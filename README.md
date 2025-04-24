@@ -36,11 +36,14 @@ symfony composer install
 
 **Setup the Database**
 
-Create the database (SQLite by default), the schema, and load the fixtures:
+Create the database (SQLite by default, but if you want to go with
+a different DB server - configure the `DATABASE_URL` env var in the `.env`
+file first), then generate a migration, migrate, and load the fixtures:
 
 ```bash
 symfony console doctrine:database:create
-symfony console doctrine:schema:create
+symfony console make:migration
+symfony console doctrine:migrations:migrate
 symfony console doctrine:fixtures:load
 ```
 
