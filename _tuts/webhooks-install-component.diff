@@ -1,10 +1,10 @@
 diff --git a/.env b/.env
-index f740a7c..1b9cdc0 100644
+index 814849c..c394613 100644
 --- a/.env
 +++ b/.env
 @@ -32,3 +32,10 @@ APP_SECRET=
  # DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=16&charset=utf8"
- DATABASE_URL="mysql://root@127.0.0.1:3306/lemon_squeezy?serverVersion=10.5.26-MariaDB&charset=utf8mb4"
+ DATABASE_URL="sqlite:///%kernel.project_dir%/var/data_%kernel.environment%.db"
  ###< doctrine/doctrine-bundle ###
 +
 +###> symfony/messenger ###
