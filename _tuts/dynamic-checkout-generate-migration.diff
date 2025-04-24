@@ -1,9 +1,9 @@
 diff --git a/migrations/Version20250129162937.php b/migrations/Version20250129162937.php
 new file mode 100644
-index 0000000..e44e869
+index 0000000..c7fde33
 --- /dev/null
 +++ b/migrations/Version20250129162937.php
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,42 @@
 +<?php
 +
 +declare(strict_types=1);
@@ -26,14 +26,23 @@ index 0000000..e44e869
 +    public function up(Schema $schema): void
 +    {
 +        // this up() migration is auto-generated, please modify it to your needs
-+        $this->addSql('ALTER TABLE product ADD ls_variant_id VARCHAR(255) DEFAULT NULL');
++        $this->addSql('CREATE TEMPORARY TABLE __temp__product AS SELECT id, name, description, price, slug, image_filename FROM product');
++        $this->addSql('DROP TABLE product');
++        $this->addSql('CREATE TABLE product (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description CLOB NOT NULL, price INTEGER NOT NULL, slug VARCHAR(255) NOT NULL, image_filename VARCHAR(255) NOT NULL, ls_variant_id VARCHAR(255) DEFAULT NULL)');
++        $this->addSql('INSERT INTO product (id, name, description, price, slug, image_filename) SELECT id, name, description, price, slug, image_filename FROM __temp__product');
++        $this->addSql('DROP TABLE __temp__product');
++        $this->addSql('CREATE UNIQUE INDEX UNIQ_D34A04AD989D9B62 ON product (slug)');
 +        $this->addSql('CREATE UNIQUE INDEX UNIQ_D34A04ADFB4C9E18 ON product (ls_variant_id)');
 +    }
 +
 +    public function down(Schema $schema): void
 +    {
 +        // this down() migration is auto-generated, please modify it to your needs
-+        $this->addSql('DROP INDEX UNIQ_D34A04ADFB4C9E18 ON product');
-+        $this->addSql('ALTER TABLE product DROP ls_variant_id');
++        $this->addSql('CREATE TEMPORARY TABLE __temp__product AS SELECT id, name, description, price, slug, image_filename FROM product');
++        $this->addSql('DROP TABLE product');
++        $this->addSql('CREATE TABLE product (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description CLOB NOT NULL, price INTEGER NOT NULL, slug VARCHAR(255) NOT NULL, image_filename VARCHAR(255) NOT NULL)');
++        $this->addSql('INSERT INTO product (id, name, description, price, slug, image_filename) SELECT id, name, description, price, slug, image_filename FROM __temp__product');
++        $this->addSql('DROP TABLE __temp__product');
++        $this->addSql('CREATE UNIQUE INDEX UNIQ_D34A04AD989D9B62 ON product (slug)');
 +    }
 +}
