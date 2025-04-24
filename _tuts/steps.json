@@ -6,6 +6,11 @@
             "description": null
         },
         {
+            "id": "generate-initial-migration",
+            "name": "Generate initial migration",
+            "description": null
+        },
+        {
             "id": "http-client-install",
             "name": "HTTP Client: Install",
             "description": null
@@ -671,5 +676,5 @@
             "description": null
         }
     ],
-    "sha": "c52feb211021a07a1127b2fbb024075cd61a9f7c"
+    "sha": "729472e34626a1ca0827de5a3d06281cd86846c1"
 }
