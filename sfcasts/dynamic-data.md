@@ -40,20 +40,20 @@ Now, back in our terminal, create a migration with:
 bin/console make:migration
 ```
 
-Let's check it out! Back in `migrations/`... down here... it looks like a new
+Let's check it out! In `migrations/`... down here... it looks like a new
 column was added. *Nice*! Up here, we can add a description:
 
 > Add a column to store the LS variant ID on Product.
 
-Back in our terminal, *run* the migration:
+Back in our terminal, *run* the migration with:
 
 ```terminal
 bin/console doctrine:migrations:migrate
 ```
 
 Now, in `src/DataFixtures/AppFixtures.php`, set our new field to the variant ID
-from the LemonSqueezy dashboard. You can find that by clicking on "Store", "
-Products", the three dots at the end of our product here, and selecting "Copy
+from the LemonSqueezy dashboard. You can find that by clicking on "Store",
+"Products", the three dots at the end of our product here, and selecting "Copy
 variant ID". Paste that and... tada! The first one is *done*! But what kind of
 designer lemonade stand would we be if we only had one kind of lemonade to
 choose from? Let's add more based on our fixtures!
@@ -73,21 +73,21 @@ bin/console doctrine:fixtures:load
 Back in the controller, inside `createLsCheckoutUrl()`, retrieve products in the
 shopping cart with `$products = $cart->getProducts()`. And we'll set
 `$variantId` to `$products[0]->getLsVariantId()` for now. Finally, below
-`$response`, set the variant ID to `$variantId`.
+`$response`, set the variant ID to a `$variantId` variable.
 
 ## Set the Correct Quantity
 
 Okay, let's try to check out! Go back to the homepage and choose a new product
-this time. Set the quantity to "2", add that to the cart, then click the
+this time. Set the quantity to "2", add it to the cart, then click the
 checkout button. *Nice*! We're on the checkout page, and this is the correct
 product but... *not* the correct quantity.
 
 To fix that, back in our code, under `type`, add `attributes`...
 `checkout_data`... `variant_quantities`... another empty array, and inside
-*that*, say `variant_id => $variantId` and `quantity => $quantity`. Above, under
+*that*, write `variant_id => $variantId` and `quantity => $quantity`. Above, under
 the `variantId`, add `$quantity = $cart->getProductQuantity()` with
-`$prodcuts[0]` as the argument. If we go to the cart page and click the "
-checkout" button again... *yes*! We have the correct product *and* the correct
+`$products[0]` as the argument. If we go to the cart page and click the
+"checkout" button again... *yes*! We have the correct product *and* the correct
 quantity!
 
 ## Pre-fill User Data
@@ -95,20 +95,20 @@ quantity!
 If I scroll up... hm... where did this email come from? I'm an authenticated
 LemonSqueezy store owner, so this is pre-filled for me. But what if I try to
 check out as a customer in incognito mode? I'll open a new tab in incognito
-mode, log in again with `lemon@example.com` as the email and `lemonpass` as the
-password, choose a product, quantity, and add it to the cart, click "checkout",
+mode, log in again with `lemon@example.com` / `lemonpass` as the
+password. Now choose a product, quantity, add it to the cart, click "checkout",
 and... aha! The user data is empty! The user can just fill this in themselves,
 so it's not a *big* deal, but I bet we can save them some time and pre-fill this
 from our app, since they already shared their name and email when they
-authenticated. Let's do it!
+signed up. Let's do it!
 
-Over in `OrderController::checkout()`, let’s add a new argument -
+Over in `OrderController::checkout()`, add a new argument -
 `#[CurrentUser] ?User $user` - and below, pass `$user` to
-`createLsCheckoutUrl()`. Down here in our function, add a *third* argument:
+`createLsCheckoutUrl()`. Down here, in that method, add a *third* argument:
 `?User $user`. Below `$quantity`, add `$attributes =` and set it to the array of
 attributes from the request options. We can copy and paste this to make it easy.
 
-We'll set this to `$attributes`, and up here, add `if ($user)`. Inside, say
+We'll set this to `$attributes`, and up here, add `if ($user)`. Inside, write
 `$attributes['checkout_data']['email'] = $user->getEmail()`. And below,
 `$attributes['checkout_data']['name'] = $user->getFirstName()`. Perfect! Let's
 try checking out in incognito mode again. Go back to the homepage, click on the
