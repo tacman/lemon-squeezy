@@ -6,3 +6,5 @@ chapters:
     - dynamic-data
     - multiple-products-purchase
     - complete-checkout
+    - centralize-logic
+    - webhooks
