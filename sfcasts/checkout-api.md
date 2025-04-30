@@ -24,8 +24,8 @@ Back in our code, we already have `OrderController.php`, which contains our
 cart-related methods. Let’s create a new one called `checkout()`... and make it
 a route with `#[Route('/checkout', name: 'app_order_checkout')]`. Awesome!
 
-Now, open `cart.html.twig`, scroll down... and set the "Checkout with
-LemonSqueezy" URL to `app_order_checkout`. Thanks to this, when a customer
+Now, open `cart.html.twig`... and set the "Checkout with
+LemonSqueezy" `href` to `path('app_order_checkout')`. Thanks to this, when a customer
 clicks the "Checkout" button, it will hit this endpoint. Our *next* task is to
 generate LemonSqueezy's checkout URL via the API and redirect our customers so
 they can complete their purchase.
