@@ -12,7 +12,7 @@ Si nos desplazamos por el código... justo aquí... ahí está: ¡la clave `url`
 
 De vuelta a nuestro código, ya tenemos `OrderController.php`, que contiene nuestros métodos relacionados con el carrito. Creemos uno nuevo llamado `checkout()`... y convirtámoslo en una ruta con `#[Route('/checkout', name: 'app_order_checkout')]`. ¡Estupendo!
 
-Ahora, abre `cart.html.twig`, desplázate hacia abajo... y establece la URL "Pago con LemonSqueezy" en `app_order_checkout`. Gracias a esto, cuando un cliente haga clic en el botón "Pago", llegará a esta ruta. Nuestra siguiente tarea es generar la URL de pago de LemonSqueezy a través de la API y redirigir a nuestros clientes para que puedan completar su compra.
+Ahora, abre `cart.html.twig`... y establece el "Pago con LemonSqueezy" `href` en `path('app_order_checkout')`. Gracias a esto, cuando un cliente haga clic en el botón "Pago", llegará a esta ruta. Nuestra siguiente tarea es generar la URL de pago de LemonSqueezy a través de la API y redirigir a nuestros clientes para que puedan completar su compra.
 
 Para ello, inyecta `HttpClientInterface $lsClient` y `ShoppingCart $cart`... y traslademos la lógica de negocio real de la llamada a la API a un método aparte por comodidad. Aquí abajo, escribe`$lsCheckoutUrl = $this->createLsCheckoutUrl($lsClient, $cart);` y, por último,`return $this->redirect($lsCheckoutUrl);`. ¡Se ve bien!
 
@@ -40,7 +40,7 @@ En tu terminal, ejecuta
 bin/console debug:autowiring HttpClientInterface
 ```
 
-para ver los servicios relacionados. Ah, ja... para inyectar el cliente de LemonSqueezy, necesitamos utilizar autocableado con nombre y utilizar el nombre exacto de la variable:`$lemonSqueezyClient`. Lo acortamos a `$lsClient` en el código. ¡Vamos a arreglarlo!
+para ver los servicios relacionados. Ah, ja... para inyectar el cliente de LemonSqueezy, tenemos que utilizar el autocableado con nombre y utilizar el nombre exacto de la variable:`$lemonSqueezyClient`. Lo acortamos a `$lsClient` en el código. ¡Vamos a arreglarlo!
 
 Cámbialo por `$lemonSqueezyClient`, y se solucionará nuestro problema, pero... espera... Me gusta la versión más corta que estábamos utilizando. ¿Hay alguna forma de seguir utilizándola sin romper nuestra integración? ¡Por supuesto! En lugar de limitarnos a cambiarle el nombre, aprovechemos el atributo PHP `#[Target]` para enlazarlo con el servicio correcto. Sobre el argumento, añade `#[Target('lemonSqueezyClient')]`.
 
