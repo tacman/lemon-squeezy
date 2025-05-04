@@ -36,7 +36,7 @@ bin/console doctrine:migrations:migrate
 
 Ahora, en `src/DataFixtures/AppFixtures.php`, establece nuestro nuevo campo en el ID de variante del panel de control de LemonSqueezy. Puedes encontrarlo haciendo clic en "Tienda", "Productos", los tres puntos al final de nuestro producto aquí, y seleccionando "Copiar ID de variante". Pégalo y... ¡tachán! ¡El primero está hecho! Pero, ¿qué clase de puesto de limonada de diseño seríamos si sólo tuviéramos un tipo de limonada para elegir? ¡Añadamos más en función de nuestros accesorios!
 
-Copia esta descripción y, de nuevo en nuestro panel de control, crea un nuevo producto. A éste lo llamaremos "Limonada electrónica de sandía" y pégalo. Establece el precio en "1,99 $", añade una imagen y "Publica el producto". Copia el ID de variante de nuestro nuevo producto y añádelo a nuestro producto en `AppFixtures.php`. ¡Estupendo! Hagamos lo mismo con los cuatro productos siguientes. Lo aceleraré un poco.
+Copia esta descripción y, de nuevo en nuestro panel de control, crea un nuevo producto. A éste lo llamaremos "Limonada electrónica de sandía" y pégalo. Establece el precio en "1,99 $", añade una imagen y "Publica el producto". Copia el ID de variante de nuestro nuevo producto y añádelo a nuestro producto en `AppFixtures.php`. ¡Estupendo! Hagamos lo mismo con los cuatro productos siguientes.
 
 ¡Listo! Ahora vamos a recargar los accesorios con:
 
