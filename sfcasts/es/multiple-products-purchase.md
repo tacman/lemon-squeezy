@@ -4,9 +4,9 @@ La compra de un solo producto es impresionante. Incluso podemos especificar la c
 
 Actualmente, LemonSqueezy limita el número de artículos que podemos comprar a sólo uno, lo que es un fastidio. Y aunque su hoja de ruta sugiere que esto puede cambiar en el futuro, eso no nos ayuda mucho ahora mismo. ¿Qué podemos hacer? Ser creativos, ¡por supuesto!
 
-Si echamos un vistazo a los documentos de la API, LemonSqueezy nos permite fijar nuestro propio precio. Así que probemos algo... para la ciencia. En `OrderController.php`, dentro de`createLsCheckoutUrl()`, añade `if (count($products) === 1)`. Aquí arriba, podemos mantener la variable `$attributes`, pero establecerla como una matriz vacía. Y en nuestra nueva sentencia `if`, escribe `$attributes['checkout_data']['variant_quantities']`, y hazla igual a la matriz restante. Arreglaré mi espaciado, cerraré esto correctamente y... ¡listo!
+Si echamos un vistazo a los documentos de la API, LemonSqueezy nos permite fijar nuestro propio precio. Así que probemos algo... para la ciencia. En `OrderController.php`, dentro de`createLsCheckoutUrl()`, añade `if (count($products) === 1)`. Aquí arriba, corta las tripas de la variable `$attributes`, y ponla en una matriz vacía. En nuestra nueva declaración `if`, escribe `$attributes`... pega... arregla un poco el espaciado... cierra esto correctamente... y... ¡listo!
 
-Bien, ahora tenemos que cambiar `quantity`. Copia `$cart->getProductQuantity()`, elimina esa línea y pégala aquí abajo. Debajo de eso, añade `else`, y dentro, escribe `$attributes['custom_price'] => $cart->getTotal()` y`$attributes['product_options']` en una matriz donde`'name' => 'E-lemonades'`, para que el nombre sea más universal para nuestros usuarios.
+Bien, ahora tenemos que cambiar `quantity`. Copia `$cart->getProductQuantity()`, elimina esa línea y pégala aquí abajo. Debajo de eso, añade `else`, y dentro, escribe `$attributes['custom_price'] = $cart->getTotal()` y`$attributes['product_options']` en una matriz donde`'name' => 'E-lemonades'`, para que el nombre sea más universal para nuestros usuarios.
 
 Esto tiene buena pinta, pero creo que podemos mejorarlo aún más. Entre nuestro`$attributes` aquí, escribe `$description = ''`. Debajo, iteraremos sobre nuestros productos con `foreach ($products as $product)`. Dentro, pon`$description .= $product->getName() . 'for $' .
 number_format($product->getPrice()/100, 2) . ' x ' .
@@ -18,6 +18,6 @@ Incluso podríamos ir un paso más allá y cambiar cosas como la imagen que se m
 
 El problema es que, aunque cambiemos el nombre y la descripción del producto en la página de pago de LemonSqueezy, LemonSqueezy seguirá utilizando el nombre y la imagen originales en correos electrónicos y recibos. Eso puede cambiar algún día, pero de momento, es con lo que estamos trabajando.
 
-Si rellenamos unos datos de facturación falsos, otros campos obligatorios en la página de pago y hacemos clic en el botón "Pagar"... recibimos este mensaje de confirmación de pedido. Si hacemos clic en "Continuar" y comprobamos nuestro correo electrónico... sí, sólo vemos la información del primer producto. Faltan nuestro nombre personalizado y la descripción. Lo mismo ocurre con la página donde vemos nuestro pedido. Así que esto no es perfecto...
+Si rellenamos unos datos de facturación falsos, otros campos obligatorios en la página de pago y hacemos clic en el botón "Pagar"... recibimos este mensaje de confirmación de pedido. Si comprobamos nuestro correo electrónico... sí, sólo vemos la información del primer producto. Faltan nuestro nombre personalizado y la descripción. Lo mismo ocurre con la página donde vemos nuestro pedido. Así que esto no es perfecto...
 
 A continuación: Pulamos aún más nuestro proceso de pago con algunas operaciones posteriores al pago.
