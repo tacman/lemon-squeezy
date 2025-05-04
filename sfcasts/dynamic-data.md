@@ -62,7 +62,7 @@ Copy this description and, back in our dashboard, create a new product. We'll
 call this one "Watermelon E-Lemonade" and *paste*. Set the price to "$1.99", add
 an image, and "Publish product". Copy our *new* product's variant ID and add
 that to our product in `AppFixtures.php`. Awesome! Let's do the same thing for
-the next four products. I'll speed this up a bit.
+the next four products.
 
 Done! Now let’s *reload* the fixtures with:
 
