@@ -14,15 +14,14 @@ course!
 
 If we take a look at the API docs, LemonSqueezy allows us to set our own price.
 So let's try something... *for science*. Over in `OrderController.php` inside
-`createLsCheckoutUrl()`, add `if (count($products) === 1)`. Up here, we can keep
-the `$attributes` variable, but set it to an empty array. And in our new `if`
-statement, write `$attributes['checkout_data']['variant_quantities']`, and set
-that equal to the remaining array. I'll fix my spacing, close this correctly,
-and... done!
+`createLsCheckoutUrl()`, add `if (count($products) === 1)`. Up here, *cut* the
+guts of the `$attributes` variable, then set it to an empty array. In our new `if`
+statement, write `$attributes`... *paste*... fix some spacing... close this correctly
+...and... done!
 
 Okay, now we need to change the `quantity`. Copy `$cart->getProductQuantity()`,
 remove that line, and paste it down here. Below that, add `else`, and inside,
-write `$attributes['custom_price'] => $cart->getTotal()` and
+write `$attributes['custom_price'] = $cart->getTotal()` and
 `$attributes['product_options']` set to an array where
 `'name' => 'E-lemonades'`, so the name is more universal for our users.
 
@@ -57,7 +56,7 @@ the moment, that's what we're working with.
 
 If we fill in some fake billing info, other required fields on the checkout
 page and click the "Pay" button... we get this order confirmation message. If we
-click "Continue" and check our email...*yep*, we just see info for the *first*
+check our email...*yep*, we just see info for the *first*
 product. Our custom name and description are missing. The same goes for the page
 where we view our order. So, this isn't *perfect*...
 
