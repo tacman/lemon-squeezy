@@ -1,0 +1,261 @@
+WEBVTT
+
+00:00:01.076 --> 00:00:02.066 align:middle
+Lo entiendo perfectamente.
+
+00:00:02.296 --> 00:00:06.466 align:middle
+Las palabras "integración de sistemas de
+pago" suenan súper intimidantes, pero créeme,
+
+00:00:06.726 --> 00:00:10.766 align:middle
+al final de este curso, estarás diciendo:
+Con LemonSqueezy, ¡es facilísimo!
+
+00:00:11.296 --> 00:00:12.526 align:middle
+¡Echemos un vistazo a nuestro proyecto!
+
+00:00:12.866 --> 00:00:16.296 align:middle
+Descargamos el código del curso en el capítulo
+anterior, pero si aún no lo has hecho,
+
+00:00:16.626 --> 00:00:18.226 align:middle
+puedes descargarlo ahora desde esta página.
+
+00:00:18.736 --> 00:00:20.896 align:middle
+Descomprímelo, ve al directorio start/
+
+00:00:21.166 --> 00:00:24.386 align:middle
+, y no olvides consultar el archivo README.md para
+ver todas las instrucciones de configuración.
+
+00:00:24.966 --> 00:00:28.216 align:middle
+Yo ya he completado estos pasos, así que
+seguiré adelante e iniciaré el servidor web
+
+00:00:28.216 --> 00:00:32.936 align:middle
+con symfony serve -d y haré clic en esta URL.
+
+00:00:33.806 --> 00:00:36.966 align:middle
+Bienvenido a "Exprime el Día",
+¡nuestro puesto de limonada digital!
+
+00:00:37.676 --> 00:00:42.396 align:middle
+Aquí tenemos algunos productos, podemos añadirlos a
+nuestro carrito, e incluso podemos especificar la cantidad.
+
+00:00:43.656 --> 00:00:48.226 align:middle
+En la página del carrito, donde podemos pagar, es
+donde necesitaremos la integración de LemonSqueezy.
+
+00:00:49.076 --> 00:00:52.146 align:middle
+¡También ofrecemos entrega semanal
+de limonada a los suscriptores!
+
+00:00:52.326 --> 00:00:53.226 align:middle
+¡Qué práctico!
+
+00:00:53.756 --> 00:00:55.846 align:middle
+Hablaremos de las suscripciones
+en el próximo curso.
+
+00:00:56.536 --> 00:01:00.236 align:middle
+También podemos registrarnos, iniciar sesión
+y encontrar algunos datos básicos de la cuenta.
+
+00:01:00.746 --> 00:01:01.306 align:middle
+¡Hagámoslo!
+
+00:01:02.046 --> 00:01:06.186 align:middle
+En AppFixtures.php, encontrarás algunas
+credenciales de usuario por defecto.
+
+00:01:06.696 --> 00:01:11.516 align:middle
+Copia este correo electrónico, vuelve a la página de inicio
+de sesión y pégalo en el campo de correo electrónico.
+
+00:01:12.096 --> 00:01:13.886 align:middle
+La contraseña es "lemonpass".
+
+00:01:14.586 --> 00:01:15.326 align:middle
+Pulsa "Iniciar sesión"...
+
+00:01:15.846 --> 00:01:17.266 align:middle
+y echa un vistazo a la página "Cuenta".
+
+00:01:17.916 --> 00:01:19.326 align:middle
+Cosas bastante básicas por el momento.
+
+00:01:19.956 --> 00:01:21.596 align:middle
+Bien, ahora podemos trabajar en nuestra API.
+
+00:01:22.386 --> 00:01:24.996 align:middle
+Para ayudarte a empezar, echemos
+un vistazo a la documentación.
+
+00:01:25.286 --> 00:01:26.736 align:middle
+Ve a lemonsqueezy.com...
+
+00:01:27.146 --> 00:01:30.646 align:middle
+haz clic en "Recursos", "Documentación
+para desarrolladores" y "Guías".
+
+00:01:31.686 --> 00:01:34.206 align:middle
+A continuación, busca un capítulo
+llamado "Primeros pasos con la API".
+
+00:01:35.456 --> 00:01:38.826 align:middle
+Parece que tenemos que crear una
+clave API (lo haremos más tarde),
+
+00:01:39.736 --> 00:01:44.526 align:middle
+y luego hacer todas nuestras peticiones API utilizando
+el dominio específico y las cabeceras mencionadas aquí.
+
+00:01:45.476 --> 00:01:47.796 align:middle
+LemonSqueezy también requiere
+cierta autenticación,
+
+00:01:48.136 --> 00:01:50.726 align:middle
+por lo que también tendremos que
+pasar un token de autorización.
+
+00:01:51.436 --> 00:01:54.126 align:middle
+Para enviar peticiones API desde
+nuestra aplicación Symfony,
+
+00:01:54.446 --> 00:01:57.426 align:middle
+podemos aprovechar el
+componente Symfony HttpClient,
+
+00:01:57.526 --> 00:02:00.356 align:middle
+que es perfecto para ejecutar peticiones HTTP.
+
+00:02:01.036 --> 00:02:09.776 align:middle
+Para ello, en tu terminal, ejecuta:
+composer require symfony/http-client
+
+00:02:09.776 --> 00:02:13.816 align:middle
+Parece que ya estaba instalado como dependencia
+indirecta, así que Composer acaba de añadirlo
+
+00:02:13.816 --> 00:02:16.426 align:middle
+a composer.json como dependencia directa.
+
+00:02:16.726 --> 00:02:19.136 align:middle
+Estupendo. Ahora tenemos que configurarlo
+
+00:02:19.496 --> 00:02:24.966 align:middle
+En config/packages/, crea un nuevo
+archivo llamado http_client.yaml.
+
+00:02:25.866 --> 00:02:29.686 align:middle
+En nuestro nuevo archivo, crea un cliente
+de ámbito que nos ayude a enviar peticiones
+
+00:02:29.756 --> 00:02:35.266 align:middle
+a la API de LemonSqueezy - framework:,
+http_client:, scoped_clients: -
+
+00:02:35.556 --> 00:02:37.866 align:middle
+y llámalo lemon_squeezy.client.
+
+00:02:38.596 --> 00:02:44.006 align:middle
+A continuación, en base_uri:, en la sección "Realizar
+peticiones" de los documentos, copia esta URL -
+
+00:02:44.006 --> 00:02:47.496 align:middle
+'https://api.lemonsqueezy.com/v1/'
+- y pégala aquí.
+
+00:02:47.876 --> 00:02:54.196 align:middle
+A continuación, en headers:, cambia
+Accept: por 'application/vnd.api+json',
+
+00:02:54.646 --> 00:02:56.096 align:middle
+y haz lo mismo para Content-Type:.
+
+00:02:57.306 --> 00:03:00.996 align:middle
+Para la autorización, tenemos que añadir
+un token de portador, pero antes, vamos a
+
+00:03:01.146 --> 00:03:04.416 align:middle
+configurar la clave de la API, para
+que podamos hacer peticiones a la API.
+
+00:03:05.046 --> 00:03:10.896 align:middle
+Abre el panel de control de LemonSqueezy y ve a
+"Configuración", "API" y "Añadir clave API".
+
+00:03:11.496 --> 00:03:16.696 align:middle
+Llamémosla "API", haz clic en "Crear clave
+API" y copia la clave que hemos generado.
+
+00:03:17.156 --> 00:03:18.656 align:middle
+Esto es alto secreto, así que...
+
+00:03:18.656 --> 00:03:19.836 align:middle
+haz como si nunca hubieras visto esto.
+
+00:03:20.246 --> 00:03:22.296 align:middle
+Más adelante generaré una nueva más secreta.
+
+00:03:22.926 --> 00:03:26.726 align:middle
+Puesto que queremos mantenerla en secreto,
+no queremos guardarla en nuestro archivo .env
+
+00:03:26.726 --> 00:03:29.526 align:middle
+con todo lo demás, porque eso está
+comprometido con el repositorio.
+
+00:03:30.106 --> 00:03:35.466 align:middle
+Para mantenerlo seguro, crea un nuevo
+archivo .env.local y guárdalo allí.
+
+00:03:35.906 --> 00:03:38.926 align:middle
+Este archivo no está comprometido con el
+repositorio, así que estará seguro aquí.
+
+00:03:39.516 --> 00:03:43.856 align:middle
+Escribe LEMON_SQUEEZY_API_KEY=
+y pega nuestra clave API.
+
+00:03:44.666 --> 00:03:48.736 align:middle
+Ahora, podemos copiar esta línea,
+excluyendo la clave, y en .env...
+
+00:03:49.456 --> 00:03:50.086 align:middle
+aquí abajo...
+
+00:03:50.786 --> 00:03:53.206 align:middle
+pegar. Esto realmente sólo nos permite saber
+
+00:03:53.206 --> 00:03:55.926 align:middle
+que necesitamos esta variable de entorno
+para que nuestra aplicación funcione.
+
+00:03:56.426 --> 00:04:00.226 align:middle
+En producción, puedes establecer esto como una
+variable de entorno real con tu alojamiento en la nube.
+
+00:04:00.566 --> 00:04:05.226 align:middle
+O, para hacer esto aún más seguro, echa un vistazo
+al sistema de gestión de secretos de Symfony.
+
+00:04:05.666 --> 00:04:08.836 align:middle
+Puedes encontrar más información al
+respecto en la documentación de symfony.com.
+
+00:04:09.656 --> 00:04:13.686 align:middle
+Por último, de vuelta en
+http_client.yaml, bajo base_uri,
+
+00:04:13.926 --> 00:04:19.236 align:middle
+añade auth_bearer:
+'%env(LEMON_SQUEEZY_API_KEY)%'.
+
+00:04:19.666 --> 00:04:23.846 align:middle
+¡Listo! Ya estamos listos para enviar una
+petición HTTP a la API de LemonSqueezy
+
+00:04:24.616 --> 00:04:25.516 align:middle
+Hagámoslo a continuación.
