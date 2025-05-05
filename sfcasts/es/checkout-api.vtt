@@ -1,0 +1,426 @@
+WEBVTT
+
+00:00:01.086 --> 00:00:05.946 align:middle
+En nuestro sitio web, aquí abajo, haz clic en un
+producto para abrir su página y añadirlo al carrito.
+
+00:00:05.946 --> 00:00:07.896 align:middle
+Si hacemos clic en el
+botón "Realizar pedido"...
+
+00:00:07.996 --> 00:00:08.936 align:middle
+no pasa nada.
+
+00:00:09.386 --> 00:00:10.076 align:middle
+¡Vamos a arreglarlo!
+
+00:00:10.676 --> 00:00:14.316 align:middle
+En el capítulo anterior, vimos
+cómo generar una URL de pago única
+
+00:00:14.316 --> 00:00:18.206 align:middle
+para cada producto LemonSqueezy en el panel
+de control y compartirla con el cliente.
+
+00:00:18.626 --> 00:00:19.346 align:middle
+¿Y adivina qué?
+
+00:00:19.486 --> 00:00:22.186 align:middle
+Podemos hacer lo mismo con
+la ruta de la API de pago
+
+00:00:22.686 --> 00:00:25.886 align:middle
+Ya tenemos un cliente HTTP configurado,
+
+00:00:26.056 --> 00:00:29.276 align:middle
+así que vamos a hacer nuestra primera
+petición a la API de LemonSqueezy.
+
+00:00:30.176 --> 00:00:35.356 align:middle
+Para encontrar la URL, abre los documentos de la API,
+desplázate hacia abajo y haz clic en Crear una compra.
+
+00:00:37.426 --> 00:00:40.726 align:middle
+Esto nos muestra la URL específica
+de la ruta, el método que tenemos
+
+00:00:40.726 --> 00:00:43.226 align:middle
+que utilizar, y también tiene un
+montón de opciones de configuración.
+
+00:00:43.796 --> 00:00:46.716 align:middle
+¡Incluso hay un ejemplo
+con una respuesta JSON!
+
+00:00:46.716 --> 00:00:47.976 align:middle
+Si nos desplazamos por el código...
+
+00:00:48.136 --> 00:00:48.726 align:middle
+justo aquí...
+
+00:00:49.056 --> 00:00:50.736 align:middle
+ahí está: ¡la clave url!
+
+00:00:51.146 --> 00:00:53.756 align:middle
+Se encuentra dentro de data, attributes.
+
+00:00:54.406 --> 00:00:57.356 align:middle
+Cuando nuestros clientes pulsen el
+botón "Pagar", queremos redirigirles
+
+00:00:57.356 --> 00:00:59.286 align:middle
+a esta URL para completar el pago.
+
+00:00:59.756 --> 00:01:00.626 align:middle
+¡No hay problema!
+
+00:01:01.366 --> 00:01:05.066 align:middle
+De vuelta a nuestro código,
+ya tenemos OrderController.php,
+
+00:01:05.066 --> 00:01:07.036 align:middle
+que contiene nuestros métodos
+relacionados con el carrito.
+
+00:01:08.516 --> 00:01:10.426 align:middle
+Vamos a crear uno nuevo llamado checkout()...
+
+00:01:12.416 --> 00:01:17.976 align:middle
+y convirtámoslo en una ruta con
+#[Route('/checkout', name: 'app_order_checkout')].
+
+00:01:18.696 --> 00:01:22.386 align:middle
+¡Estupendo! Ahora, abre cart.html.twig...
+
+00:01:22.926 --> 00:01:28.466 align:middle
+y establece el "Pago con LemonSqueezy"
+href en path('app_order_checkout').
+
+00:01:28.686 --> 00:01:33.006 align:middle
+Gracias a esto, cuando un cliente haga clic
+en el botón "Pago", llegará a esta ruta.
+
+00:01:33.726 --> 00:01:37.846 align:middle
+Nuestra siguiente tarea es generar la URL
+de pago de LemonSqueezy a través de la API
+
+00:01:37.846 --> 00:01:41.206 align:middle
+y redirigir a nuestros clientes
+para que puedan completar su compra.
+
+00:01:41.716 --> 00:01:48.346 align:middle
+Para ello, inyecta HttpClientInterface
+$lsClient y ShoppingCart $cart...
+
+00:01:48.926 --> 00:01:53.746 align:middle
+y traslademos la lógica de negocio real de la llamada
+a la API a un método independiente por comodidad.
+
+00:01:54.376 --> 00:02:03.486 align:middle
+Aquí abajo, escribe $lsCheckoutUrl =
+$this->createLsCheckoutUrl($lsClient, $cart);
+
+00:02:03.486 --> 00:02:08.236 align:middle
+y, por último, return
+$this->redirect($lsCheckoutUrl);.
+
+00:02:08.916 --> 00:02:09.506 align:middle
+¡Se ve bien!
+
+00:02:10.226 --> 00:02:13.996 align:middle
+Para crear un nuevo método, mantén pulsadas las
+teclas "Opción" + "Intro" en un Mac para abrir el menú
+
+00:02:14.086 --> 00:02:17.096 align:middle
+y elige "Añadir método" para
+que PhpStorm lo haga por nosotros.
+
+00:02:17.486 --> 00:02:18.236 align:middle
+¡Qué práctico!
+
+00:02:18.236 --> 00:02:20.396 align:middle
+Esto devolverá un string...
+
+00:02:20.506 --> 00:02:22.676 align:middle
+y dentro, hagamos una comprobación de cordura:
+
+00:02:23.186 --> 00:02:31.236 align:middle
+if ($cart->isEmpty()) throw new
+\LogicException('Nothing to checkout!'); Abajo,
+
+00:02:31.716 --> 00:02:38.636 align:middle
+escribe $response =
+$lsClient->request(Request::METHOD_POST,
+
+00:02:39.216 --> 00:02:40.366 align:middle
+'checkouts', []);...
+
+00:02:40.366 --> 00:02:50.906 align:middle
+y dentro, 'json' => ['data'
+=> ['type' => 'checkouts']].
+
+00:02:51.586 --> 00:02:53.506 align:middle
+Podemos dejar el resto de
+opciones vacías por ahora.
+
+00:02:53.896 --> 00:02:57.596 align:middle
+Los documentos de la API de LemonSqueezy no
+aclaran realmente qué opción es necesaria,
+
+00:02:57.596 --> 00:02:59.666 align:middle
+así que tendremos que
+averiguarlo por nosotros mismos.
+
+00:03:00.306 --> 00:03:04.066 align:middle
+Aquí abajo, como tenemos una respuesta
+JSON, tenemos que convertirla en una matriz
+
+00:03:04.156 --> 00:03:07.626 align:middle
+con $lsCheckout = $response->toArray();.
+
+00:03:08.186 --> 00:03:08.756 align:middle
+Luego, return...
+
+00:03:08.756 --> 00:03:12.896 align:middle
+y a partir de la respuesta de ejemplo que
+vimos en los documentos, podemos leer la URL
+
+00:03:12.896 --> 00:03:18.166 align:middle
+con $lsCheckout['data']['attributes']['url'];.
+¡Estupendo!
+
+00:03:19.066 --> 00:03:20.716 align:middle
+¡Muy bien! ¡ Hora de probar
+
+00:03:20.716 --> 00:03:21.596 align:middle
+! Volvemos
+
+00:03:22.086 --> 00:03:26.536 align:middle
+a nuestro sitio, lo actualizamos, hacemos
+clic en el botón "Comprobación", y... ¡un
+
+00:03:26.906 --> 00:03:31.076 align:middle
+error! URL no válida: falta
+el esquema en "checkouts".
+
+00:03:31.336 --> 00:03:33.996 align:middle
+¿Has olvidado añadir "http(s)://"? Hm...
+
+00:03:33.996 --> 00:03:37.926 align:middle
+parece que ha ignorado nuestra
+URL base del cliente de alcance.
+
+00:03:37.926 --> 00:03:41.266 align:middle
+Sospecho que en su lugar ha inyectado
+el cliente vacío por defecto. ¡ No
+
+00:03:41.756 --> 00:03:42.376 align:middle
+te preocupes! ¡
+
+00:03:42.546 --> 00:03:43.546 align:middle
+Estamos en ello! En
+
+00:03:43.996 --> 00:03:50.246 align:middle
+tu terminal, ejecuta bin/console
+debug:autowiring HttpClientInterface para
+
+00:03:50.346 --> 00:03:51.796 align:middle
+ver los servicios relacionados. Ah
+
+00:03:52.346 --> 00:03:56.996 align:middle
+, ja... para inyectar el cliente de LemonSqueezy,
+tenemos que utilizar autocableado con nombre y
+
+00:03:57.106 --> 00:04:00.576 align:middle
+utilizar el nombre exacto de la
+variable: $lemonSqueezyClient.
+
+00:04:00.986 --> 00:04:03.146 align:middle
+Lo acortamos a $lsClient en el código. ¡
+
+00:04:03.616 --> 00:04:04.316 align:middle
+Vamos a arreglarlo! Cámbialo
+
+00:04:04.816 --> 00:04:09.086 align:middle
+por $lemonSqueezyClient, y se solucionará
+nuestro problema, pero... espera...
+
+00:04:09.396 --> 00:04:12.296 align:middle
+Me gusta la versión más corta
+que estábamos utilizando.
+
+00:04:12.726 --> 00:04:15.776 align:middle
+¿Hay alguna forma de seguir utilizándola
+sin romper nuestra integración? ¡
+
+00:04:16.136 --> 00:04:21.476 align:middle
+Por supuesto! En lugar de limitarnos a cambiarle el
+nombre, aprovechemos el atributo PHP #[Target] para
+
+00:04:21.476 --> 00:04:22.956 align:middle
+enlazarlo con el servicio correcto. Sobre
+
+00:04:23.416 --> 00:04:27.326 align:middle
+el argumento, añade
+#[Target('lemonSqueezyClient')]. Si
+
+00:04:27.326 --> 00:04:30.296 align:middle
+nos dirigimos e intentamos
+todo esto de nuevo... ugh...
+
+00:04:31.136 --> 00:04:32.306 align:middle
+genial... otro
+
+00:04:32.366 --> 00:04:33.306 align:middle
+error.
+
+00:04:33.696 --> 00:04:41.116 align:middle
+Quiero decir... un error diferente: HTTP/2 422 devuelto
+para "https://api.lemonsqueezy.com/v1/checkouts". Hm...
+
+00:04:41.116 --> 00:04:46.116 align:middle
+un código de estado 422 nos dice que el servidor
+no ha podido procesar la petición porque
+
+00:04:46.116 --> 00:04:49.866 align:middle
+contiene datos no válidos, pero la
+excepción no nos da mucha información.
+
+00:04:49.866 --> 00:04:52.986 align:middle
+Probemos a volcar el contenido de la respuesta.
+
+00:04:52.986 --> 00:04:57.096 align:middle
+Aquí detrás, antes de la devolución,
+añade dd($response->getContent());. Si
+
+00:04:57.776 --> 00:04:58.866 align:middle
+lo intentamos de nuevo... hm,
+
+00:04:59.656 --> 00:05:01.446 align:middle
+obtenemos el mismo error. Ah...
+
+00:05:01.856 --> 00:05:05.066 align:middle
+parece que necesitamos pasar
+false a getContent() para
+
+00:05:05.066 --> 00:05:07.326 align:middle
+depurar la respuesta sin
+lanzar una excepción. Añade
+
+00:05:08.026 --> 00:05:08.966 align:middle
+false aquí... actualiza
+
+00:05:09.376 --> 00:05:11.176 align:middle
+una vez más, y... ¡bien!
+
+00:05:12.096 --> 00:05:18.276 align:middle
+En los detalles de aquí, podemos ver que
+variant.id es necesario, así como store.id.
+
+00:05:18.766 --> 00:05:25.456 align:middle
+Incluso nos indica las rutas específicas que
+necesitamos: data/relationships/store/data/id y
+
+00:05:25.456 --> 00:05:28.486 align:middle
+data/relationships/variant/data/id.
+
+00:05:28.486 --> 00:05:32.306 align:middle
+Podemos seguir esa ruta en los documentos
+de la API: data. .. relationships...
+
+00:05:32.386 --> 00:05:33.366 align:middle
+stores...
+
+00:05:33.426 --> 00:05:34.806 align:middle
+data... id...
+
+00:05:34.976 --> 00:05:36.346 align:middle
+y así sucesivamente.
+
+00:05:36.826 --> 00:05:41.906 align:middle
+Sigue adelante y añade esto a nuestro
+código - relationships, stores, data,
+
+00:05:43.546 --> 00:05:50.166 align:middle
+'type' => 'stores', y 'id' =>. Para
+
+00:05:50.826 --> 00:05:52.806 align:middle
+encontrar el ID real de la
+tienda que necesitamos, ve
+
+00:05:53.096 --> 00:05:56.666 align:middle
+al panel de control de LemonSqueezy y haz
+clic en "Configuración", Tiendas. Copia
+
+00:05:57.796 --> 00:05:59.906 align:middle
+aquí el id y pégalo en nuestro código. El
+
+00:06:00.896 --> 00:06:04.986 align:middle
+variant debe seguir una ruta similar a store,
+así que escribiremos variant. .. data...
+
+00:06:06.946 --> 00:06:12.636 align:middle
+'type' => 'variants'... y
+
+00:06:12.636 --> 00:06:16.816 align:middle
+para id, vamos a codificar uno del producto
+que creamos en el primer capítulo. Abre
+
+00:06:17.276 --> 00:06:20.946 align:middle
+el panel de control, ve a "Tienda",
+"Productos", y a la derecha, haz clic en
+
+00:06:21.236 --> 00:06:22.896 align:middle
+los tres puntos de aquí para abrir un menú.
+
+00:06:23.306 --> 00:06:27.106 align:middle
+Aquí abajo, haz clic en "Copiar ID de
+variante" y pégalo en nuestro código. ¡Listo!
+
+00:06:28.166 --> 00:06:31.926 align:middle
+De vuelta en la página de
+pago, actualiza y... otro
+
+00:06:33.056 --> 00:06:34.036 align:middle
+error.
+
+00:06:34.586 --> 00:06:37.376 align:middle
+Este nos dice que el ID de
+variante debe ser una cadena. Si
+
+00:06:37.966 --> 00:06:39.276 align:middle
+echamos un vistazo a nuestro código... ¡sí!
+
+00:06:39.836 --> 00:06:41.366 align:middle
+¡Tiene fácil solución!
+
+00:06:41.796 --> 00:06:44.316 align:middle
+Actualmente es un número entero,
+pero si hacemos esto... ¡tachán!
+
+00:06:44.716 --> 00:06:46.276 align:middle
+¡Ahora es una cadena! Haz lo
+
+00:06:46.726 --> 00:06:49.966 align:middle
+mismo para variant, luego vuelve
+atrás y actualiza de nuevo. ¡ Ah
+
+00:06:51.256 --> 00:06:56.316 align:middle
+! Tenemos una respuesta JSON y, si la
+ampliamos y hacemos una búsqueda rápida...
+
+00:06:57.456 --> 00:06:59.346 align:middle
+¡parece que tiene la URL
+que necesitamos! ¡Qué bien!
+
+00:06:59.656 --> 00:07:06.366 align:middle
+Vuelve atrás y comenta el dd(),
+actualiza la página de nuevo y... ¡sí!
+
+00:07:07.386 --> 00:07:12.476 align:middle
+Estamos en la página de pago de LemonSqueezy, ¡listos para
+comprar una deliciosa limonada electrónica! A continuación:
+
+00:07:13.436 --> 00:07:16.276 align:middle
+Hagamos que nuestros datos
+codificados sean dinámicos.
