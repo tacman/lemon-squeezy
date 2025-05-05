@@ -4,7 +4,7 @@ La compra de un solo producto es impresionante. Incluso podemos especificar la c
 
 Actualmente, LemonSqueezy limita el número de artículos que podemos comprar a sólo uno, lo que es un fastidio. Y aunque su hoja de ruta sugiere que esto puede cambiar en el futuro, eso no nos ayuda mucho ahora mismo. ¿Qué podemos hacer? Ser creativos, ¡por supuesto!
 
-Si echamos un vistazo a los documentos de la API, LemonSqueezy nos permite fijar nuestro propio precio. Así que probemos algo... para la ciencia. En `OrderController.php`, dentro de`createLsCheckoutUrl()`, añade `if (count($products) === 1)`. Aquí arriba, corta las tripas de la variable `$attributes`, y ponla en una matriz vacía. En nuestra nueva declaración `if`, escribe `$attributes`... pega... arregla un poco el espaciado... cierra esto correctamente... y... ¡listo!
+Si echamos un vistazo a los documentos de la API, LemonSqueezy nos permite establecer nuestro propio precio. Así que probemos algo... para la ciencia. En `OrderController.php`, dentro de`createLsCheckoutUrl()`, añade `if (count($products) === 1)`. Aquí arriba, corta las tripas de la variable `$attributes`, y ponla en una matriz vacía. En nuestra nueva declaración `if`, escribe `$attributes`... pega... y... ¡listo!
 
 Bien, ahora tenemos que cambiar `quantity`. Copia `$cart->getProductQuantity()`, elimina esa línea y pégala aquí abajo. Debajo de eso, añade `else`, y dentro, escribe `$attributes['custom_price'] = $cart->getTotal()` y`$attributes['product_options']` en una matriz donde`'name' => 'E-lemonades'`, para que el nombre sea más universal para nuestros usuarios.
 
