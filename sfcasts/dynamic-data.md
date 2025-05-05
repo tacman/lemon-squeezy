@@ -13,10 +13,14 @@ environments, so it makes sense to set it as an environment variable. Open the
 `LEMON_SQUEEZY_STORE_ID=` and set that to the store ID value. You can find that
 in `OrderController.php`.
 
+[[[ code('d0113916b8') ]]]
+
 Now, in `config/services.yaml`, under `parameters`, add a new one -
 `env(LEMON_SQUEEZY_STORE_ID)` - and set that to
 `%env(LEMON_SQUEEZY_STORE_ID)%’`. Back in our controller, replace the ID value
 with `$this->getParameter('env(LEMON_SQUEEZY_STORE_ID)')`.
+
+[[[ code('be4f5e2d10') ]]]
 
 ## Store Variant IDs in the Database
 
@@ -33,6 +37,8 @@ a `string`, with a default field length, and let's make it "nullable". Press
 changes. If we scroll down... ah, there it is! We should probably make this
 `unique` as well. Looking good! Down here, we can see that it also created a
 getter and setter. *Convenient*!
+
+[[[ code('069abdad77') ]]]
 
 Now, back in our terminal, create a migration with:
 
@@ -64,6 +70,8 @@ an image, and "Publish product". Copy our *new* product's variant ID and add
 that to our product in `AppFixtures.php`. Awesome! Let's do the same thing for
 the next four products.
 
+[[[ code('b8f540c415') ]]]
+
 Done! Now let’s *reload* the fixtures with:
 
 ```terminal
@@ -74,6 +82,8 @@ Back in the controller, inside `createLsCheckoutUrl()`, retrieve products in the
 shopping cart with `$products = $cart->getProducts()`. And we'll set
 `$variantId` to `$products[0]->getLsVariantId()` for now. Finally, below
 `$response`, set the variant ID to a `$variantId` variable.
+
+[[[ code('4530abefe2') ]]]
 
 ## Set the Correct Quantity
 
@@ -90,6 +100,8 @@ the `variantId`, add `$quantity = $cart->getProductQuantity()` with
 "checkout" button again... *yes*! We have the correct product *and* the correct
 quantity!
 
+[[[ code('db0305efd5') ]]]
+
 ## Pre-fill User Data
 
 If I scroll up... hm... where did this email come from? I'm an authenticated
@@ -105,13 +117,22 @@ signed up. Let's do it!
 Over in `OrderController::checkout()`, add a new argument -
 `#[CurrentUser] ?User $user` - and below, pass `$user` to
 `createLsCheckoutUrl()`. Down here, in that method, add a *third* argument:
-`?User $user`. Below `$quantity`, add `$attributes =` and set it to the array of
+`?User $user`. 
+
+[[[ code('4563797505') ]]]
+
+Below `$quantity`, add `$attributes =` and set it to the array of
 attributes from the request options. We can copy and paste this to make it easy.
+
+[[[ code('9f8b65f515') ]]]
 
 We'll set this to `$attributes`, and up here, add `if ($user)`. Inside, write
 `$attributes['checkout_data']['email'] = $user->getEmail()`. And below,
-`$attributes['checkout_data']['name'] = $user->getFirstName()`. Perfect! Let's
-try checking out in incognito mode again. Go back to the homepage, click on the
+`$attributes['checkout_data']['name'] = $user->getFirstName()`.
+
+[[[ code('1a02a4435b') ]]]
+
+Perfect! Let's try checking out in incognito mode again. Go back to the homepage, click on the
 cart where we already have two items waiting, click the checkout button, and...
 the user data is pre-filled! *Awesome*!
 
