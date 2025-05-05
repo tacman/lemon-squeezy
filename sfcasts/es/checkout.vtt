@@ -1,0 +1,391 @@
+WEBVTT
+
+00:00:01.106 --> 00:00:05.186 align:middle
+En el capítulo anterior, creamos un nuevo
+producto y lo mostramos en nuestro escaparate.
+
+00:00:05.646 --> 00:00:08.466 align:middle
+Ahora nuestros clientes pueden ver
+el producto y comprarlo directamente,
+
+00:00:08.696 --> 00:00:10.046 align:middle
+aunque no tengamos un sitio web.
+
+00:00:10.326 --> 00:00:13.736 align:middle
+¡Qué bien! Podemos abrir nuestro
+escaparate en la barra lateral izquierda.
+
+00:00:14.156 --> 00:00:17.466 align:middle
+Debajo del nombre de nuestra tienda -
+"Exprime el Día"-, haz clic en "Mi tienda".
+
+00:00:18.826 --> 00:00:19.196 align:middle
+Ya está:
+
+00:00:19.196 --> 00:00:24.326 align:middle
+https://squeeze-the-day.lemonsqueezy.com/ El
+nombre de nuestra tienda aparece como subdominio,
+
+00:00:24.556 --> 00:00:25.896 align:middle
+pero aún no se ha activado.
+
+00:00:26.386 --> 00:00:29.506 align:middle
+LemonSqueezy quiere que activemos
+nuestra tienda antes de poder utilizarla.
+
+00:00:30.046 --> 00:00:33.246 align:middle
+Para ello, tenemos que completar algunos
+pasos más en la página de Configuración.
+
+00:00:33.746 --> 00:00:38.186 align:middle
+Como el objetivo principal de este curso es la
+integración de la API, no la activaremos todavía.
+
+00:00:39.006 --> 00:00:39.826 align:middle
+Si has dicho "¡Eh!
+
+00:00:40.096 --> 00:00:44.136 align:middle
+¿No pudimos ver el escaparate en modo de prueba
+en el último capítulo?", ¡estás en lo cierto!
+
+00:00:44.466 --> 00:00:48.246 align:middle
+Parece que LemonSqueezy ha hecho algunos cambios
+recientemente, por lo que deberíamos tener acceso
+
+00:00:48.246 --> 00:00:51.686 align:middle
+al escaparate de nuevo más adelante, incluso
+sin completar los pasos de configuración.
+
+00:00:52.156 --> 00:00:56.246 align:middle
+Por ahora, podemos ver la página de pago de
+LemonSqueezy yendo a la lista de productos,
+
+00:00:56.536 --> 00:00:59.666 align:middle
+haciendo clic en estos puntos de la línea de
+productos y, a continuación, en "Vista previa".
+
+00:01:00.896 --> 00:01:04.486 align:middle
+¡Listo! Ya estamos en la página de
+pago, ¡listos para comprar este producto!
+
+00:01:05.296 --> 00:01:08.276 align:middle
+Cada producto tiene también un botón
+"Compartir" con el que puedes generar un enlace
+
+00:01:08.276 --> 00:01:12.186 align:middle
+a la página de pago de ese producto
+concreto y compartirlo con tus clientes.
+
+00:01:12.756 --> 00:01:16.986 align:middle
+Eso les llevará directamente a la página de pago
+de LemonSqueezy, donde podrán comprar ese producto.
+
+00:01:17.696 --> 00:01:20.726 align:middle
+También podemos configurar un montón de
+parámetros aquí, incluyendo la cantidad.
+
+00:01:21.356 --> 00:01:25.686 align:middle
+Cuando generes el enlace único, puedes copiarlo
+y compartirlo o abrirlo en una pestaña nueva.
+
+00:01:28.306 --> 00:01:31.646 align:middle
+Si te desplazas hacia abajo, puedes ver que
+la "Cantidad" ahora está configurada en "5".
+
+00:01:32.396 --> 00:01:34.786 align:middle
+El escaparate no es tan flexible
+como tu propio sitio web,
+
+00:01:35.026 --> 00:01:38.406 align:middle
+pero puedes configurar algunas opciones de
+estilo como el color de los botones, los
+
+00:01:38.506 --> 00:01:41.066 align:middle
+fondos, etc. Echémosle un vistazo.
+
+00:01:41.546 --> 00:01:46.026 align:middle
+Vuelve al panel de control, cierra el modal
+"Compartir producto" y, en la sección "Diseño"
+
+00:01:46.026 --> 00:01:48.046 align:middle
+de la izquierda, encontrarás varias pestañas.
+
+00:01:48.536 --> 00:01:51.736 align:middle
+En la pestaña "General", puedes
+subir un logotipo o favicon.
+
+00:01:52.026 --> 00:01:53.086 align:middle
+Pequeño, ¡pero poderoso!
+
+00:01:53.796 --> 00:01:57.236 align:middle
+También puedes utilizar un tema
+preconfigurado, o elegir tus propios colores.
+
+00:01:57.366 --> 00:01:59.166 align:middle
+¡Deja volar tu imaginación!
+
+00:02:00.006 --> 00:02:02.046 align:middle
+Hay aún más flexibilidad
+en la pestaña "Tienda"
+
+00:02:02.436 --> 00:02:04.736 align:middle
+Este es el aspecto que tendrá nuestro
+escaparate para nuestros clientes,
+
+00:02:05.086 --> 00:02:06.796 align:middle
+e incluso puedes ver aquí
+nuestro nuevo producto.
+
+00:02:07.336 --> 00:02:09.396 align:middle
+Este es un gran lugar para
+crear tu propio estilo
+
+00:02:09.396 --> 00:02:11.666 align:middle
+y hacer que tu tienda
+destaque sobre la competencia.
+
+00:02:12.296 --> 00:02:16.346 align:middle
+La pestaña "Pago" te permite previsualizar el
+aspecto que tendrá tu escaparate con unos estilos
+
+00:02:16.346 --> 00:02:20.096 align:middle
+frente a otros, y también te permite
+anular algunos estilos si es necesario.
+
+00:02:20.836 --> 00:02:25.266 align:middle
+Bien, de vuelta a nuestra página de pago,
+vamos a intentar comprar nuestra e-lemonada.
+
+00:02:25.866 --> 00:02:29.436 align:middle
+Aquí tenemos dos opciones: "Pagar
+con tarjeta" o "Pagar con PayPal".
+
+00:02:29.996 --> 00:02:31.396 align:middle
+Vamos a elegir "Pagar con tarjeta".
+
+00:02:32.006 --> 00:02:36.196 align:middle
+El campo de correo electrónico ya está rellenado porque
+nos hemos autenticado en el panel de control de LemonSqueezy.
+
+00:02:36.746 --> 00:02:41.666 align:middle
+Para el número de tarjeta, podemos utilizar las tarjetas de
+prueba de LemonSqueezy, que puedes encontrar en los documentos.
+
+00:02:42.196 --> 00:02:46.446 align:middle
+Si abrimos su sitio en una pestaña nueva,
+podemos ir a "Recursos", "Documentos de ayuda"
+
+00:02:46.596 --> 00:02:48.776 align:middle
+y, en la barra lateral izquierda,
+hacer clic en "Modo de prueba".
+
+00:02:49.516 --> 00:02:51.926 align:middle
+Los números de tarjeta de prueba que
+necesitamos están aquí a la derecha.
+
+00:02:52.766 --> 00:02:55.596 align:middle
+Hay varios para elegir, pero
+yo sólo utilizaré el primero.
+
+00:02:56.006 --> 00:02:57.306 align:middle
+Copia este número y...
+
+00:02:57.596 --> 00:03:01.066 align:middle
+pega... y de momento podemos utilizar
+cualquier fecha de caducidad futura.
+
+00:03:01.296 --> 00:03:05.656 align:middle
+Yo diré "25/12", y utilizaré tres números
+cualesquiera para el código de seguridad.
+
+00:03:06.426 --> 00:03:08.826 align:middle
+Esto también requiere que introduzcamos
+una dirección de facturación.
+
+00:03:09.336 --> 00:03:12.336 align:middle
+Si intentamos hacer clic en "Comprar" sin
+una, obtendremos un error de validación.
+
+00:03:13.026 --> 00:03:17.956 align:middle
+Diré "Vía 1", y luego elegiré de la lista de
+sugerencias para autocompletar todos los campos.
+
+00:03:18.606 --> 00:03:21.796 align:middle
+Añadir un "Número de identificación fiscal"
+es opcional, así que podemos dejarlo en blanco.
+
+00:03:22.456 --> 00:03:23.326 align:middle
+Si hacemos clic en "Pagar"...
+
+00:03:24.016 --> 00:03:25.706 align:middle
+¡boom! "¡Gracias por tu pedido!"
+
+00:03:26.126 --> 00:03:27.266 align:middle
+Si hacemos clic en "Ver pedido"...
+
+00:03:28.226 --> 00:03:31.766 align:middle
+aquí es donde podemos generar una factura
+en PDF de nuestro pedido si la necesitamos.
+
+00:03:32.576 --> 00:03:37.326 align:middle
+Para ello, LemonSqueezy nos pide que introduzcamos de
+nuevo una dirección, ya sea por motivos de seguridad
+
+00:03:37.516 --> 00:03:39.136 align:middle
+o porque el relleno previo no funciona.
+
+00:03:39.726 --> 00:03:44.026 align:middle
+Incluso podemos añadir algunas notas personalizadas y
+elegir el idioma en el que se generará nuestra factura.
+
+00:03:44.826 --> 00:03:49.786 align:middle
+Dirección: "Broadway 1", ciudad "Nueva York",
+estado: "Nueva York", y dejamos el resto como está.
+
+00:03:50.156 --> 00:03:53.726 align:middle
+Si hacemos clic en "Generar factura", veremos
+que se ha descargado un archivo de factura.
+
+00:03:54.226 --> 00:03:54.986 align:middle
+Si lo abrimos...
+
+00:03:55.916 --> 00:03:57.266 align:middle
+¡bien! ¡Ahí está nuestra información!
+
+00:03:58.026 --> 00:03:59.706 align:middle
+Ahora que has comprado tu primer producto,
+
+00:04:00.006 --> 00:04:02.926 align:middle
+comprueba la bandeja de entrada del correo electrónico
+que utilizaste durante el proceso de compra
+
+00:04:02.926 --> 00:04:04.396 align:middle
+para ver si has recibido
+un correo electrónico.
+
+00:04:04.916 --> 00:04:05.816 align:middle
+¡Sí! ¡Lo recibimos!
+
+00:04:06.136 --> 00:04:08.326 align:middle
+Abre "Tu recibo de E-Limonada Clásica".
+
+00:04:08.936 --> 00:04:13.106 align:middle
+Podemos ver el pedido que hicimos y también
+podemos generar la misma factura que vimos antes.
+
+00:04:13.736 --> 00:04:16.596 align:middle
+Como propietario de una tienda, es posible
+que recibas un correo electrónico adicional
+
+00:04:16.786 --> 00:04:19.446 align:middle
+porque nuestra tienda está conectada a la
+misma dirección de correo electrónico.
+
+00:04:20.186 --> 00:04:24.956 align:middle
+Yo desactivé esos correos para evitar el spam en mi
+bandeja de entrada, y tú puedes hacer lo mismo yendo a:
+
+00:04:24.956 --> 00:04:29.936 align:middle
+Nombre de nuestra tienda: "Exprime el Día", "Mi
+Cuenta" y desactivando las notificaciones de ventas.
+
+00:04:30.546 --> 00:04:32.026 align:middle
+No olvides guardar los cambios
+
+00:04:32.686 --> 00:04:37.236 align:middle
+También puedes configurarlo en el panel de control de
+LemonSqueezy yendo a "Diseño", "Correo electrónico".
+
+00:04:38.086 --> 00:04:40.626 align:middle
+También podemos controlar el correo
+electrónico que se crea al realizar la compra.
+
+00:04:40.896 --> 00:04:41.766 align:middle
+¡Más sobre esto más adelante!
+
+00:04:42.486 --> 00:04:46.706 align:middle
+Así que... todo esto es desde la perspectiva del
+cliente, pero ¿qué pasa con el propietario de la tienda?
+
+00:04:47.206 --> 00:04:48.666 align:middle
+Si volvemos al panel de control...
+
+00:04:49.216 --> 00:04:49.786 align:middle
+¡allá vamos!
+
+00:04:50.006 --> 00:04:52.466 align:middle
+¡Nuestro gráfico de ingresos ya
+refleja la compra que hemos realizado!
+
+00:04:53.086 --> 00:04:53.926 align:middle
+Abre "Tienda"...
+
+00:04:53.956 --> 00:04:55.766 align:middle
+"Pedidos" para ver la lista de pedidos.
+
+00:04:56.256 --> 00:04:59.536 align:middle
+El último debería ser el
+pedido que hicimos de 4,95 $.
+
+00:04:59.536 --> 00:05:03.766 align:middle
+¡Bien! Aquí también hay una página de
+"Clientes", donde podemos ver información
+
+00:05:03.766 --> 00:05:06.036 align:middle
+sobre cada cliente y los
+productos que ha pedido.
+
+00:05:06.606 --> 00:05:09.526 align:middle
+Puedes ignorar las etiquetas "Archivado"
+de los pedidos en mi pantalla.
+
+00:05:09.836 --> 00:05:12.936 align:middle
+Eso sólo significa que el cliente ya no
+recibirá correos electrónicos de marketing.
+
+00:05:13.286 --> 00:05:14.896 align:middle
+Eso... fue un accidente, en realidad.
+
+00:05:15.286 --> 00:05:18.046 align:middle
+Intenté archivarlo una vez y
+ahora no puedo volver a cambiarlo.
+
+00:05:18.566 --> 00:05:20.776 align:middle
+Esperemos que sea una función que
+LemonSqueezy añada más adelante.
+
+00:05:21.556 --> 00:05:26.056 align:middle
+De todos modos, como puedes ver, LemonSqueezy gestiona todos
+los correos electrónicos transaccionales por nosotros,
+
+00:05:26.126 --> 00:05:27.306 align:middle
+así que no tenemos que preocuparnos por ello.
+
+00:05:27.716 --> 00:05:28.766 align:middle
+Agrio... Quiero decir...
+
+00:05:28.766 --> 00:05:33.886 align:middle
+¡dulce! Puedes empezar a vender tus productos sin un
+sitio web; ¡Sólo tienes que crear más productos,
+
+00:05:34.076 --> 00:05:37.776 align:middle
+publicarlos en el escaparate y compartir
+el enlace a tu escaparate con tus amigos!
+
+00:05:38.556 --> 00:05:42.696 align:middle
+Pero como somos desarrolladores, y como ya tenemos
+un puesto de limonada electrónica súper popular
+
+00:05:42.916 --> 00:05:47.416 align:middle
+(nuestras estadísticas de ventas lo confirman claramente),
+y ya tenemos un sitio web impresionante para él
+
+00:05:47.416 --> 00:05:51.316 align:middle
+que veremos pronto, ahora queremos
+integrar LemonSqueezy directamente
+
+00:05:51.316 --> 00:05:53.076 align:middle
+en nuestro sitio utilizando su rica API.
+
+00:05:53.076 --> 00:05:54.796 align:middle
+¡Eso a continuación!
