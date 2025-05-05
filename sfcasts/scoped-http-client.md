@@ -27,8 +27,11 @@ We'll talk about subscriptions in the next course. We can also register, log in,
 and find some basic account info. Let's do that!
 
 In `AppFixtures.php`, you'll find some default user credentials. Copy this
-email, go back to the login page, and paste that into the email field. The
-*password* is "lemonpass". Hit "Sign In"... and check out the "Account" page.
+email, go back to the login page, and paste that into the email field. 
+
+[[[ code('46c671a27e') ]]]
+
+The *password* is "lemonpass". Hit "Sign In"... and check out the "Account" page.
 Pretty basic stuff at the moment.
 
 ## Install HTTP Client
@@ -63,6 +66,8 @@ it `lemon_squeezy.client`. *Then*, for `base_uri:`, over in the docs under
 paste it here. Next, under `headers:`, set `Accept:` to
 `'application/vnd.api+json'`, and do the same for `Content-Type:`.
 
+[[[ code('9d524fd38d') ]]]
+
 For authorization, we need to add a *Bearer token*, but first, let's set up the
 API key, so we can make API requests. Open the LemonSqueezy dashboard and go
 to "Settings", "API", and "Add API key". Let's call it "API", click "Create API
@@ -73,9 +78,18 @@ Since we want to keep this a secret, we *don't* want to save this in our `.env`
 file with everything else, because that's committed to the repository. To keep
 this safe and secure, create a new `.env.local` file and save it there instead.
 This file isn't committed to the repository, so it will be safe here.
-Write `LEMON_SQUEEZY_API_KEY=` and paste our API key. *Now*, we can copy *this*
-line, *excluding* the key, and in `.env`... down here... paste. This really
+Write `LEMON_SQUEEZY_API_KEY=` and paste our API key. 
+
+```dotenv
+# .env.local
+LEMON_SQUEEZY_API_KEY={your_api_key}
+```
+
+*Now*, we can copy *this* line, *excluding* the key, and in `.env`... down here... paste. This really
 just lets us know that we need this environment variable for our app to work.
+
+[[[ code('9b7d3f7c78') ]]]
+
 On production, you can set this as a real environment variable with your
 cloud hosting. Or, to make this even *more* secure, take a look at
 Symfony's secrets management system. You can find more information about that in
@@ -83,6 +97,8 @@ the docs on `symfony.com`.
 
 Finally, back in `http_client.yaml`, under `base_uri`, add
 `auth_bearer: '%env(LEMON_SQUEEZY_API_KEY)%'`. *Done*!
+
+[[[ code('7beaa263c3') ]]]
 
 Now we’re ready to send an HTTP request to LemonSqueezy's API! Let's do that
 *next*.
