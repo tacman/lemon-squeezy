@@ -1,0 +1,439 @@
+WEBVTT
+
+00:00:00.096 --> 00:00:05.716 align:middle
+¡Hola y bienvenidos a otro
+tutorial de comercio electrónico!
+
+00:00:06.066 --> 00:00:09.816 align:middle
+No pretendo vender esto demasiado, ¡pero
+creo que este tutorial es fantástico!
+
+00:00:10.416 --> 00:00:12.736 align:middle
+Hay un montón de procesadores
+de pagos disponibles,
+
+00:00:12.956 --> 00:00:16.066 align:middle
+lo que significa que vender productos
+online es fácil y emocionante...
+
+00:00:16.456 --> 00:00:20.626 align:middle
+hasta que te das cuenta de que gestionar los
+impuestos, y el cumplimiento de la normativa es...
+
+00:00:20.716 --> 00:00:22.096 align:middle
+bueno... no es emocionante.
+
+00:00:22.526 --> 00:00:25.226 align:middle
+¿Podemos simplificar la forma de
+gestionar toda esa información?
+
+00:00:25.606 --> 00:00:31.676 align:middle
+¡Claro que sí! Para ello, necesitamos un procesador
+de pagos que sea un Comerciante Registrado, o "MdR".
+
+00:00:32.236 --> 00:00:33.136 align:middle
+"¿Qué es eso?
+
+00:00:33.606 --> 00:00:36.796 align:middle
+Es como cualquier procesador de
+pagos, pero con superpoderes. "
+
+00:00:37.206 --> 00:00:40.216 align:middle
+Merchant of Record" significa que se encarga de todas
+las cuestiones legales y financieras complicadas
+
+00:00:40.216 --> 00:00:42.736 align:middle
+, como los impuestos, por ti.
+
+00:00:42.736 --> 00:00:47.756 align:middle
+Se acabaron los quebraderos de cabeza por el IVA y
+las pesadillas por el cumplimiento de las normativas.
+
+00:00:48.306 --> 00:00:52.676 align:middle
+Te mostraremos cómo configurarlo con Lemon
+Squeezy, pero lo que vamos a explicar se puede
+
+00:00:52.676 --> 00:00:55.046 align:middle
+aplicar a otros servicios como Paddle o Polar.
+
+00:00:55.556 --> 00:00:57.206 align:middle
+El servicio que elijas depende de ti:
+
+00:00:57.556 --> 00:01:00.346 align:middle
+vamos a utilizar LemonSqueezy,
+pero no tenemos un favorito.
+
+00:01:00.986 --> 00:01:02.666 align:middle
+Bien, ¡lo primero es lo primero!
+
+00:01:02.916 --> 00:01:05.696 align:middle
+Tenemos que registrarnos para
+poder empezar a vender productos.
+
+00:01:06.096 --> 00:01:11.446 align:middle
+Haz clic en "Empezar" y añade tu nombre, dirección de correo
+electrónico y una contraseña súper segura, ya sabes...
+
+00:01:11.666 --> 00:01:13.856 align:middle
+porque estamos tratando con cosas de pago.
+
+00:01:13.856 --> 00:01:17.566 align:middle
+También puedes configurar 2FA
+más adelante para mayor seguridad.
+
+00:01:18.136 --> 00:01:22.046 align:middle
+Recuerda utilizar tu correo electrónico real
+porque tendrás que confirmarlo antes de empezar.
+
+00:01:22.506 --> 00:01:24.956 align:middle
+También enviaremos algunos
+correos de prueba que querrás ver.
+
+00:01:25.456 --> 00:01:29.716 align:middle
+Yo ya he registrado el mío, así que volveré
+y me registraré con mis credenciales.
+
+00:01:31.246 --> 00:01:37.046 align:middle
+Y... ¡bienvenidos a "Exprime el día", mi
+puesto de limonada de diseñador digital!
+
+00:01:37.486 --> 00:01:41.566 align:middle
+Ya tengo algunos datos en el gráfico de mi panel de
+control que adquirí mientras preparaba este tutorial.
+
+00:01:41.926 --> 00:01:43.636 align:middle
+El tuyo debería estar completamente vacío.
+
+00:01:44.356 --> 00:01:49.126 align:middle
+Al registrarte, aparecerá una página de configuración
+que contiene varios pasos que tendrás que completar
+
+00:01:49.126 --> 00:01:52.636 align:middle
+para poner en marcha tu tienda, pero de
+eso ya nos preocuparemos más adelante.
+
+00:01:52.636 --> 00:01:56.406 align:middle
+Por ahora, podemos empezar a trabajar en
+nuestra integración en modo de prueba.
+
+00:01:56.886 --> 00:01:58.576 align:middle
+Podemos saber que estamos en "modo de prueba"
+
+00:01:58.666 --> 00:02:01.246 align:middle
+marcando este pequeño interruptor
+aquí abajo en la barra lateral.
+
+00:02:01.756 --> 00:02:06.336 align:middle
+Eso significa que podemos utilizar números de tarjeta
+de prueba para simular pagos sin gastar dinero real.
+
+00:02:06.796 --> 00:02:10.906 align:middle
+Eso va a ser superútil porque estoy a punto de
+gastar un montón de dinero mientras desarrollamos.
+
+00:02:11.416 --> 00:02:13.106 align:middle
+Mi cartera falsa ya está llorando.
+
+00:02:13.826 --> 00:02:17.706 align:middle
+En cuanto termines los pasos de configuración
+y actives tu tienda, podrás cambiar
+
+00:02:17.706 --> 00:02:23.676 align:middle
+entre tu tienda activa (real) y tu tienda de prueba (falsa)
+utilizando este interruptor, así que tenlo en cuenta.
+
+00:02:24.336 --> 00:02:27.986 align:middle
+Técnicamente, ni siquiera necesitas un sitio
+web para empezar a vender con LemonSqueezy.
+
+00:02:28.346 --> 00:02:28.946 align:middle
+Genial, ¿verdad?
+
+00:02:29.356 --> 00:02:33.656 align:middle
+Sólo tienes que compartir la URL de tu tienda
+LemonSqueezy con tus clientes, y podrán
+
+00:02:33.656 --> 00:02:35.436 align:middle
+comprar tus productos directamente desde allí.
+
+00:02:35.996 --> 00:02:36.876 align:middle
+¿Qué vamos a vender?
+
+00:02:37.376 --> 00:02:39.766 align:middle
+Vamos a crear nuestro primer
+producto y ¡a ganar dinero!
+
+00:02:40.536 --> 00:02:42.826 align:middle
+Lo primero que tenemos que
+hacer es ir a "Tienda"...
+
+00:02:43.166 --> 00:02:45.416 align:middle
+"Productos", y hacer clic en "Nuevo producto".
+
+00:02:45.416 --> 00:02:49.216 align:middle
+Como tengo un negocio de limonada,
+vamos a llamar al primer producto
+
+00:02:49.326 --> 00:02:52.026 align:middle
+"Limonada Clásica", suave y sencillo.
+
+00:02:52.026 --> 00:02:56.146 align:middle
+Para la descripción, digamos
+"Una limonada cítrica clásica".
+
+00:02:56.886 --> 00:03:00.016 align:middle
+Ahora podemos establecer el modelo de
+precios, y hay unos cuantos para elegir:
+
+00:03:00.016 --> 00:03:04.596 align:middle
+"Pago único", que cobra a los clientes
+una tarifa única, "Suscripción",
+
+00:03:04.886 --> 00:03:09.226 align:middle
+que veremos en el próximo curso, "Imán de clientes
+potenciales", que permite el acceso gratuito,
+
+00:03:09.686 --> 00:03:13.206 align:middle
+y "Paga lo que quieras", donde puedes
+establecer precios sugeridos y mínimos
+
+00:03:13.206 --> 00:03:16.126 align:middle
+y dejar que tus clientes decidan
+cuánto quieren pagar por tu producto.
+
+00:03:16.126 --> 00:03:20.366 align:middle
+Optemos por la opción más sencilla, un
+"Pago único", y mantengamos la sencillez
+
+00:03:20.366 --> 00:03:21.836 align:middle
+con el modelo "Precio estándar".
+
+00:03:22.756 --> 00:03:24.016 align:middle
+Fijaré el precio en...
+
+00:03:24.016 --> 00:03:26.316 align:middle
+¿qué te parece 0,99 $?
+
+00:03:26.316 --> 00:03:29.596 align:middle
+En la categoría de impuestos, tenemos
+que elegir una de las pocas opciones.
+
+00:03:30.126 --> 00:03:34.436 align:middle
+La que mejor se adapta a nuestras necesidades es "Bienes o
+servicios digitales (excluidos los libros electrónicos)".
+
+00:03:34.826 --> 00:03:35.386 align:middle
+Así es
+
+00:03:35.556 --> 00:03:36.876 align:middle
+Nuestra limonada es digital.
+
+00:03:37.296 --> 00:03:40.536 align:middle
+Como he mencionado antes, LemonSqueezy
+es un "Merchant of Record",
+
+00:03:40.536 --> 00:03:44.696 align:middle
+por lo que limita los productos que puedes vender
+a través de su plataforma a sólo digitales,
+
+00:03:44.696 --> 00:03:47.016 align:middle
+así que no podremos vender limonada de verdad.
+
+00:03:47.416 --> 00:03:48.666 align:middle
+Un fastidio. Pero, ¡eh!
+
+00:03:48.956 --> 00:03:53.166 align:middle
+Somos pioneros y estamos abriendo camino
+a la primera limonada digital del mundo
+
+00:03:53.166 --> 00:03:57.906 align:middle
+Cambiemos el nombre de nuestro producto a "Limonada
+electrónica clásica", para que quede claro.
+
+00:03:58.526 --> 00:04:02.886 align:middle
+Bien, antes de publicar oficialmente nuestro primer
+producto, tenemos que asegurarnos de que no está
+
+00:04:02.886 --> 00:04:04.776 align:middle
+en la lista de "Productos prohibidos".
+
+00:04:05.226 --> 00:04:10.446 align:middle
+Podemos encontrarla en docs.lemonsqueezy.com,
+donde hacemos clic en "Recursos"...
+
+00:04:10.516 --> 00:04:12.546 align:middle
+"Documentos de ayuda"...
+
+00:04:12.546 --> 00:04:15.316 align:middle
+y más abajo, encontrarás una
+sección de "Productos prohibidos":
+
+00:04:15.316 --> 00:04:26.896 align:middle
+https://docs.lemonsqueezy.com/help/getting-started/prohibited-products.
+Si
+
+00:04:26.896 --> 00:04:31.556 align:middle
+sigues sin estar seguro sobre
+tu producto concreto después de
+
+00:04:31.556 --> 00:04:37.416 align:middle
+revisar este documento,
+pregunta a su equipo de soporte.
+
+00:04:37.416 --> 00:04:42.446 align:middle
+Muy bien, ¡volvamos a nuestro
+producto en curso! ¡ Un
+
+00:04:42.446 --> 00:04:47.896 align:middle
+producto de éxito necesita
+una gran imagen! Sube
+
+00:04:48.626 --> 00:04:53.066 align:middle
+una foto de nuestra deliciosa limonada... um,
+
+00:04:53.066 --> 00:04:56.296 align:middle
+e-lemonada, que haga que la gente quiera
+machacar ese botón de "Comprar". Y
+
+00:04:56.296 --> 00:04:57.246 align:middle
+¡sorpresa! ¡
+
+00:04:57.246 --> 00:04:58.476 align:middle
+Ya tenemos una! Si
+
+00:04:58.476 --> 00:05:00.586 align:middle
+descargas el código del curso
+y lo descomprimes, dentro
+
+00:05:00.586 --> 00:05:04.326 align:middle
+encontrarás un directorio start/ con
+el mismo código que ves aquí. El
+
+00:05:04.326 --> 00:05:08.206 align:middle
+directoriotutorial/ tiene
+la imagen que necesitamos.
+
+00:05:08.206 --> 00:05:11.246 align:middle
+Sólo tienes que hacer clic y arrastrarla
+a la sección multimedia. ¡ Ohhhh
+
+00:05:11.246 --> 00:05:11.476 align:middle
+sí! ¡ Eso
+
+00:05:11.476 --> 00:05:15.586 align:middle
+tiene un aspecto tan apetitoso
+que ya quiero comprarlo! Si
+
+00:05:15.586 --> 00:05:20.286 align:middle
+te dedicas a la venta de archivos,
+puedes adjuntar un archivo al producto y
+
+00:05:20.286 --> 00:05:25.536 align:middle
+tus clientes tendrán acceso a él
+justo después de su compra. ¡
+
+00:05:25.536 --> 00:05:27.666 align:middle
+Lo mismo ocurre con los enlaces!
+
+00:05:27.666 --> 00:05:31.906 align:middle
+No necesitamos ninguno para nuestra e-lemonada,
+así que por ahora lo dejaré vacío.
+
+00:05:31.906 --> 00:05:34.446 align:middle
+La siguiente es "Variantes". Las variantes
+
+00:05:34.446 --> 00:05:41.736 align:middle
+son útiles cuando tienes un producto con
+diferentes opciones como sabor, tamaño, color, etc.
+
+00:05:41.736 --> 00:05:48.996 align:middle
+Seguro que vamos a vender más de un sabor
+de limonada electrónica de diseño, y
+
+00:05:48.996 --> 00:05:54.596 align:middle
+probablemente nuestros clientes estarán más
+dispuestos a comprar los otros sabores si
+
+00:05:54.596 --> 00:05:57.096 align:middle
+pueden ver lo delicioso que
+es cada sabor, ¿verdad? Como
+
+00:05:57.096 --> 00:06:01.616 align:middle
+las variantes no tienen su propia imagen,
+tiene sentido que creemos cada nuevo sabor como
+
+00:06:01.616 --> 00:06:04.096 align:middle
+un producto individual, así
+que lo dejaremos en blanco.
+
+00:06:04.096 --> 00:06:04.876 align:middle
+Más adelante hablaremos de ello Si
+
+00:06:04.876 --> 00:06:08.056 align:middle
+vendes claves de licencia,
+querrás activar esto. Nosotros
+
+00:06:08.056 --> 00:06:09.806 align:middle
+no lo necesitamos, así que
+podemos dejarlo como está. Este
+
+00:06:09.806 --> 00:06:11.596 align:middle
+interruptor está activado por defecto
+y nos permite mostrar este producto en
+
+00:06:11.626 --> 00:06:13.696 align:middle
+la página del escaparate de LemonSqueezy
+- útil si aún no tienes una tienda web.
+
+00:06:13.726 --> 00:06:15.376 align:middle
+También puedes personalizar el "Modal de confirmación"
+y el "Recibo por correo electrónico", pero
+
+00:06:15.406 --> 00:06:16.426 align:middle
+los valores predeterminados
+funcionan bien por ahora.
+
+00:06:16.456 --> 00:06:18.046 align:middle
+Por cierto, LemonSqueezy gestionará todos
+los correos electrónicos por ti. Cada
+
+00:06:18.076 --> 00:06:19.426 align:middle
+vez que un cliente compre algo
+en tu tienda, LemonSqueezy
+
+00:06:19.456 --> 00:06:21.016 align:middle
+le enviará un correo electrónico
+de pedido, por lo que no tendrás que
+
+00:06:21.046 --> 00:06:22.096 align:middle
+gestionar tú mismo esos complejos
+correos electrónicos. ¡ Qué
+
+00:06:22.126 --> 00:06:22.546 align:middle
+ahorro de tiempo! Por último, vamos
+
+00:06:22.576 --> 00:06:23.536 align:middle
+a "Publicar" nuestro nuevo
+producto. Haz clic en
+
+00:06:23.566 --> 00:06:24.256 align:middle
+"Publicar producto" y... ¡ya
+
+00:06:24.286 --> 00:06:24.496 align:middle
+está! ¡
+
+00:06:24.526 --> 00:06:25.846 align:middle
+Acabas de crear tu primer
+producto LemonSqueezy! Cierra
+
+00:06:25.876 --> 00:06:27.076 align:middle
+la página Detalles del
+producto, ¡y ahí está! ¡
+
+00:06:27.106 --> 00:06:28.966 align:middle
+Tiene el estado "Publicado" y ya aparece
+en nuestro escaparate! ¡Qué bien!
+
+00:06:28.996 --> 00:06:30.826 align:middle
+A continuación, vamos a ver lo que ven nuestros
+clientes: ¡nuestro nuevo y reluciente escaparate!
