@@ -16,8 +16,7 @@ If we take a look at the API docs, LemonSqueezy allows us to set our own price.
 So let's try something... *for science*. Over in `OrderController.php` inside
 `createLsCheckoutUrl()`, add `if (count($products) === 1)`. Up here, *cut* the
 guts of the `$attributes` variable, then set it to an empty array. In our new `if`
-statement, write `$attributes`... *paste*... fix some spacing... close this correctly
-...and... done!
+statement, write `$attributes`... *paste*...and... done!
 
 Okay, now we need to change the `quantity`. Copy `$cart->getProductQuantity()`,
 remove that line, and paste it down here. Below that, add `else`, and inside,
