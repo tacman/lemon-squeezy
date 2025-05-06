@@ -6,11 +6,15 @@ Actualmente, LemonSqueezy limita el número de artículos que podemos comprar a 
 
 Si echamos un vistazo a los documentos de la API, LemonSqueezy nos permite establecer nuestro propio precio. Así que probemos algo... para la ciencia. En `OrderController.php`, dentro de`createLsCheckoutUrl()`, añade `if (count($products) === 1)`. Aquí arriba, corta las tripas de la variable `$attributes`, y ponla en una matriz vacía. En nuestra nueva declaración `if`, escribe `$attributes`... pega... y... ¡listo!
 
+[[[ code('f0e9c119e4') ]]]
+
 Bien, ahora tenemos que cambiar `quantity`. Copia `$cart->getProductQuantity()`, elimina esa línea y pégala aquí abajo. Debajo de eso, añade `else`, y dentro, escribe `$attributes['custom_price'] = $cart->getTotal()` y`$attributes['product_options']` en una matriz donde`'name' => 'E-lemonades'`, para que el nombre sea más universal para nuestros usuarios.
 
 Esto tiene buena pinta, pero creo que podemos mejorarlo aún más. Entre nuestro`$attributes` aquí, escribe `$description = ''`. Debajo, iteraremos sobre nuestros productos con `foreach ($products as $product)`. Dentro, pon`$description .= $product->getName() . 'for $' .
 number_format($product->getPrice()/100, 2) . ' x ' .
 $cart->getProductQuantity($product)`. Añade un `. '<br>'` al final. No olvides terminar esto con un `;`. Por último, en `product_options`, vamos a utilizar esta variable con`'description' => $description,`. Muy bien.
+
+[[[ code('f6bdda62cb') ]]]
 
 Muy bien, ¡vamos a probarlo! Ve de nuevo a la página del carrito y vuelve a cargarla, por si acaso. Haz clic en "Pagar con LemonSqueezy" y... ¡funciona! Podemos ver el nombre del producto "E-lemonades" por 8,97 $, y debajo, una descripción con la lista de productos, la cantidad y el precio. Puede que no sea lo ideal, ¡pero funciona! No queremos obligar a nuestros clientes a pasar por todo el proceso de pago para cada producto que quieran comprar. ¡Piensa en todos los beneficios que perderíamos!
 
