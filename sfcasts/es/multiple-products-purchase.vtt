@@ -1,0 +1,231 @@
+WEBVTT
+
+00:00:01.076 --> 00:00:03.276 align:middle
+La compra de un solo producto es impresionante.
+
+00:00:03.886 --> 00:00:08.596 align:middle
+Incluso podemos especificar la cantidad y se
+reflejará en la página de pago de LemonSqueezy.
+
+00:00:09.986 --> 00:00:12.436 align:middle
+Pero, ¿qué pasa si añadimos
+un producto más al carrito?
+
+00:00:12.436 --> 00:00:13.536 align:middle
+Un producto diferente.
+
+00:00:15.316 --> 00:00:16.706 align:middle
+Sí, hay un problema.
+
+00:00:17.126 --> 00:00:21.656 align:middle
+Hemos pulsado el botón de pago con dos sabores
+de limonada en el carrito, pero sólo un sabor -el
+
+00:00:21.706 --> 00:00:24.296 align:middle
+primero de nuestro carrito-
+aparece en la página de pago.
+
+00:00:24.596 --> 00:00:25.716 align:middle
+¿Cómo podemos solucionarlo?
+
+00:00:26.036 --> 00:00:27.896 align:middle
+Bueno... hay un pequeño problema.
+
+00:00:28.786 --> 00:00:32.546 align:middle
+LemonSqueezy limita actualmente el número de
+artículos que podemos comprar a sólo uno.
+
+00:00:32.776 --> 00:00:37.596 align:middle
+Un fastidio. Y aunque su hoja de ruta
+sugiere que esto puede cambiar en el futuro,
+
+00:00:37.816 --> 00:00:39.456 align:middle
+eso no nos ayuda mucho ahora mismo.
+
+00:00:39.936 --> 00:00:40.886 align:middle
+¿Qué podemos hacer?
+
+00:00:41.016 --> 00:00:42.376 align:middle
+Ser creativos, ¡por supuesto!
+
+00:00:43.736 --> 00:00:49.136 align:middle
+Si echamos un vistazo a los documentos de la API,
+LemonSqueezy nos permite establecer nuestro propio precio.
+
+00:00:49.296 --> 00:00:50.496 align:middle
+Así que vamos a intentar algo...
+
+00:00:50.496 --> 00:00:51.306 align:middle
+para la ciencia.
+
+00:00:52.336 --> 00:00:57.026 align:middle
+En OrderController.php dentro
+de createLsCheckoutUrl(),
+
+00:00:57.586 --> 00:01:02.666 align:middle
+añade if (count($products) === 1).
+
+00:01:05.486 --> 00:01:09.676 align:middle
+Aquí arriba, corta las tripas de la variable
+$attributes y ponla en una matriz vacía.
+
+00:01:10.716 --> 00:01:13.276 align:middle
+En nuestra nueva declaración
+if, escribe $attributes...
+
+00:01:13.566 --> 00:01:15.686 align:middle
+pega... y...
+
+00:01:19.496 --> 00:01:21.686 align:middle
+¡listo! Bien, ahora tenemos
+que cambiar la quantity.
+
+00:01:22.326 --> 00:01:27.596 align:middle
+Copia $cart->getProductQuantity(),
+elimina esa línea y pégala aquí abajo.
+
+00:01:29.876 --> 00:01:36.796 align:middle
+Debajo de eso, añade else, y dentro, escribe
+$attributes['custom_price'] = $cart->getTotal()
+
+00:01:36.796 --> 00:01:44.446 align:middle
+y $attributes['product_options'] en una
+matriz donde 'name' => 'E-lemonades',
+
+00:01:44.626 --> 00:01:46.746 align:middle
+para que el nombre sea más
+universal para nuestros usuarios.
+
+00:01:48.026 --> 00:01:50.636 align:middle
+Esto tiene buena pinta, pero creo
+que podemos mejorarlo aún más.
+
+00:01:51.096 --> 00:01:55.116 align:middle
+Entre nuestro $attributes aquí,
+escribe $description = ''.
+
+00:01:56.256 --> 00:02:01.216 align:middle
+Debajo, iteraremos sobre nuestros productos
+con foreach ($products as $product).
+
+00:02:02.016 --> 00:02:03.746 align:middle
+Dentro, pon $description .=
+
+00:02:03.996 --> 00:02:07.156 align:middle
+$product->getName() . 'para
+
+00:02:07.156 --> 00:02:13.496 align:middle
+$' . number_format($producto->obtenerPrecio()/100,
+2) . '
+
+00:02:13.496 --> 00:02:25.696 align:middle
+x ' . $cart->getProductQuantity($producto).
+Añade
+
+00:02:25.696 --> 00:02:26.726 align:middle
+un . '<br>' al final.
+
+00:02:27.096 --> 00:02:33.736 align:middle
+No olvides terminar esto con un ;. Por último, en
+product_options, vamos a utilizar esta variable con
+
+00:02:33.736 --> 00:02:36.156 align:middle
+'description' => $description,. Muy bien.
+
+00:02:36.466 --> 00:02:40.046 align:middle
+Muy bien, ¡vamos a probarlo! Ve
+
+00:02:40.946 --> 00:02:43.976 align:middle
+de nuevo a la página del carrito y vuelve
+a cargarla, por si acaso. Haz clic en
+
+00:02:44.636 --> 00:02:47.596 align:middle
+"Pagar con LemonSqueezy" y...
+
+00:02:47.596 --> 00:02:54.266 align:middle
+¡funciona! Podemos ver el nombre del producto
+"E-lemonades" por 8,97 $, y debajo, una
+
+00:02:54.266 --> 00:02:57.366 align:middle
+descripción con la lista de
+productos, la cantidad y el precio.
+
+00:02:57.946 --> 00:02:59.756 align:middle
+Puede que no sea lo ideal, ¡pero funciona!
+
+00:03:00.306 --> 00:03:03.376 align:middle
+No queremos obligar a nuestros clientes
+a pasar por todo el proceso de pago para
+
+00:03:03.376 --> 00:03:05.366 align:middle
+cada producto que quieran comprar. ¡
+
+00:03:05.986 --> 00:03:08.086 align:middle
+Piensa en todos los
+beneficios que perderíamos!
+
+00:03:08.386 --> 00:03:12.146 align:middle
+Incluso podríamos ir un paso más allá y
+cambiar cosas como la imagen que se muestra en
+
+00:03:12.146 --> 00:03:14.916 align:middle
+la página de pago, lo que también
+es posible a través de la API. O
+
+00:03:15.436 --> 00:03:18.486 align:middle
+mejor aún, podríamos crear un
+producto de variedad "E-lemonade"
+
+00:03:18.486 --> 00:03:22.966 align:middle
+en el panel de control de LemonSqueezy y utilizar
+ese variantId para que sea aún más obvio que
+
+00:03:22.966 --> 00:03:26.876 align:middle
+estamos comprando una mezcla de productos e-lemonade
+en lugar de un único producto específico. El
+
+00:03:27.286 --> 00:03:30.706 align:middle
+problema es que, aunque cambiemos el
+nombre y la descripción del producto en
+
+00:03:30.706 --> 00:03:34.926 align:middle
+la página de pago de LemonSqueezy,
+LemonSqueezy seguirá utilizando el nombre y la
+
+00:03:34.926 --> 00:03:36.746 align:middle
+imagen originales en correos
+electrónicos y recibos. Eso
+
+00:03:36.956 --> 00:03:40.046 align:middle
+puede cambiar algún día, pero de momento,
+es con lo que estamos trabajando. Si
+
+00:03:40.046 --> 00:03:43.876 align:middle
+rellenamos unos datos de facturación
+falsos, otros campos obligatorios en
+
+00:03:43.876 --> 00:03:49.206 align:middle
+la página de pago y hacemos
+clic en el botón "Pagar"...
+
+00:03:49.746 --> 00:03:51.686 align:middle
+recibimos este mensaje de
+confirmación de pedido.
+
+00:03:51.746 --> 00:03:59.186 align:middle
+Si comprobamos nuestro correo electrónico... sí, sólo
+vemos la información del primer producto. Faltan nuestro
+
+00:03:59.186 --> 00:04:00.946 align:middle
+nombre personalizado y la descripción.
+
+00:04:02.616 --> 00:04:04.886 align:middle
+Lo mismo ocurre con la página
+donde vemos nuestro pedido. Así que
+
+00:04:04.966 --> 00:04:06.596 align:middle
+esto no es perfecto... A continuación:
+
+00:04:07.296 --> 00:04:11.976 align:middle
+Pulamos aún más nuestro proceso de pago
+con algunas operaciones posteriores al pago.
