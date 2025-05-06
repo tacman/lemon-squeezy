@@ -61,7 +61,7 @@ product. *Bummer*. There *has* to be an easier way to do that, right?
 Thankfully, *yes* - with an *API option*.
 
 In the API docs, search for "Create a checkout". Under `product_options`, check
-out this`redirect_url`:
+out this `redirect_url`:
 
 > A custom URL to redirect to after a successful purchase.
 
