@@ -18,6 +18,8 @@ So let's try something... *for science*. Over in `OrderController.php` inside
 guts of the `$attributes` variable, then set it to an empty array. In our new `if`
 statement, write `$attributes`... *paste*...and... done!
 
+[[[ code('f0e9c119e4') ]]]
+
 Okay, now we need to change the `quantity`. Copy `$cart->getProductQuantity()`,
 remove that line, and paste it down here. Below that, add `else`, and inside,
 write `$attributes['custom_price'] = $cart->getTotal()` and
@@ -33,6 +35,8 @@ $cart->getProductQuantity($product)`.
 Add a `. '<br>'` at the end. Don't forget to end this with a `;`.
 *Finally*, in `product_options`, let's *use* this variable with
 `'description' => $description,`. *Nice*.
+
+[[[ code('f6bdda62cb') ]]]
 
 All right, let's test this out! Go to the cart page again and reload it, just to
 be safe. Click "Checkout with LemonSqueezy" and... it *works*! We can see the
