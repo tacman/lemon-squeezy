@@ -14,8 +14,9 @@ fields. We have some default text here - the *same* text we saw in the
 confirmation message earlier.
 
 I'm pretty happy with the default text at the moment, even if it *could* use a
-few more exclamation points because I'm so excited, but I'll leave it the way it
-is for now. If you *do* decide to change this text, remember that the changes
+few more exclamation points because that's the vibe of my lemonade stand. But...
+I'll leave it the way it is for now.
+If you *do* decide to change this text, remember that the changes
 you make here will only apply to this specific product, so if you want *all* of
 your products to reflect your changes, you'll have to customize them one by one.
 
@@ -74,7 +75,7 @@ Okay, head over and check out again. Enter the card info and the billing
 address, click the "Checkout" button, and wait for the confirmation modal to pop
 up. Here it is! If we click "Continue"... yes! We see the "successful" flash
 message - "Thanks for your order!" - and the cart is completely empty now.
-Woohoo!
+Alright!
 
 Next: Before we make *more* API requests, let’s separate LemonSqueezy's business
 logic from the controller and *centralize* it in a standalone service.
