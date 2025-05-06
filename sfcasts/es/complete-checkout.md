@@ -24,11 +24,11 @@ Ahora, para evitar el acceso directo a esta página, vamos a utilizar un pequeñ
 
 A continuación, añade `if (!str_starts_with($referer, $lsStoreUrl))`. Si esto es cierto, significa que alguien ha abierto esta URL directamente. En este caso, redirígeles a la página de inicio con `return $this->redirectToRoute('app_homepage')`. Inyecta`ShoppingCart $cart` y, debajo, continúa con `if ($cart->isEmpty())`. De nuevo, redirige a la página de inicio con`return $this->redirectToRoute('app_homepage')`. Si no, vacía el carrito con `$cart->clear()`.
 
-Podríamos crear una página de éxito independiente con algunos detalles si quisiéramos, pero por ahora lo haremos sencillo y sólo añadiremos un mensaje flash -`$this->addFlash('success', 'Thanks for your order!')` - y`return $this->redirectToRoute('app_homepage')`.
+Podríamos crear una página de éxito separada con algunos detalles si quisiéramos, pero por ahora, lo mantendremos simple y sólo añadiremos un mensaje flash -`$this->addFlash('success', 'Thanks for your order!')` - y`return $this->redirectToRoute('app_homepage')`.
 
 Vale, ahora tenemos que añadir esta URL al campo "Enlace del botón" de todos y cada uno de los productos. Un fastidio. Tiene que haber una forma más fácil de hacerlo, ¿verdad? Afortunadamente, sí: con una opción de la API.
 
-En los documentos de la API, busca "Crear una compra". En `product_options`, mira esto`redirect_url`:
+En los documentos de la API, busca "Crear una compra". En `product_options`, mira esto `redirect_url`:
 
 > Una URL personalizada a la que redirigir después de una compra satisfactoria.
 
