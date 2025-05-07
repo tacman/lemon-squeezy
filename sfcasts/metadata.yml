@@ -8,3 +8,7 @@ chapters:
     - complete-checkout
     - centralize-logic
     - webhooks
+    - ngrok-tunnels
+    - webhook-request-parser
+    - webhook-consumer
+    - testing-webhooks
