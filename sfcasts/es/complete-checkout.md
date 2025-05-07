@@ -26,7 +26,7 @@ Ahora, para evitar el acceso directo a esta página, vamos a utilizar un pequeñ
 
 [[[ code('5c6d77c8d1') ]]]
 
-A continuación, añade `if (!str_starts_with($referer, $lsStoreUrl))`. Si esto es cierto, significa que alguien ha abierto esta URL directamente. En este caso, redirígeles a la página de inicio con `return $this->redirectToRoute('app_homepage')`. Inyecta`ShoppingCart $cart` y, debajo, continúa con `if ($cart->isEmpty())`. De nuevo, redirige a la página de inicio con`return $this->redirectToRoute('app_homepage')`. Si no, vacía el carrito con `$cart->clear()`.
+A continuación, añade `if (!str_starts_with($referer, $lsStoreUrl))`. Si esto es cierto, significa que alguien ha abierto esta URL directamente. En este caso, redirígelos a la página de inicio con `return $this->redirectToRoute('app_homepage')`. Inyecta`ShoppingCart $cart` y, debajo, continúa con `if ($cart->isEmpty())`. De nuevo, redirige a la página de inicio con`return $this->redirectToRoute('app_homepage')`. Si no, vacía el carrito con `$cart->clear()`.
 
 [[[ code('76d586bbd9') ]]]
 
