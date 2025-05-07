@@ -37,12 +37,16 @@ register the route with
 `#[Route('/checkout/success', name: 'app_order_success')]`. This will be where
 we redirect customers after completing the LemonSqueezy checkout.
 
+[[[ code('9e3ea565bf') ]]]
+
 Now, to avoid *direct access* to this page, we're going to use a little trick.
 Inject `Request $request` and, inside, add
 `$referer = $request->headers->get('referer')`. Then, create a variable -
 `$lsStoreUrl` - and set it to the store URL. For that, go to the dashboard, open
 the storefront, copy the URL, and paste it in our code
 `https://squeeze-the-day.lemonsqueezy.com'`.
+
+[[[ code('5c6d77c8d1') ]]]
 
 Below, add `if (!str_starts_with($referer, $lsStoreUrl))`. If this is *true*,
 that means someone opened this URL *directly*. In this case, redirect them to the homepage
@@ -52,10 +56,14 @@ Again, redirect to the homepage with
 `return $this->redirectToRoute('app_homepage')`. *Otherwise*, clear the cart
 with `$cart->clear()`.
 
+[[[ code('76d586bbd9') ]]]
+
 We *could* render a separate success page with some details if we wanted to, but
 for now, we'll keep it simple and just add a flash message -
 `$this->addFlash('success', 'Thanks for your order!')` - and
 `return $this->redirectToRoute('app_homepage')`.
+
+[[[ code('5a8f3d7834') ]]]
 
 Okay, now we need to add this URL to the "Button link" field for each and every
 product. *Bummer*. There *has* to be an easier way to do that, right?
@@ -70,6 +78,8 @@ out this `redirect_url`:
 
 In our code, open the `createLsCheckoutUrl()` method, and below, add:
 `$attributes['product_options']['redirect_url'] = $this->generateUrl('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL)`.
+
+[[[ code('4c0b36c395') ]]]
 
 Okay, head over and check out again. Enter the card info and the billing
 address, click the "Checkout" button, and wait for the confirmation modal to pop
