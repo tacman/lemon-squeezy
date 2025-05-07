@@ -1,0 +1,238 @@
+WEBVTT
+
+00:00:01.026 --> 00:00:05.516 align:middle
+Acabo de comprar otro producto increíble en
+nuestra tienda online, y cuando terminé de pagar,
+
+00:00:05.816 --> 00:00:08.816 align:middle
+LemonSqueezy me dio un mensaje de
+éxito: ¡Gracias por tu pedido!
+
+00:00:09.176 --> 00:00:13.946 align:middle
+Es breve, dulce y directo, pero ¿hay alguna
+forma de personalizarlo si lo necesitamos?
+
+00:00:14.346 --> 00:00:16.276 align:middle
+Sí Y es específico para cada producto.
+
+00:00:16.916 --> 00:00:18.856 align:middle
+En el panel de control, haz clic en "Tienda"...
+
+00:00:19.336 --> 00:00:20.026 align:middle
+"Productos"...
+
+00:00:20.236 --> 00:00:24.536 align:middle
+"Elegir un producto", y en la sección
+"Modalidad de confirmación" de aquí abajo,
+
+00:00:24.536 --> 00:00:26.746 align:middle
+busca los campos "Título" y "Mensaje".
+
+00:00:27.226 --> 00:00:31.546 align:middle
+Aquí tenemos un texto por defecto, el mismo
+que vimos antes en el mensaje de confirmación.
+
+00:00:31.856 --> 00:00:34.076 align:middle
+De momento estoy bastante
+contento con el texto por defecto,
+
+00:00:34.116 --> 00:00:36.736 align:middle
+aunque le vendrían bien unos
+cuantos signos de exclamación más
+
+00:00:36.736 --> 00:00:38.756 align:middle
+, porque ese es el rollo
+de mi puesto de limonada.
+
+00:00:39.146 --> 00:00:40.926 align:middle
+Pero... Por ahora lo dejaré como está.
+
+00:00:41.646 --> 00:00:46.136 align:middle
+Si decides cambiar este texto, recuerda que
+los cambios que hagas aquí sólo se aplicarán
+
+00:00:46.136 --> 00:00:51.006 align:middle
+a este producto concreto, así que si quieres
+que todos tus productos reflejen tus cambios,
+
+00:00:51.216 --> 00:00:52.926 align:middle
+tendrás que personalizarlos uno por uno.
+
+00:00:54.056 --> 00:00:55.356 align:middle
+Lo mismo ocurre con este botón.
+
+00:00:55.926 --> 00:00:57.676 align:middle
+Aquí podemos cambiar su texto y su enlace.
+
+00:00:58.606 --> 00:01:01.456 align:middle
+El enlace por defecto parece que
+va a una página de mis pedidos.
+
+00:01:01.886 --> 00:01:02.886 align:middle
+Si hacemos clic en él...
+
+00:01:04.686 --> 00:01:07.096 align:middle
+¡sí! Estamos en la página
+de pedidos de LemonSqueezy.
+
+00:01:07.486 --> 00:01:10.356 align:middle
+Quiero personalizar esto para volver
+después a nuestra aplicación.
+
+00:01:10.356 --> 00:01:12.466 align:middle
+Pero antes, tenemos un error.
+
+00:01:12.956 --> 00:01:13.796 align:middle
+En nuestro sitio...
+
+00:01:13.936 --> 00:01:16.446 align:middle
+el producto que acabamos de
+comprar sigue en el carrito.
+
+00:01:16.766 --> 00:01:20.456 align:middle
+Tenemos que asegurarnos de que el carrito
+se vacía después de realizar una compra.
+
+00:01:20.456 --> 00:01:23.766 align:middle
+Para ello, en OrderController,
+crea una acción especial.
+
+00:01:24.496 --> 00:01:25.846 align:middle
+La llamaremos success().
+
+00:01:29.246 --> 00:01:30.396 align:middle
+A continuación, registra la ruta
+
+00:01:30.396 --> 00:01:36.056 align:middle
+en #[Route('/checkout/success',
+name: 'app_order_success')].
+
+00:01:36.056 --> 00:01:39.806 align:middle
+Aquí será donde redirijamos a los clientes
+después de completar la compra en LemonSqueezy.
+
+00:01:40.866 --> 00:01:44.966 align:middle
+Ahora, para evitar el acceso directo a esta
+página, vamos a utilizar un pequeño truco.
+
+00:01:45.356 --> 00:01:54.676 align:middle
+Inyecta Request $request y, dentro, añade
+$referer = $request->headers->get('referer').
+
+00:01:55.326 --> 00:01:59.766 align:middle
+A continuación, crea una variable - $lsStoreUrl
+- y establécela en la URL de la tienda.
+
+00:01:59.766 --> 00:02:06.116 align:middle
+Para ello, ve al panel de control,
+abre el escaparate, copia la URL
+
+00:02:06.286 --> 00:02:10.266 align:middle
+y pégala en nuestro código
+https://squeeze-the-day.lemonsqueezy.com'.
+
+00:02:11.026 --> 00:02:17.486 align:middle
+A continuación, añade if
+(!str_starts_with($referer, $lsStoreUrl)).
+
+00:02:17.486 --> 00:02:21.256 align:middle
+Si esto es cierto, significa que alguien
+ha abierto esta URL directamente.
+
+00:02:21.626 --> 00:02:28.356 align:middle
+En este caso, redirígeles a la página de inicio
+con return $this->redirectToRoute('app_homepage').
+
+00:02:31.616 --> 00:02:38.636 align:middle
+Inyecta ShoppingCart $cart y, debajo,
+continúa con if ($cart->isEmpty()).
+
+00:02:39.626 --> 00:02:45.666 align:middle
+De nuevo, redirige a la página de inicio con
+return $this->redirectToRoute('app_homepage').
+
+00:02:46.496 --> 00:02:49.716 align:middle
+Si no, vacía el carrito con $cart->clear().
+
+00:02:50.686 --> 00:02:55.086 align:middle
+Podríamos crear una página de éxito independiente
+con algunos detalles si quisiéramos, pero por ahora,
+
+00:02:55.086 --> 00:03:00.896 align:middle
+lo mantendremos simple y sólo añadiremos un
+mensaje flash - $this->addFlash ('success',
+
+00:03:01.156 --> 00:03:08.576 align:middle
+'Thanks for your order!') - y return
+$this->redirectToRoute('app_homepage').
+
+00:03:09.416 --> 00:03:14.146 align:middle
+Vale, ahora tenemos que añadir esta URL al campo
+"Enlace del botón" de todos y cada uno de los productos.
+
+00:03:14.196 --> 00:03:17.146 align:middle
+Un fastidio. Tiene que haber una forma
+más fácil de hacerlo, ¿verdad?
+
+00:03:17.986 --> 00:03:20.546 align:middle
+Afortunadamente, sí: con
+una opción de la API.
+
+00:03:21.986 --> 00:03:24.986 align:middle
+En los documentos de la API,
+busca "Crear una compra".
+
+00:03:27.446 --> 00:03:30.606 align:middle
+En product_options, echa un
+vistazo a este redirect_url:
+
+00:03:30.816 --> 00:03:34.326 align:middle
+Una URL personalizada a la que redirigir
+después de una compra satisfactoria.
+
+00:03:34.516 --> 00:03:36.246 align:middle
+¡Eso es exactamente lo que estamos buscando!
+
+00:03:36.896 --> 00:03:43.596 align:middle
+En nuestro código, abre el método
+createLsCheckoutUrl(), y debajo, añade:
+
+00:03:43.596 --> 00:03:52.716 align:middle
+$attributes['product_options']['redirect_url'] =
+$this->generateUrl('app_order_success', [], UrlGeneratorInterface::ABSOLUTE_URL).
+
+00:03:52.716 --> 00:03:56.766 align:middle
+Bien,
+
+00:03:58.266 --> 00:04:00.116 align:middle
+vuelve a pasar por caja. Introduce
+
+00:04:03.876 --> 00:04:08.686 align:middle
+la información de la tarjeta y la dirección de
+facturación, haz clic en el botón "Realizar pedido" y
+
+00:04:08.796 --> 00:04:10.976 align:middle
+espera a que aparezca el
+modal de confirmación. ¡
+
+00:04:11.466 --> 00:04:12.076 align:middle
+Ya está! Si
+
+00:04:12.076 --> 00:04:13.726 align:middle
+hacemos clic en "Continuar"... ¡sí!
+
+00:04:14.686 --> 00:04:18.316 align:middle
+Vemos el mensaje flash de "realizado con
+éxito" - "¡Gracias por tu pedido!"-
+
+00:04:18.426 --> 00:04:20.116 align:middle
+y el carrito ya está
+completamente vacío. ¡Muy bien!
+
+00:04:20.276 --> 00:04:26.596 align:middle
+Siguiente: Antes de hacer más peticiones a la API,
+separemos la lógica de negocio de LemonSqueezy
+
+00:04:26.596 --> 00:04:30.156 align:middle
+del controlador y centralicémosla
+en un servicio independiente.
