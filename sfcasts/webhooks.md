@@ -2,38 +2,48 @@
 
 ## Assigning a LemonSqueezy Customer to a User
 
-So far, we have users in our application… and customers in LemonSqueezy. But right now they’re total strangers to each other.
+*So*... our site has *users*, and LemonSqueezy has *customers*... *but* as far as our code knows, they’re *total* strangers to each other. To build any meaningful integration - like fetching a user’s orders, debugging issues, or just having a smoother support experience when customers contact us about their orders - we need to *connect* them. More specifically, we want to *store* the LemonSqueezy customer ID on the corresponding `User` entity.
 
-To build any meaningful integration - like fetching a user’s orders, debugging issues, or just having a smoother support experience when customers contact us about their orders - we need to connect them. Specifically: we want to store the LemonSqueezy customer ID on our User entity.
-
-And here’s the twist: when someone completes a checkout, LemonSqueezy creates the customer *for us*, behind the scenes. You can’t pre-create a customer or pass an existing customer ID during checkout. Nope! LemonSqueezy decides that based on the email address and whether the user is logged in to their LemonSqueezy account.
+But here's a twist: When someone finishes checking out, LemonSqueezy creates a "customer" *for us* behind the scenes. You can’t *pre-create* a customer ID or pass an existing one during checkout. Nope! LemonSqueezy *assigns* one based on the email address they entered and whether they're logged into their LemonSqueezy account.
 
 ## Webhooks
 
-Sooo... how can we grab that customer ID and link it to our user? Manually? Yes… but not something we want, we need to automate it. And the answer is *webhooks*!
+So... how can we grab *that* customer ID and link it to our user? Manually? Well, *yes*… but who wants to do that? Not me. Let's *automate* it instead, using some handy dandy *webhooks*.
 
-We’ll send some metadata when creating the Checkout - like the user’s ID from *our* system. Then, when we receive the webhook (more on that in a second), we will read that metadata, look up the proper user in our database, and save the customer ID on it.
+We can send some metadata when the Checkout's created - like the user’s ID from *our* system - and when we receive the *webhook* (more on that in a second), we'll *read* that metadata, look up the proper user in our database, and stash that customer ID with it.
 
-Now, you might be wondering: “Wait! Can I also get the Customer ID right after the checkout?”
+If you said "Wait... Can't we get the Customer ID right *after* they check out too?” that's correct! LemonSqueezy *also* dispatches a `checkout:complete` JavaScript event upon checkout that *includes* the Customer ID, which could be *awesome* for local development when you don’t want to configure webhook tunnels.
 
-Yep! LemonSqueezy also dispatches a `checkout:complete` JavaScript event that includes the Customer ID. And it indeed may be *awesome* for local development when you don’t want to configure webhook tunnels.
-
-So let’s do both!
+So... let’s do *both*!
 
 ## Symfony Webhook Component
 
-Since webhooks are the real deal for production because they are flexible and robust solution - let’s go with them first.
+Since webhooks are a flexible, robust solution for production, let's start there. Over on the LemonSqueezy homepage, go to "Resources", choose "Help docs", and *way* down here in the "Webhooks" section, click on "Event types".
 
-There's some docs about it. Open LemonSqueezy homepage > "Resources" > choose "Help docs", and then in the "Webhooks" section click on "Event types". There are only few events about Orders, and to sync customer with app user I think we will need to listen to this `order_created` event that should send us an Order object data… click on it to see it gives us the customer ID we need.
+If we scroll a bit... I only see a few events dealing with orders. For our purposes, it looks like we'll need this `order_created` event - that should give us the order data we're looking for. If we click on it, and scroll down... yep! This returns `customer_id`! *Nice*! 
 
-OK, now we *could* create a `WebhookController` controller to handle this ourselves. But Symfony’s got our back and recently released a new Webhook Component that can help us to handle this in a smoother way! Let's leverage it in our application. Open your terminal and install it with: `composer require webhook` - it will brings us some important dependencies. And MakerBundle now has a command that helps us to start, so handy!
+Now, we *could* create a `WebhookController` to handle this ourselves, but Symfony’s got our back and recently released a new Webhook component that can help us handle this *even better*! Let's try it out! At your terminal, install it with:
 
-Run `bin/console make:webhook`. Name it `lemon-squeezy`. For the matcher, let's choose: `PathRequestMatcher`, then `MethodRequestMatcher`, and since LS sends us data in JSON format - add also `IsJsonRequestMatcher`. Hit enter one more time - great, it generated for us a parser and a consumer - we will see what they do soon. It also created a new endpoint, you can run `bin/console debug:router | grep webhook` - there it is - our new `/webhook/{type}` URL where type should be our lemon-squeezy webhook name we set earlier. It’s a specific URL that will handle LemonSqueezy webhooks. Open it in the browser to see it works. Yeah, it throws a RejectWebhookException saying that:
+```terminal
+composer require webhook
+```
+
+This gives us some much-needed dependencies. MakerBundle *also* has a command to help us get started. Run:
+
+```terminal
+bin/console make:webhook
+```
+
+We'll call this `lemon-squeezy`. For the matcher, let's choose: `PathRequestMatcher`, which is option 6, and *then* `MethodRequestMatcher` - option 5. And since LemonSqueezy sends us data in JSON format, *also* select 4 - `IsJsonRequestMatcher`. Hit enter one more time, and... *nice*! This generated a parser *and* a consumer - more on those in a moment - and it also created a new endpoint. If we run
+
+```terminal
+bin/console debug:router | grep webhook
+```
+
+... there it is - our new `/webhook/{type}` URL! The `{type}` should be the `lemon-squeezy` webhook name we set earlier. This is a specific URL that'll handle LemonSqueezy webhooks. If we open that in the browser... yep! It throws a "RejectWebhookException":
 
 > Request does not match.
 
-That’s something we will configure in a minute. I will copy the URL - we will need it in a second.
+Let's configure that! Copy this URL and, back on the LemonSqueezy dashboard, in "Settings", "Webhooks", click on the plus sign to edit the webhook. In the "Callback URL" field, paste the URL we copied a moment ago. But... hm... you may have already spotted the problem here. This URL *isn't* public, so LemonSqueezy's unable to hit our localhost.
 
-Now go to "Settings" > [Webhooks](https://app.lemonsqueezy.com/settings/webhooks) and click on "+". For callback, I will paste the URL we copied: https://127.0.0.1:8000/webhook/lemon-squeezy . Hmmmm, but you may already see the problem - it will not work this way as it's not a public URL, LemonSqueezy will not be able to hit our local host.
-
-In the next chapter, I’ll show you how to set up the webhooks properly using a tool like Ngrok, so LemonSqueezy can actually talk to your local machine.
+We need to set up our webhooks *properly* using a tool like Ngrok, so LemonSqueezy can actually talk to our local machine. That's *next*.
