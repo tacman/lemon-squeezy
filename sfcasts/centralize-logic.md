@@ -15,7 +15,7 @@ it `public`. Since we *know* this is LemonSqueezy-related because it's in
 it simple.
 
 Next, let's grab `$lsClient` and `$cart`, and above, turn them into constructor
-dependencies with `public function __construct()`. Paste, and we'll also
+dependencies with `public function __construct()`. Paste, we'll also
 simplify `$lsClient` and just call it `$client`. Above this argument, add
 `#[Target('lemonSqueezyClient')]`, add `private` before each property, and
 finally, change this `$cart` variable to a property with `$this->cart`. We'll do
