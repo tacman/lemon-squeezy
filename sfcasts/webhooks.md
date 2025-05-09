@@ -40,7 +40,7 @@ We'll call this `lemon-squeezy`. For the matcher, let's choose: `PathRequestMatc
 bin/console debug:router | grep webhook
 ```
 
-... there it is - our new `/webhook/{type}` URL! The `{type}` should be the `lemon-squeezy` webhook name we set earlier. This is a specific URL that'll handle LemonSqueezy webhooks. If we open that in the browser... yep! It throws a "RejectWebhookException":
+... there it is - our new `/webhook/{type}` URL! The `{type}` should be the `lemon-squeezy` webhook name we set earlier. This is a specific URL that'll handle LemonSqueezy webhooks. If we open that in the browser... yep! It throws a `RejectWebhookException`:
 
 > Request does not match.
 
