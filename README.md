@@ -47,6 +47,9 @@ symfony console doctrine:migrations:migrate
 symfony console doctrine:fixtures:load
 ```
 
+![Database Diagram](assets/docs/database.svg)
+
+
 **Build Tailwind CSS**
 
 ```bash
